@@ -1,0 +1,31 @@
+{
+  "name": "@apps/backend",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "dotenv -- tsx watch src/main.ts",
+    "start": "NODE_ENV=production dotenv -- node dist/server.js",
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "dependencies": {
+    "@fastify/cors": "^8.5.0",
+    "@ts-rest/core": "^3.52.1",
+    "@ts-rest/fastify": "^3.52.1",
+    "fastify": "^4.29.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^12.1.4",
+    "dotenv": "^17.2.0",
+    "dotenv-cli": "^8.0.0",
+    "rollup": "^4.45.1",
+    "tsx": "^4.20.3"
+  },
+  "type": "module",
+  "exports": {
+    "./*": "./src/*.ts"
+  }
+}

@@ -23,13 +23,13 @@ const alternateNamesForParticipants = [
 function StatTile() {
   const [wordIndex, setWordIndex] = useState(0);
   const [currentWord, setCurrentWord] = useState(
-    alternateNamesForParticipants[wordIndex]
+    alternateNamesForParticipants[wordIndex],
   );
   const prevWordRef = useRef("");
   useEffect(() => {
     const intervalId = setInterval(() => {
       setWordIndex(
-        (index) => (index + 1) % alternateNamesForParticipants.length
+        (index) => (index + 1) % alternateNamesForParticipants.length,
       );
     }, 4000);
     return () => clearInterval(intervalId);
@@ -53,7 +53,7 @@ function StatTile() {
         } else if (i <= frontierIndex) {
           newWordState += getRandomLetter(
             wordToTransitionTo[i] || " ",
-            wordToTransitionTo[i] === undefined ? 1 : 0
+            wordToTransitionTo[i] === undefined ? 1 : 0,
           ); // if new word is shorter, replace extra characters in randomWindow with ' '
         } else {
           newWordState += prevWord[i] || " ";

@@ -70,7 +70,7 @@ export default function Projects() {
               dragSnapToOrigin
               className={clsx(
                 css["tool-logo-slot"],
-                icon.includes("/ai") && css["tool-logo-slot--ai-san"]
+                icon.includes("/ai") && css["tool-logo-slot--ai-san"],
               )}
               src={icon}
               alt=""
@@ -112,7 +112,7 @@ export default function Projects() {
                 src={
                   new URL(
                     `./assets/projects/${assetFolder}/icon.png`,
-                    import.meta.url
+                    import.meta.url,
                   ).href
                 }
                 alt=""
@@ -149,7 +149,7 @@ export default function Projects() {
                 src={
                   new URL(
                     `./assets/projects/${featuredProjects[selectedProjectIndex].assetFolder}/main.png`,
-                    import.meta.url
+                    import.meta.url,
                   ).href
                 }
                 alt=""

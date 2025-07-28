@@ -58,7 +58,7 @@ function Header() {
               <button
                 className={clsx(
                   css["nav-button"],
-                  url === "/about" && css["nav-button--active"]
+                  url === "/about" && css["nav-button--active"],
                 )}
               >
                 <img className={css["nav-button__icon"]} src={icon} />

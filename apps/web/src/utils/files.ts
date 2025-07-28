@@ -9,7 +9,7 @@ export function getAllImageLinksInAssetDirectory(
     | "carousel-images"
     | "design-app-icons"
     | "code-app-icons"
-    | "tartanhacks-photos"
+    | "tartanhacks-photos",
 ): string[] {
   switch (dir) {
     case "carousel-images":
@@ -18,7 +18,7 @@ export function getAllImageLinksInAssetDirectory(
           eager: true,
           query: "url",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }) as Record<string, any>
+        }) as Record<string, any>,
       ).map((data) => data.default);
     case "design-app-icons":
       return Object.values(
@@ -26,7 +26,7 @@ export function getAllImageLinksInAssetDirectory(
           eager: true,
           query: "url",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }) as Record<string, any>
+        }) as Record<string, any>,
       ).map((data) => data.default);
     case "code-app-icons":
       return Object.values(
@@ -34,7 +34,7 @@ export function getAllImageLinksInAssetDirectory(
           eager: true,
           query: "url",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }) as Record<string, any>
+        }) as Record<string, any>,
       ).map((data) => data.default);
     case "tartanhacks-photos":
       return Object.values(
@@ -42,7 +42,7 @@ export function getAllImageLinksInAssetDirectory(
           eager: true,
           query: "url",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }) as Record<string, any>
+        }) as Record<string, any>,
       ).map((data) => data.default);
   }
 }
