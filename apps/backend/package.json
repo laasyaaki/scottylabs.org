@@ -15,7 +15,8 @@
     "@fastify/cors": "^8.5.0",
     "@ts-rest/core": "^3.52.1",
     "@ts-rest/fastify": "^3.52.1",
-    "fastify": "^4.29.0"
+    "fastify": "^4.29.0",
+    "zod": "^4.0.10"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.4",
