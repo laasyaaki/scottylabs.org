@@ -6,4 +6,5 @@ To run everything: `pnpm -r --parallel run dev`
 To run a specific module, `pnpm -F @apps/backend dev`, for example
 
 Frontend: React + Vite + Typescript + Tanstack Query
+
 Backend: Fastify + `ts-rest` + Node runtime
