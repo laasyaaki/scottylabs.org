@@ -2,7 +2,7 @@
 import typescript from "@rollup/plugin-typescript";
 
 export default {
-  input: "src/server.ts",
+  input: "src/main.ts",
   output: {
     dir: "dist",
     format: "es", // esmodule syntax, because who uses commonjs these days?
