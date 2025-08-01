@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "dotenv -- tsx watch src/main.ts",
+    "dev": "docker compose -f docker/docker-compose.yml up -d && dotenv -- tsx watch src/main.ts",
     "start": "NODE_ENV=production dotenv -- node dist/server.js",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
   },
   "keywords": [],
   "author": "",
@@ -15,13 +18,18 @@
     "@fastify/cors": "^8.5.0",
     "@ts-rest/core": "^3.52.1",
     "@ts-rest/fastify": "^3.52.1",
+    "drizzle-orm": "^0.44.4",
     "fastify": "^4.29.0",
+    "octokit": "^5.0.3",
+    "pg": "^8.16.3",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.4",
-    "dotenv": "^17.2.0",
+    "@types/pg": "^8.15.5",
+    "dotenv": "^17.2.1",
     "dotenv-cli": "^8.0.0",
+    "drizzle-kit": "^0.31.4",
     "rollup": "^4.45.1",
     "tsx": "^4.20.3"
   },

@@ -2,6 +2,14 @@ import fastify from "fastify";
 import { initServer } from "@ts-rest/fastify";
 import { pokemonContract } from "./contract";
 import cors from "@fastify/cors";
+import env from "./env";
+import { App } from "octokit";
+import { commitTable, pullRequestTable, repoTable, userTable, techLeadTable } from "./db/schema";
+import { and, desc, eq, sql } from "drizzle-orm";
+import { runContributionScrape } from "./db/refreshDb";
+import { getRecentActivity, getContributors } from "./db/dbQueries";
+
+setInterval(() => runContributionScrape("scottylabs"), 10000);
 
 const app = fastify();
 await app.register(cors, {
@@ -25,6 +33,44 @@ const router = s.router(pokemonContract, {
     return {
       status: 200,
       body: pokemon,
+    };
+  },
+  getLatestActivity: async () => {
+    const { recentCommits, recentPRs } = await getRecentActivity();
+    const mappedCommits = recentCommits.map((commit) => ({
+      type: "commit" as const,
+      commitMessage: commit.commits.message,
+      commitUrl: commit.commits.url,
+      time: commit.commits.committed_at,
+      authorUsername: commit.users.username,
+      authorPfpUrl: commit.users.pfp_url,
+      authorUrl: commit.users.account_url,
+      repoName: commit.repos.name,
+      repoOrg: commit.repos.org,
+      repoUrl: commit.repos.url,
+    }));
+    const mappedPRs = recentPRs.map((pr) => ({
+      type: "pull_request" as const,
+      prTitle: pr.pull_requests.title,
+      prNumber: pr.pull_requests.number,
+      time: pr.pull_requests.merged_at,
+      prUrl: pr.pull_requests.url,
+      authorUsername: pr.users.username,
+      authorPfpUrl: pr.users.pfp_url,
+      authorUrl: pr.users.account_url,
+      repoName: pr.repos.name,
+      repoOrg: pr.repos.org,
+      repoUrl: pr.repos.url,
+    }));
+    return {
+      status: 200,
+      body: [...mappedCommits, ...mappedPRs].sort((a, b) => b.time.getTime() - a.time.getTime()),
+    };
+  },
+  async getContributors({ params: { org, repo } }) {
+    return {
+      status: 200,
+      body: await getContributors(org, repo),
     };
   },
 });

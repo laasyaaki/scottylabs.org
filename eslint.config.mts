@@ -11,6 +11,6 @@ export default defineConfig([
     extends: ["js/recommended"],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
-  // tseslint.configs.recommended,
   eslintPluginPrettierRecommended,
+  ...tseslint.configs.recommended,
 ]);
