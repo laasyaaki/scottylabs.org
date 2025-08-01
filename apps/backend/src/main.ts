@@ -2,10 +2,6 @@ import fastify from "fastify";
 import { initServer } from "@ts-rest/fastify";
 import { pokemonContract } from "./contract";
 import cors from "@fastify/cors";
-import env from "./env";
-import { App } from "octokit";
-import { commitTable, pullRequestTable, repoTable, userTable, techLeadTable } from "./db/schema";
-import { and, desc, eq, sql } from "drizzle-orm";
 import { runContributionScrape } from "./db/refreshDb";
 import { getRecentActivity, getContributors } from "./db/dbQueries";
 
