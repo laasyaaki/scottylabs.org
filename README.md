@@ -7,4 +7,6 @@ To run a specific module, `pnpm -F @apps/backend dev`, for example
 
 Frontend: React + Vite + Typescript + Tanstack Query
 
-Backend: Fastify + `ts-rest` + Node runtime
+Backend: Fastify + `ts-rest` + Drizzle + octokit (Slack API) + Node runtime
+
+Note: if you make any db schema changes, please run `pnpm db:generate` before committing to generate migration files
