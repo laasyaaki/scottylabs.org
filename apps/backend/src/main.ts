@@ -71,8 +71,9 @@ const router = s.router(pokemonContract, {
   },
 });
 
-app.register(s.plugin(router));
-
+s.registerRouter(pokemonContract, router, app, {
+  responseValidation: true,
+});
 const start = async () => {
   try {
     await app.listen({ port: 3000, host: "0.0.0.0" });
