@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "docker compose -f docker/docker-compose.yml up -d && dotenv -- tsx watch src/main.ts",
-    "start": "NODE_ENV=production dotenv -- node dist/server.js",
+    "start": "NODE_ENV=production dotenv -- node dist/main.js",
     "build": "rollup -c",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
