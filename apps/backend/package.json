@@ -36,5 +36,8 @@
   "type": "module",
   "exports": {
     "./*": "./src/*.ts"
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }
