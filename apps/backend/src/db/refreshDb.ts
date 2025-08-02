@@ -6,8 +6,7 @@ let scrapeIsRunningFlag = false;
 // console.log(await octokit.rest.repos.getContributorsStats({ repo: "dining-api", owner: "scottylabs" }));
 async function populateRepositoryListAndGetChangedRepos(org: string) {
   const existingRepoData = await db.select().from(repoTable);
-  const repos = await getAllReposInOrg(org);
-  const updatedRepoData = repos.map((repo) => ({
+  const currentRepoData = (await getAllReposInOrg(org)).map((repo) => ({
     id: repo.id,
     check_type: "pull_request" as const,
     name: repo.name,
@@ -15,24 +14,24 @@ async function populateRepositoryListAndGetChangedRepos(org: string) {
     pushed_at: repo.pushed_at ? new Date(repo.pushed_at) : null,
     org,
   }));
+
   // console.log(repos[0].pushed_at);
 
   const insertedRows = await db
     .insert(repoTable)
-    .values(updatedRepoData)
+    .values(currentRepoData)
     .onConflictDoUpdate({
       target: repoTable.id,
       set: {
         name: sql.raw(`excluded.${repoTable.name.name}`),
         org: sql.raw(`excluded.${repoTable.org.name}`),
         url: sql.raw(`excluded.${repoTable.url.name}`),
-
         // check_type: sql.raw(`excluded.${repoTable.check_type.name}`), // don't override this one
       },
     })
     .returning();
   console.log(`inserted/updated ${insertedRows.length} repos`); // we don't delete anything lol
-  const reposToUpdate = updatedRepoData
+  const reposToUpdate = currentRepoData
     .filter(
       (repo) =>
         repo.pushed_at === null ||
@@ -45,9 +44,9 @@ async function populateRepositoryListAndGetChangedRepos(org: string) {
   return {
     reposToUpdate,
     onSuccessDoRepoUpdate: async () => {
-      const insertedRows = await db
+      await db
         .insert(repoTable)
-        .values(updatedRepoData)
+        .values(currentRepoData)
         .onConflictDoUpdate({
           target: repoTable.id,
           set: {
@@ -91,9 +90,9 @@ async function populatePRs(repo: { id: number; org: string; name: string }) {
       (users, pr) => ({ [pr.user.id]: pr.user, ...users }),
       {},
     );
+    const updatedUsers = await updateUserTable(Object.values(userMap));
     await db
       .transaction(async (tx) => {
-        const updatedUsers = await updateUserTable(Object.values(userMap));
         await tx.execute(sql`LOCK TABLE ${pullRequestTable} IN ACCESS EXCLUSIVE MODE`); // prevent reads while this transaction is in process
         // we could do some diff checking and preserve unchanged rows while deleting commits that no longer exist, but this is a lot simpler
         await tx.delete(pullRequestTable).where(eq(pullRequestTable.repo_id, repo.id));
@@ -116,6 +115,8 @@ async function populatePRs(repo: { id: number; org: string; name: string }) {
         console.log(`${repo.name}: Updated ${updatedUsers.length} users and added ${insertedPRs.length} PRs`);
       })
       .catch(console.error);
+  } else {
+    console.log(`${repo.name}: No PRs found, leaving data as-is`);
   }
 }
 async function populateCommits(repo: { id: number; org: string; name: string }) {
@@ -128,9 +129,9 @@ async function populateCommits(repo: { id: number; org: string; name: string }) 
       commits
         .filter((commit) => commit.author !== null && Object.values(commit.author).length > 0) // we can only make the above type assertion because of this filter
         .reduce((users, pr) => ({ [pr.author!.id]: pr.author, ...users }), {});
+    const updatedUsers = await updateUserTable(Object.values(userMap));
     await db
       .transaction(async (tx) => {
-        const updatedUsers = await updateUserTable(Object.values(userMap));
         await tx.execute(sql`LOCK TABLE ${commitTable} IN ACCESS EXCLUSIVE MODE`); // prevent reads while this transaction is in process
         await tx.delete(commitTable).where(eq(commitTable.repo_id, repo.id));
         const insertedCommits = await tx
@@ -149,6 +150,8 @@ async function populateCommits(repo: { id: number; org: string; name: string }) 
         console.log(`${repo.name}: Updated ${updatedUsers.length} users and added ${insertedCommits.length} commits`);
       })
       .catch(console.error);
+  } else {
+    console.log(`${repo.name}: No commits found, leaving data as-is`);
   }
 }
 export async function runContributionScrape(org: string) {
@@ -167,7 +170,7 @@ export async function runContributionScrape(org: string) {
     });
     await Promise.all(promises);
 
-    await onSuccessDoRepoUpdate(); // updated the pushed_at time so we know not to rescrape it
+    await onSuccessDoRepoUpdate(); // updated the pushed_at time so we know not to re-scrape it on next function invocation
   } catch (e) {
     console.log(`Scrape failed with error ${e}`);
   }
