@@ -94,6 +94,7 @@ async function populatePRs(repo: { id: number; org: string; name: string }) {
     await db
       .transaction(async (tx) => {
         const updatedUsers = await updateUserTable(Object.values(userMap));
+        await tx.execute(sql`LOCK TABLE ${pullRequestTable} IN ACCESS EXCLUSIVE MODE`); // prevent reads while this transaction is in process
         // we could do some diff checking and preserve unchanged rows while deleting commits that no longer exist, but this is a lot simpler
         await tx.delete(pullRequestTable).where(eq(pullRequestTable.repo_id, repo.id));
         const insertedPRs = await tx
@@ -130,6 +131,7 @@ async function populateCommits(repo: { id: number; org: string; name: string }) 
     await db
       .transaction(async (tx) => {
         const updatedUsers = await updateUserTable(Object.values(userMap));
+        await tx.execute(sql`LOCK TABLE ${commitTable} IN ACCESS EXCLUSIVE MODE`); // prevent reads while this transaction is in process
         await tx.delete(commitTable).where(eq(commitTable.repo_id, repo.id));
         const insertedCommits = await tx
           .insert(commitTable)
@@ -159,10 +161,12 @@ export async function runContributionScrape(org: string) {
   try {
     // yay top-level error handling! :3
     const { reposToUpdate, onSuccessDoRepoUpdate } = await populateRepositoryListAndGetChangedRepos(org);
-    for (const repo of reposToUpdate) {
+    const promises = reposToUpdate.map(async (repo) => {
       await populatePRs(repo);
       await populateCommits(repo);
-    }
+    });
+    await Promise.all(promises);
+
     await onSuccessDoRepoUpdate(); // updated the pushed_at time so we know not to rescrape it
   } catch (e) {
     console.log(`Scrape failed with error ${e}`);
