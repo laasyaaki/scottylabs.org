@@ -20,7 +20,7 @@ const router = s.router(contract, {
     const { recentCommits, recentPRs } = await getRecentActivity();
     return {
       status: 200,
-      body: [...recentCommits, ...recentPRs].sort((a, b) => b.time.getTime() - a.time.getTime()),
+      body: [...recentCommits, ...recentPRs].sort((a, b) => b.time.localeCompare(a.time)),
     };
   },
   async getContributors({ params: { org, repo } }) {

@@ -3,10 +3,6 @@ import { z } from "zod";
 
 const c = initContract();
 
-const Pokemon = z.object({
-  name: z.string(),
-});
-
 export const contract = c.router({
   getLatestActivity: {
     method: "GET",
@@ -18,7 +14,9 @@ export const contract = c.router({
             type: z.literal("pull_request"),
             prTitle: z.string(),
             prNumber: z.number(),
-            time: z.date(),
+            time: z.string().refine((val) => !isNaN(Date.parse(val)), {
+              message: "invalid ISO string",
+            }),
             prUrl: z.string().url(),
             authorUsername: z.string(),
             authorPfpUrl: z.string().url(),
@@ -31,7 +29,9 @@ export const contract = c.router({
             type: z.literal("commit"),
             commitMessage: z.string(),
             commitUrl: z.string(),
-            time: z.date(),
+            time: z.string().refine((val) => !isNaN(Date.parse(val)), {
+              message: "invalid ISO string",
+            }),
             authorUsername: z.string(),
             authorPfpUrl: z.string().url(),
             authorUrl: z.string().url(),
@@ -52,7 +52,9 @@ export const contract = c.router({
         z.object({
           username: z.string(),
           name: z.string().nullable(),
-          latestCommitDate: z.date(),
+          latestCommitDate: z.string().refine((val) => !isNaN(Date.parse(val)), {
+            message: "invalid ISO string",
+          }),
           pfpUrl: z.string().url(),
           accLink: z.string().url(),
           isTechLead: z.boolean(),

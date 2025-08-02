@@ -63,7 +63,7 @@ export async function getRecentActivity() {
       type: "commit" as const,
       commitMessage: commit.commits.message,
       commitUrl: commit.commits.url,
-      time: commit.commits.committed_at,
+      time: commit.commits.committed_at.toISOString(),
       authorUsername: commit.users.username,
       authorPfpUrl: commit.users.pfp_url,
       authorUrl: commit.users.account_url,
@@ -75,7 +75,7 @@ export async function getRecentActivity() {
       type: "pull_request" as const,
       prTitle: pr.pull_requests.title,
       prNumber: pr.pull_requests.number,
-      time: pr.pull_requests.merged_at,
+      time: pr.pull_requests.merged_at.toISOString(),
       prUrl: pr.pull_requests.url,
       authorUsername: pr.users.username,
       authorPfpUrl: pr.users.pfp_url,
@@ -111,7 +111,7 @@ export async function getContributors(repoOrg: string, repoName: string) {
   return contributors.map((contributor) => ({
     username: contributor.users.username,
     name: contributor.users.name,
-    latestCommitDate: new Date(contributor.data.latest_commit_date),
+    latestCommitDate: contributor.data.latest_commit_date, // this is actually not ISO date format but whatever format Drizzle decided to spit out when doing a GROUP BY query. still parsable tho.
     pfpUrl: contributor.users.pfp_url,
     accLink: contributor.users.account_url,
     isTechLead: contributor.tech_lead !== null,
