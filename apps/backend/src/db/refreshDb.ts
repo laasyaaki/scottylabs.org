@@ -59,7 +59,27 @@ async function populateRepositoryListAndGetChangedRepos(org: string) {
     },
   };
 }
-
+async function updateUserTable(users: { id: number; login: string; avatar_url: string; html_url: string }[]) {
+  return await db
+    .insert(userTable)
+    .values(
+      users.map((user) => ({
+        id: user.id,
+        username: user.login,
+        pfp_url: user.avatar_url,
+        account_url: user.html_url,
+      })),
+    )
+    .onConflictDoUpdate({
+      target: userTable.id,
+      set: {
+        username: sql.raw(`excluded.${userTable.username.name}`),
+        pfp_url: sql.raw(`excluded.${userTable.pfp_url.name}`),
+        account_url: sql.raw(`excluded.${userTable.account_url.name}`),
+      },
+    })
+    .returning();
+}
 async function populatePRs(repo: { id: number; org: string; name: string }) {
   const mergedPRs = await getMergedPRs(repo.org, repo.name).catch((e) => {
     console.error(e);
@@ -73,25 +93,7 @@ async function populatePRs(repo: { id: number; org: string; name: string }) {
     );
     await db
       .transaction(async (tx) => {
-        const updatedUsers = await tx
-          .insert(userTable)
-          .values(
-            Object.values(userMap).map((user) => ({
-              id: user.id,
-              username: user.login,
-              pfp_url: user.avatar_url,
-              account_url: user.url,
-            })),
-          )
-          .onConflictDoUpdate({
-            target: userTable.id,
-            set: {
-              username: sql.raw(`excluded.${userTable.username.name}`),
-              pfp_url: sql.raw(`excluded.${userTable.pfp_url.name}`),
-              account_url: sql.raw(`excluded.${userTable.account_url.name}`),
-            },
-          })
-          .returning();
+        const updatedUsers = await updateUserTable(Object.values(userMap));
         // we could do some diff checking and preserve unchanged rows while deleting commits that no longer exist, but this is a lot simpler
         await tx.delete(pullRequestTable).where(eq(pullRequestTable.repo_id, repo.id));
         const insertedPRs = await tx
@@ -121,31 +123,13 @@ async function populateCommits(repo: { id: number; org: string; name: string }) 
     return [];
   });
   if (commits.length) {
-    const userMap: { [id: string]: NonNullable<(typeof commits)[number]["author"]> } = commits.reduce(
-      (users, pr) => (pr.author ? { [pr.author.id]: pr.author, ...users } : users),
-      {},
-    );
+    const userMap: { [id: string]: Exclude<NonNullable<(typeof commits)[number]["author"]>, Record<string, never>> } =
+      commits
+        .filter((commit) => commit.author !== null && Object.values(commit.author).length > 0) // we can only make the above type assertion because of this filter
+        .reduce((users, pr) => ({ [pr.author!.id]: pr.author, ...users }), {});
     await db
       .transaction(async (tx) => {
-        const updatedUsers = await tx
-          .insert(userTable)
-          .values(
-            Object.values(userMap).map((author) => ({
-              id: author.id,
-              username: author.login,
-              pfp_url: author.avatar_url,
-              account_url: author.url,
-            })),
-          )
-          .onConflictDoUpdate({
-            target: userTable.id,
-            set: {
-              username: sql.raw(`excluded.${userTable.username.name}`),
-              pfp_url: sql.raw(`excluded.${userTable.pfp_url.name}`),
-              account_url: sql.raw(`excluded.${userTable.account_url.name}`),
-            },
-          })
-          .returning();
+        const updatedUsers = await updateUserTable(Object.values(userMap));
         await tx.delete(commitTable).where(eq(commitTable.repo_id, repo.id));
         const insertedCommits = await tx
           .insert(commitTable)
