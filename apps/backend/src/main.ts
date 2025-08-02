@@ -74,6 +74,9 @@ const router = s.router(pokemonContract, {
 s.registerRouter(pokemonContract, router, app, {
   responseValidation: true,
 });
+app.get("/", (req, res) => {
+  res.redirect("https://bucket-production-718d.up.railway.app/miku/videoplayback%20(52).mp4");
+});
 const start = async () => {
   try {
     await app.listen({ port: 3000, host: "0.0.0.0" });
