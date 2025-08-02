@@ -7,15 +7,7 @@ const Pokemon = z.object({
   name: z.string(),
 });
 
-export const pokemonContract = c.router({
-  getPokemon: {
-    method: "GET",
-    path: "/pokemon/:id",
-    responses: {
-      200: Pokemon,
-    },
-    summary: "Get a pokemon by id",
-  },
+export const contract = c.router({
   getLatestActivity: {
     method: "GET",
     path: "/github/latest",

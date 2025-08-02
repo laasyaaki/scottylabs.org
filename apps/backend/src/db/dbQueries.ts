@@ -58,7 +58,33 @@ export async function getRecentActivity() {
     )
     .innerJoin(userTable, eq(pullRequestTable.author_id, userTable.id))
     .innerJoin(repoTable, eq(pullRequestTable.repo_id, repoTable.id));
-  return { recentCommits, recentPRs };
+  return {
+    recentCommits: recentCommits.map((commit) => ({
+      type: "commit" as const,
+      commitMessage: commit.commits.message,
+      commitUrl: commit.commits.url,
+      time: commit.commits.committed_at,
+      authorUsername: commit.users.username,
+      authorPfpUrl: commit.users.pfp_url,
+      authorUrl: commit.users.account_url,
+      repoName: commit.repos.name,
+      repoOrg: commit.repos.org,
+      repoUrl: commit.repos.url,
+    })),
+    recentPRs: recentPRs.map((pr) => ({
+      type: "pull_request" as const,
+      prTitle: pr.pull_requests.title,
+      prNumber: pr.pull_requests.number,
+      time: pr.pull_requests.merged_at,
+      prUrl: pr.pull_requests.url,
+      authorUsername: pr.users.username,
+      authorPfpUrl: pr.users.pfp_url,
+      authorUrl: pr.users.account_url,
+      repoName: pr.repos.name,
+      repoOrg: pr.repos.org,
+      repoUrl: pr.repos.url,
+    })),
+  };
 }
 
 export async function getContributors(repoOrg: string, repoName: string) {
