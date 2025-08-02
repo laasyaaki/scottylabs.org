@@ -11,7 +11,7 @@ function App() {
     queryKey: ["ok"],
     queryData: { params: { org: "scottylabs", repo: "cmueats" } },
   });
-  console.log(data?.body[0].latestCommitDate.getDate());
+  // console.log(data?.body[0].latestCommitDate.getDate());
   return (
     <>
       <Header />
