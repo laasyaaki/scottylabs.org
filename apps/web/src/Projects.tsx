@@ -8,6 +8,8 @@ import { DateTime, Interval } from "luxon";
 import type { contract } from "@apps/backend/contract";
 import type z from "zod";
 import { FastAverageColor } from "fast-average-color";
+import prIcon from "./assets/icons/pr.svg";
+import commitIcon from "./assets/icons/commit.svg";
 const fac = new FastAverageColor();
 
 const featuredProjects = [
@@ -150,10 +152,14 @@ function ContributionPopup({
           }
           target="_blank"
         >
-          {/* TODO: lol two inline conditionals?? */}
           <span className={css["contribution-description__title"]}>
             {contribution.type === "pull_request" ? (
               <span>
+                <img
+                  className={css["contribution-description__title__icon"]}
+                  src={prIcon}
+                  alt=""
+                />
                 {contribution.prTitle}
                 <span
                   className={css["contribution-description__title__pr-number"]}
@@ -163,7 +169,14 @@ function ContributionPopup({
                 </span>
               </span>
             ) : (
-              contribution.commitMessage
+              <span>
+                <img
+                  className={css["contribution-description__title__icon"]}
+                  src={commitIcon}
+                  alt=""
+                />
+                {contribution.commitMessage}
+              </span>
             )}
           </span>
         </a>

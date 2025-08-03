@@ -313,6 +313,12 @@
         color: var(--black-500);
         font-weight: lighter;
       }
+      & .contribution-description__title__icon {
+        height: 1rem;
+        vertical-align: middle;
+        margin-right: 7px;
+        margin-bottom: 4px;
+      }
     }
     & .contribution-description__footer {
       font-size: 0.75rem;
