@@ -8,4 +8,5 @@ export const tsr = initTsrReactQuery(contract, {
     "x-app-source": "ts-rest",
     "x-miku": "hai",
   },
+  validateResponse: true,
 });

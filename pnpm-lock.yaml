@@ -107,6 +107,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      fast-average-color:
+        specifier: ^9.5.0
+        version: 9.5.0
       luxon:
         specifier: ^3.7.1
         version: 3.7.1
@@ -2152,6 +2155,13 @@ packages:
       {
         integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==,
       }
+
+  fast-average-color@9.5.0:
+    resolution:
+      {
+        integrity: sha512-nC6x2YIlJ9xxgkMFMd1BNoM1ctMjNoRKfRliPmiEWW3S6rLTHiQcy9g3pt/xiKv/D0NAAkhb9VyV+WJFvTqMGg==,
+      }
+    engines: { node: ">= 12" }
 
   fast-content-type-parse@1.1.0:
     resolution:
@@ -4606,6 +4616,8 @@ snapshots:
   esutils@2.0.3: {}
 
   eventemitter3@5.0.1: {}
+
+  fast-average-color@9.5.0: {}
 
   fast-content-type-parse@1.1.0: {}
 

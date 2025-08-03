@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./Projects.module.css";
 import { AnimatePresence, motion } from "motion/react";
 import { getAllImageLinksInAssetDirectory } from "./utils/files";
 import clsx from "clsx";
 import { tsr } from "./utils/tsr";
 import { DateTime, Interval } from "luxon";
+import type { contract } from "@apps/backend/contract";
+import type z from "zod";
+import { FastAverageColor } from "fast-average-color";
+const fac = new FastAverageColor();
+
 const featuredProjects = [
   {
     name: "CMU Courses",
@@ -95,81 +100,109 @@ function getTimeDeltaFromNow(pastDate: DateTime, now: DateTime) {
     }
     return `${plurality(duration.seconds, "second")} ago`;
   } else {
-    return daysCovered - 1 === 0 ? "yesterday" : `${daysCovered - 1} days ago`;
+    return daysCovered - 1 === 1 ? "yesterday" : `${daysCovered - 1} days ago`;
   }
 }
+function ContributionPopup({
+  contribution,
+}: {
+  contribution: z.infer<
+    (typeof contract.getLatestActivity)["responses"]["200"]
+  >[number];
+}) {
+  const now = DateTime.now();
+  const [bgColor, setBgColor] = useState("#FFFFFF");
+  useEffect(() => {
+    fac
+      .getColorAsync(contribution.authorPfpUrl)
+      .then((result) => setBgColor(result.hex));
+  }, [contribution.authorPfpUrl]);
+  return (
+    <div
+      className={css["contribution"]}
+      style={{ "--bg-color": bgColor } as React.CSSProperties}
+    >
+      <a href={contribution.authorUrl} target="_blank">
+        <img
+          className={css["contribution__pfp"]}
+          src={contribution.authorPfpUrl}
+          alt=""
+        />
+      </a>
+      <div className={css["contribution-description"]}>
+        <a
+          href={
+            contribution.type === "commit"
+              ? contribution.commitUrl
+              : contribution.prUrl
+          }
+          target="_blank"
+        >
+          {/* TODO: lol two inline conditionals?? */}
+          <span className={css["contribution-description__title"]}>
+            {contribution.type === "pull_request" ? (
+              <span>
+                {contribution.prTitle}
+                <span
+                  className={css["contribution-description__title__pr-number"]}
+                >
+                  {" "}
+                  #{contribution.prNumber}
+                </span>
+              </span>
+            ) : (
+              contribution.commitMessage
+            )}
+          </span>
+        </a>
+        <span className={css["contribution-description__footer"]}>
+          <a href={contribution.repoUrl} target="_blank">
+            <span className={css["footer__repo"]}>
+              {contribution.repoOrg}/{contribution.repoName}
+            </span>
+          </a>
+          <span className={css["footer__time"]}>
+            {getTimeDeltaFromNow(
+              DateTime.fromISO(contribution.time, { zone: "local" }),
+              now,
+            )}
+          </span>
+        </span>
+      </div>
+    </div>
+  );
+}
 function ContributorRow() {
-  const { data, isLoading } = tsr.getLatestActivity.useQuery({
+  const { data, error } = tsr.getLatestActivity.useQuery({
     queryKey: ["latestActivity"],
   });
+  if (error !== null) {
+    console.error(error);
+    return <div>error</div>;
+  }
+
   if (data === undefined) {
     return <div>loading</div>;
   }
-  const now = DateTime.now();
   return (
     <div>
-      {data.body.map((contribution) => {
-        return (
-          <div className={css["contribution"]}>
-            <a href={contribution.authorUrl} target="_blank">
-              <img
-                className={css["contribution__pfp"]}
-                src={contribution.authorPfpUrl}
-                alt=""
-              />
-            </a>
-            <div className={css["contribution-description"]}>
+      <div className={css["contributor-pill-container"]}>
+        <span className={css["contributor-pill-container__text"]}>
+          Recent contributors:
+        </span>
+
+        {data.body.slice(0, 5).map((contribution) => {
+          return (
+            <div className={css["contributor-pill-wrapper"]}>
               <a
-                href={
-                  contribution.type === "commit"
-                    ? contribution.commitUrl
-                    : contribution.prUrl
-                }
+                className={css["contributor-pill"]}
+                href={contribution.authorUrl}
                 target="_blank"
               >
-                {/* TODO: lol two inline conditionals?? */}
-                <span className={css["contribution-description__title"]}>
-                  {contribution.type === "pull_request" ? (
-                    <span>
-                      {contribution.prTitle}
-                      <span
-                        className={
-                          css["contribution-description__title__pr-number"]
-                        }
-                      >
-                        {" "}
-                        #{contribution.prNumber}
-                      </span>
-                    </span>
-                  ) : (
-                    contribution.commitMessage
-                  )}
-                </span>
+                <img src={contribution.authorPfpUrl} />
+                {contribution.authorUsername}
               </a>
-              <span className={css["contribution-description__footer"]}>
-                <a href={contribution.repoUrl} target="_blank">
-                  <span className={css["footer__repo"]}>
-                    {contribution.repoOrg}/{contribution.repoName}
-                  </span>
-                </a>
-                <span className={css["footer__time"]}>
-                  {getTimeDeltaFromNow(
-                    DateTime.fromISO(contribution.time, { zone: "local" }),
-                    now,
-                  )}
-                </span>
-              </span>
-            </div>
-          </div>
-        );
-      })}
-      <div className={css["contributor-pill-container"]}>
-        Recent contributors:
-        {data.body.slice(0, 5).map((contributor) => {
-          return (
-            <div className={css["contributor-pill"]}>
-              <img src={contributor.authorPfpUrl} />
-              {contributor.authorUsername}
+              <ContributionPopup contribution={contribution} />
             </div>
           );
         })}

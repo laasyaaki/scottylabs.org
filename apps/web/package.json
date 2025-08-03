@@ -16,6 +16,7 @@
     "@ts-rest/core": "^3.52.1",
     "@ts-rest/react-query": "^3.52.1",
     "clsx": "^2.1.1",
+    "fast-average-color": "^9.5.0",
     "luxon": "^3.7.1",
     "motion": "^12.17.0",
     "react": "^19.1.0",
