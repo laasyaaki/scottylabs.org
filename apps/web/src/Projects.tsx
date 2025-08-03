@@ -259,7 +259,7 @@ export default function Projects() {
         </h1>
         <p className={css["title-section__desc"]}>
           We bring to life a variety of tech services geared towards improving
-          the CMU campus experience and inspiring the community!˙
+          the CMU campus experience and inspiring the community!
         </p>
         <ContributorRow />
       </div>
