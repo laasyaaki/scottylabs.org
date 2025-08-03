@@ -308,7 +308,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       color: var(--black-900);
-      font-size: 0.875rem;
+      font-size: 1rem;
       & .contribution-description__title__pr-number {
         color: var(--black-500);
         font-weight: lighter;
