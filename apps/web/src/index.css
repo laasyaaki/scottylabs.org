@@ -28,6 +28,7 @@
   --black-900: hsl(0, 0%, 0%);
 
   --blue-300: hsl(230, 50%, 80%);
+  --blue-600: hsl(226, 76%, 50%);
 
   --border-radius-base: 10px;
   --border-radius-lg: 40px;
@@ -83,9 +84,12 @@ li {
   all: unset;
 }
 .centered-section {
-  --padding: 20px;
+  --padding: 40px;
   --max-container-width: 1200px;
   padding-inline: var(--padding);
   margin-inline: auto;
   max-width: var(--max-container-width);
+}
+a {
+  text-decoration: none;
 }

@@ -16,6 +16,7 @@
     "@ts-rest/core": "^3.52.1",
     "@ts-rest/react-query": "^3.52.1",
     "clsx": "^2.1.1",
+    "luxon": "^3.7.1",
     "motion": "^12.17.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/luxon": "^3.7.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",

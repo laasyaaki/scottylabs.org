@@ -3,6 +3,8 @@ import css from "./Projects.module.css";
 import { AnimatePresence, motion } from "motion/react";
 import { getAllImageLinksInAssetDirectory } from "./utils/files";
 import clsx from "clsx";
+import { tsr } from "./utils/tsr";
+import { DateTime, Interval } from "luxon";
 const featuredProjects = [
   {
     name: "CMU Courses",
@@ -28,27 +30,164 @@ const featuredProjects = [
   },
 ];
 
-export default function Projects() {
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+function IconDecoration() {
   const designIcons = getAllImageLinksInAssetDirectory("design-app-icons");
   const codeIcons = getAllImageLinksInAssetDirectory("code-app-icons");
+  return (
+    <div>
+      {designIcons.slice(0, 4).map((icon) => (
+        <motion.img
+          drag
+          dragSnapToOrigin
+          className={clsx(
+            css["tool-logo-slot"],
+            icon.includes("/ai") && css["tool-logo-slot--ai-san"],
+          )}
+          src={icon}
+          alt=""
+          key={icon}
+        />
+      ))}
+      {codeIcons.slice(0, 4).map((icon) => (
+        <motion.img
+          drag
+          dragSnapToOrigin
+          className={css["tool-logo-slot"]}
+          src={icon}
+          alt=""
+          key={icon}
+        />
+      ))}
+    </div>
+  );
+}
+function DesignBoxDecoration() {
+  return (
+    <div className={css["decoration"]}>
+      <div className={css["decoration__line"]} />
+      <div className={css["decoration__line"]} />
+      <div className={css["decoration__line"]} />
+      <div className={css["decoration__line"]} />
+      <div className={css["decoration__square"]} />
+      <div className={css["decoration__square"]} />
+      <div className={css["decoration__square"]} />
+      <div className={css["decoration__square"]} />
+    </div>
+  );
+}
+function plurality(intervalOfTime: number, singularUnit: string) {
+  if (intervalOfTime === 1) {
+    return `${intervalOfTime} ${singularUnit}`;
+  } else {
+    return `${intervalOfTime} ${singularUnit}s`;
+  }
+}
+function getTimeDeltaFromNow(pastDate: DateTime, now: DateTime) {
+  const interval = Interval.fromDateTimes(pastDate, now);
+  const daysCovered = interval.count("day");
+  const duration = interval.toDuration(["days", "hours", "minutes", "seconds"]);
+  if (daysCovered === 1) {
+    if (duration.hours > 0) {
+      return `${plurality(duration.hours, "hour")} ago`;
+    }
+    if (duration.minutes > 0) {
+      return `${plurality(duration.minutes, "minute")} ago`;
+    }
+    return `${plurality(duration.seconds, "second")} ago`;
+  } else {
+    return daysCovered - 1 === 0 ? "yesterday" : `${daysCovered - 1} days ago`;
+  }
+}
+function ContributorRow() {
+  const { data, isLoading } = tsr.getLatestActivity.useQuery({
+    queryKey: ["latestActivity"],
+  });
+  if (data === undefined) {
+    return <div>loading</div>;
+  }
+  const now = DateTime.now();
+  return (
+    <div>
+      {data.body.map((contribution) => {
+        return (
+          <div className={css["contribution"]}>
+            <a href={contribution.authorUrl} target="_blank">
+              <img
+                className={css["contribution__pfp"]}
+                src={contribution.authorPfpUrl}
+                alt=""
+              />
+            </a>
+            <div className={css["contribution-description"]}>
+              <a
+                href={
+                  contribution.type === "commit"
+                    ? contribution.commitUrl
+                    : contribution.prUrl
+                }
+                target="_blank"
+              >
+                {/* TODO: lol two inline conditionals?? */}
+                <span className={css["contribution-description__title"]}>
+                  {contribution.type === "pull_request" ? (
+                    <span>
+                      {contribution.prTitle}
+                      <span
+                        className={
+                          css["contribution-description__title__pr-number"]
+                        }
+                      >
+                        {" "}
+                        #{contribution.prNumber}
+                      </span>
+                    </span>
+                  ) : (
+                    contribution.commitMessage
+                  )}
+                </span>
+              </a>
+              <span className={css["contribution-description__footer"]}>
+                <a href={contribution.repoUrl} target="_blank">
+                  <span className={css["footer__repo"]}>
+                    {contribution.repoOrg}/{contribution.repoName}
+                  </span>
+                </a>
+                <span className={css["footer__time"]}>
+                  {getTimeDeltaFromNow(
+                    DateTime.fromISO(contribution.time, { zone: "local" }),
+                    now,
+                  )}
+                </span>
+              </span>
+            </div>
+          </div>
+        );
+      })}
+      <div className={css["contributor-pill-container"]}>
+        Recent contributors:
+        {data.body.slice(0, 5).map((contributor) => {
+          return (
+            <div className={css["contributor-pill"]}>
+              <img src={contributor.authorPfpUrl} />
+              {contributor.authorUsername}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+export default function Projects() {
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+
   return (
     <section className="centered-section">
       <div className={css["title-section"]}>
         <h1 className={css["title-section__header"]}>
           From{" "}
-          <span className={css["design-text-container"]}>
+          <span className={css["title-section__header__design-text"]}>
             Design
-            <div className={css["decoration"]}>
-              <div className={css["decoration__line"]} />
-              <div className={css["decoration__line"]} />
-              <div className={css["decoration__line"]} />
-              <div className={css["decoration__line"]} />
-              <div className={css["decoration__square"]} />
-              <div className={css["decoration__square"]} />
-              <div className={css["decoration__square"]} />
-              <div className={css["decoration__square"]} />
-            </div>
+            <DesignBoxDecoration />
           </span>{" "}
           to{" "}
           <span className={css["title-section__header__code-block"]}>
@@ -58,44 +197,13 @@ export default function Projects() {
           <span className={css["title-section__header__code-block"]}>
             {"/>"}
           </span>
+          <IconDecoration />
         </h1>
         <p className={css["title-section__desc"]}>
           We bring to life a variety of tech services geared towards improving
           the CMU campus experience and inspiring the community!˙
         </p>
-        <div>
-          {designIcons.slice(0, 4).map((icon) => (
-            <motion.img
-              drag
-              dragSnapToOrigin
-              className={clsx(
-                css["tool-logo-slot"],
-                icon.includes("/ai") && css["tool-logo-slot--ai-san"],
-              )}
-              src={icon}
-              alt=""
-              key={icon}
-            />
-          ))}
-          {codeIcons.slice(0, 4).map((icon) => (
-            <motion.img
-              drag
-              dragSnapToOrigin
-              className={css["tool-logo-slot"]}
-              src={icon}
-              alt=""
-              key={icon}
-            />
-          ))}
-          <div className={css["tool-logo-slot"]} />
-          <div className={css["tool-logo-slot"]} />
-          <div className={css["tool-logo-slot"]} />
-          <div className={css["tool-logo-slot"]} />
-          <div className={css["tool-logo-slot"]} />
-          <div className={css["tool-logo-slot"]} />
-          <div className={css["tool-logo-slot"]} />
-          <div className={css["tool-logo-slot"]} />
-        </div>
+        <ContributorRow />
       </div>
       <ul className={css["project-tabs"]} role="tablist">
         {featuredProjects.map(({ name, assetFolder }, i) => {
