@@ -90,7 +90,13 @@ function plurality(intervalOfTime: number, singularUnit: string) {
 function getTimeDeltaFromNow(pastDate: DateTime, now: DateTime) {
   const interval = Interval.fromDateTimes(pastDate, now);
   const daysCovered = interval.count("day");
-  const duration = interval.toDuration(["days", "hours", "minutes", "seconds"]);
+  const duration = interval.toDuration([
+    "days",
+    "hours",
+    "minutes",
+    "seconds",
+    "milliseconds",
+  ]);
   if (daysCovered === 1) {
     if (duration.hours > 0) {
       return `${plurality(duration.hours, "hour")} ago`;
@@ -110,13 +116,19 @@ function ContributionPopup({
     (typeof contract.getLatestActivity)["responses"]["200"]
   >[number];
 }) {
-  const now = DateTime.now();
+  const [now, setNow] = useState(DateTime.now());
   const [bgColor, setBgColor] = useState("#FFFFFF");
   useEffect(() => {
     fac
       .getColorAsync(contribution.authorPfpUrl)
       .then((result) => setBgColor(result.hex));
   }, [contribution.authorPfpUrl]);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNow(DateTime.now());
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <div
       className={css["contribution"]}
