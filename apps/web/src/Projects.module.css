@@ -276,7 +276,8 @@
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.15));
 
   border-radius: 10px;
-  animation: 0.1s fade-in-popup forwards;
+  animation: 0.2s fade-in-popup forwards ease-out;
+  will-change: transform;
   &::before {
     content: "";
     position: absolute;
