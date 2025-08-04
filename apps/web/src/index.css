@@ -30,6 +30,8 @@
   --blue-300: hsl(230, 50%, 80%);
   --blue-600: hsl(226, 76%, 50%);
 
+  --red-500: hsl(0, 70%, 50%);
+
   --border-radius-base: 10px;
   --border-radius-lg: 40px;
 

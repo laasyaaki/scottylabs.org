@@ -10,6 +10,7 @@ import type z from "zod";
 import { FastAverageColor } from "fast-average-color";
 import prIcon from "./assets/icons/pr.svg";
 import commitIcon from "./assets/icons/commit.svg";
+import spinnerIcon from "./assets/icons/spinner.svg";
 const fac = new FastAverageColor();
 
 const featuredProjects = [
@@ -198,7 +199,7 @@ function ContributionPopup({
   );
 }
 function ContributorRow() {
-  const { data, error } = tsr.getLatestActivity.useQuery({
+  const { data, error, isLoading } = tsr.getLatestActivity.useQuery({
     queryKey: ["latestActivity"],
   });
   if (error !== null) {
@@ -206,31 +207,54 @@ function ContributorRow() {
     return <div>error</div>;
   }
 
-  if (data === undefined) {
-    return <div>loading</div>;
-  }
   return (
     <div>
-      <div className={css["contributor-pill-container"]}>
+      <div className={css["contributor-row-container"]}>
         <span className={css["contributor-pill-container__text"]}>
           Recent contributors:
         </span>
 
-        {data.body.slice(0, 5).map((contribution) => {
-          return (
-            <div className={css["contributor-pill-wrapper"]}>
-              <a
-                className={css["contributor-pill"]}
-                href={contribution.authorUrl}
-                target="_blank"
-              >
-                <img src={contribution.authorPfpUrl} />
-                {contribution.authorUsername}
-              </a>
-              <ContributionPopup contribution={contribution} />
-            </div>
-          );
-        })}
+        {data ? (
+          data.body.slice(0, 5).map((contribution) => {
+            return (
+              <div className={css["contributor-pill-wrapper"]}>
+                <a
+                  className={css["contributor-pill"]}
+                  href={contribution.authorUrl}
+                  target="_blank"
+                >
+                  <img src={contribution.authorPfpUrl} />
+                  {contribution.authorUsername}
+                </a>
+                <ContributionPopup contribution={contribution} />
+              </div>
+            );
+          })
+        ) : isLoading ? (
+          Array.from(Array(5)).map((_, i) => {
+            return (
+              <div className={css["contributor-pill-wrapper"]}>
+                <a
+                  className={clsx(
+                    css["contributor-pill"],
+                    css["contributor-pill--inactive"],
+                  )}
+                >
+                  <img
+                    src={spinnerIcon}
+                    alt=""
+                    className={css["contributor-pill__loading-icon"]}
+                  />
+                  Loading...
+                </a>
+              </div>
+            );
+          })
+        ) : (
+          <div className={css["contributor-pill-container__error"]}>
+            Error loading
+          </div>
+        )}
       </div>
     </div>
   );

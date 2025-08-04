@@ -216,7 +216,7 @@
   font-size: var(--text-xl);
   line-height: 1.5;
 }
-.contributor-pill-container {
+.contributor-row-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -226,6 +226,11 @@
   color: var(--black-500);
   & .contributor-pill-container__text {
     font-size: 1.25rem;
+    margin-right: -10px;
+  }
+  & .contributor-pill-container__error {
+    font-size: 1.25rem;
+    color: var(--red-500);
   }
 }
 .contributor-pill-wrapper {
@@ -247,20 +252,26 @@
     border-radius: 50%;
     height: 100%;
   }
+  & .contributor-pill__loading-icon {
+    opacity: 40%;
+    animation: rotate 1s cubic-bezier(0.41, 0.21, 0.56, 0.8) infinite;
+  }
   font-size: 1.25rem;
   color: var(--black-900);
-  &:hover {
-    background-color: var(--black-50);
-    cursor: pointer;
-    &:active {
-      background-color: var(--black-100);
+  &:not(.contributor-pill--inactive) {
+    &:hover {
+      background-color: var(--black-50);
+      cursor: pointer;
+      &:active {
+        background-color: var(--black-100);
+      }
     }
   }
 }
 .contribution {
   display: none;
   position: absolute;
-  z-index: 99;
+  z-index: 727;
   right: 50%;
   transform: translate(50%, 0);
   min-height: 100px;
@@ -277,7 +288,7 @@
 
   border-radius: 10px;
   animation: 0.2s fade-in-popup forwards ease-out;
-  will-change: transform;
+  will-change: translate;
   &::before {
     content: "";
     position: absolute;
@@ -341,5 +352,13 @@
   to {
     opacity: 1;
     bottom: calc(100% + 15px);
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
