@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import css from "./Projects.module.css";
 import { AnimatePresence, motion } from "motion/react";
 import { getAllImageLinksInAssetDirectory } from "./utils/files";
@@ -121,6 +121,25 @@ function ContributionPopup({
 }) {
   const [now, setNow] = useState(DateTime.now());
   const [bgColor, setBgColor] = useState("#FFFFFF");
+  const popupRef = useRef<HTMLDivElement | null>(null);
+  useLayoutEffect(() => {
+    const nudgePopupsToBeInViewport = () => {
+      if (!popupRef.current) return;
+      popupRef.current.style.transform = `translateX(50%)`; // temporarily reset it to get new offsets
+      const boundingBox = popupRef.current.getBoundingClientRect();
+      console.log(boundingBox.left, window.innerWidth);
+      if (boundingBox.left < 0) {
+        popupRef.current.style.transform = `translateX(calc(50% + ${-boundingBox.left}px))`;
+      } else if (boundingBox.right > window.innerWidth - 20) {
+        // innerWidth accounts for zoom, while outerWidth doesn't
+        popupRef.current.style.transform = `translateX(calc(50% - ${boundingBox.right - window.innerWidth + 20}px))`;
+      }
+    };
+    nudgePopupsToBeInViewport();
+    window.addEventListener("resize", () => nudgePopupsToBeInViewport());
+    return () =>
+      window.removeEventListener("resize", () => nudgePopupsToBeInViewport());
+  }, []);
   useEffect(() => {
     fac
       .getColorAsync(contribution.authorPfpUrl)
@@ -136,6 +155,7 @@ function ContributionPopup({
     <div
       className={css["contribution"]}
       style={{ "--bg-color": bgColor } as React.CSSProperties}
+      ref={popupRef}
     >
       <a href={contribution.authorUrl} target="_blank">
         <img

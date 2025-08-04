@@ -237,6 +237,8 @@
   position: relative;
   &:hover .contribution {
     display: flex;
+    animation: 0.2s fade-in-popup forwards ease-out;
+    pointer-events: inherit;
   }
 }
 .contributor-pill {
@@ -270,9 +272,13 @@
   }
 }
 .contribution {
-  display: none;
-  position: absolute;
+  pointer-events: none; /* cursor "passes-through" element when inactive */
+  display: flex;
+  opacity: 0;
   z-index: 727;
+  position: absolute;
+
+  bottom: calc(100% + 10px);
   right: 50%;
   transform: translate(50%, 0);
   min-height: 100px;
@@ -289,7 +295,6 @@
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.15));
 
   border-radius: 10px;
-  animation: 0.2s fade-in-popup forwards ease-out;
   will-change: translate;
   &::before {
     content: "";
@@ -307,6 +312,7 @@
 
   & .contribution__pfp {
     height: 66px;
+    aspect-ratio: 1/1;
     flex-shrink: 0;
     border-radius: 10px;
     display: block;
