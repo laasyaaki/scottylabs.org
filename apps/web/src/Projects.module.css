@@ -280,11 +280,12 @@
   width: 350px;
   box-sizing: border-box;
   gap: 22px;
-  background: linear-gradient(
+  --bg-gradient: linear-gradient(
     90deg,
     hsl(from var(--bg-color) h s 95%) 0%,
     #f9f9f9 100%
   );
+  background: var(--bg-gradient);
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.15));
 
   border-radius: 10px;
@@ -297,8 +298,13 @@
     right: 0;
     bottom: -20px;
     height: 20px;
-    background-color: transparent;
+    background: var(--bg-gradient);
+    mask-image: url("./assets/icons/popup-arrow.svg");
+    mask-repeat: no-repeat;
+    mask-position: top center;
+    mask-size: auto 40%;
   }
+
   & .contribution__pfp {
     height: 66px;
     flex-shrink: 0;
