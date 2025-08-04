@@ -121,19 +121,22 @@ function ContributionPopup({
 }) {
   const [now, setNow] = useState(DateTime.now());
   const [bgColor, setBgColor] = useState("#FFFFFF");
+  const [popupOffsetPx, setPopupOffsetPx] = useState(0);
   const popupRef = useRef<HTMLDivElement | null>(null);
   useLayoutEffect(() => {
     const nudgePopupsToBeInViewport = () => {
       if (!popupRef.current) return;
       popupRef.current.style.transform = `translateX(50%)`; // temporarily reset it to get new offsets
       const boundingBox = popupRef.current.getBoundingClientRect();
-      console.log(boundingBox.left, window.innerWidth);
       if (boundingBox.left < 0) {
-        popupRef.current.style.transform = `translateX(calc(50% + ${-boundingBox.left}px))`;
+        setPopupOffsetPx(-boundingBox.left);
       } else if (boundingBox.right > window.innerWidth - 20) {
         // innerWidth accounts for zoom, while outerWidth doesn't
-        popupRef.current.style.transform = `translateX(calc(50% - ${boundingBox.right - window.innerWidth + 20}px))`;
+        setPopupOffsetPx(-(boundingBox.right - window.innerWidth + 20));
+      } else {
+        setPopupOffsetPx(0);
       }
+      popupRef.current.style.transform = ""; //reset override
     };
     nudgePopupsToBeInViewport();
     window.addEventListener("resize", () => nudgePopupsToBeInViewport());
@@ -154,7 +157,12 @@ function ContributionPopup({
   return (
     <div
       className={css["contribution"]}
-      style={{ "--bg-color": bgColor } as React.CSSProperties}
+      style={
+        {
+          "--bg-color": bgColor,
+          "--popup-offset-px": `${popupOffsetPx}px`,
+        } as React.CSSProperties
+      }
       ref={popupRef}
     >
       <a href={contribution.authorUrl} target="_blank">

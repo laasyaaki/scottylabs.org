@@ -272,6 +272,15 @@
   }
 }
 .contribution {
+  /* in case the popup in its default position is not fully visible on the screen */
+  --popup-offset-px: 0px;
+  --bg-color: white;
+  --bg-gradient: linear-gradient(
+    90deg,
+    hsl(from var(--bg-color) h s 95%) 0%,
+    #f9f9f9 100%
+  );
+
   pointer-events: none; /* cursor "passes-through" element when inactive */
   display: flex;
   opacity: 0;
@@ -280,17 +289,12 @@
 
   bottom: calc(100% + 10px);
   right: 50%;
-  transform: translate(50%, 0);
+  transform: translate(calc(50% + var(--popup-offset-px)), 0);
   min-height: 100px;
   padding: 20px 15px;
   width: 350px;
   box-sizing: border-box;
   gap: 22px;
-  --bg-gradient: linear-gradient(
-    90deg,
-    hsl(from var(--bg-color) h s 95%) 0%,
-    #f9f9f9 100%
-  );
   background: var(--bg-gradient);
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.15));
 
@@ -308,7 +312,7 @@
     background: var(--bg-gradient);
     mask-image: url("./assets/icons/popup-arrow.svg");
     mask-repeat: no-repeat;
-    mask-position: top center;
+    mask-position: calc(50% - var(--popup-offset-px)) 0;
     mask-size: auto 40%;
     mask-border: 14px solid red;
   }
