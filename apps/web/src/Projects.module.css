@@ -296,6 +296,8 @@
 
   border-radius: 10px;
   will-change: translate;
+  border: 1px solid var(--black-200);
+  border-bottom: none;
   &::before {
     content: "";
     position: absolute;
@@ -308,6 +310,7 @@
     mask-repeat: no-repeat;
     mask-position: top center;
     mask-size: auto 40%;
+    mask-border: 14px solid red;
   }
 
   & .contribution__pfp {
