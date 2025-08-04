@@ -233,7 +233,7 @@ function ContributorRow() {
         ) : isLoading ? (
           Array.from(Array(5)).map((_, i) => {
             return (
-              <div className={css["contributor-pill-wrapper"]}>
+              <div className={css["contributor-pill-wrapper"]} key={i}>
                 <a
                   className={clsx(
                     css["contributor-pill"],
