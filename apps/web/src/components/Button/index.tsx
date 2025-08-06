@@ -10,7 +10,14 @@ export default function Button({
   className?: string;
 }) {
   return (
-    <button className={clsx(css.button, css[variant], className)}>
+    <button
+      className={clsx(
+        css.button,
+        css["button--animated"],
+        css[variant],
+        className,
+      )}
+    >
       {label}
     </button>
   );

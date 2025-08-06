@@ -1,5 +1,14 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent,
+} from "react";
 import css from "./Projects.module.css";
+import buttonCSS from "./components/Button/index.module.css";
 import { AnimatePresence, motion } from "motion/react";
 import { getAllImageLinksInAssetDirectory } from "./utils/files";
 import clsx from "clsx";
@@ -11,6 +20,8 @@ import { FastAverageColor } from "fast-average-color";
 import prIcon from "./assets/icons/pr.svg";
 import commitIcon from "./assets/icons/commit.svg";
 import spinnerIcon from "./assets/icons/spinner.svg";
+import externalLinkIcon from "./assets/icons/go-to-icon.svg";
+import { number } from "zod";
 const fac = new FastAverageColor();
 
 const featuredProjects = [
@@ -20,7 +31,7 @@ const featuredProjects = [
     description: `CMU Courses is a course browser built by and for CMU students.
           Bringing together course information, schedules and FCE data, it makes
           it possible for CMU students to plan their semesters and browse for
-          courses. lmao what is this description`,
+          courses.`,
     link: "https://www.cmucourses.com/",
   },
   {
@@ -230,9 +241,9 @@ function ContributorRow() {
   const { data, error, isLoading } = tsr.getLatestActivity.useQuery({
     queryKey: ["latestActivity"],
   });
-  if (error !== null) {
+  if (error !== null || data?.body.length === 0) {
     console.error(error);
-    return <div>error</div>;
+    return;
   }
 
   return (
@@ -279,17 +290,165 @@ function ContributorRow() {
             );
           })
         ) : (
-          <div className={css["contributor-pill-container__error"]}>
-            Error loading
-          </div>
+          <></> // case that we should never hit
         )}
       </div>
     </div>
   );
 }
-export default function Projects() {
+function ProjectTab({
+  name,
+  assetFolder,
+  isSelected,
+  onClick,
+}: {
+  name: string;
+  assetFolder: string;
+  isSelected: boolean;
+  onClick: (position: [number, number]) => unknown;
+}) {
+  const tabRef = useRef<HTMLButtonElement | null>(null);
+  const updateBottomBorderPosition = useCallback(() => {
+    onClick(
+      tabRef.current
+        ? [
+            tabRef.current.getBoundingClientRect().left,
+            tabRef.current.getBoundingClientRect().right,
+          ]
+        : [0, 0],
+    );
+  }, []); // onClick doesn't really "change", and if we include it we get stuck in an infinite render loop when we call onClick, since every re-render of the parent component produces a "new version" of the onClick function
+  useEffect(() => {
+    const onResize = () => {
+      if (isSelected) {
+        updateBottomBorderPosition();
+      }
+    };
+    window.addEventListener("resize", onResize);
+    onResize();
+    return () => window.removeEventListener("resize", onResize);
+  }, [updateBottomBorderPosition, isSelected]);
+  return (
+    <button
+      className={css["tab"]}
+      role="tab"
+      aria-selected={isSelected ? "true" : "false"}
+      onClick={updateBottomBorderPosition}
+      key={assetFolder}
+      ref={tabRef}
+    >
+      <img
+        className={css["tab__image"]}
+        src={
+          new URL(`./assets/projects/${assetFolder}/icon.png`, import.meta.url)
+            .href
+        }
+        onLoad={() => {
+          if (isSelected) updateBottomBorderPosition();
+        }}
+        alt=""
+      />
+      <div className={css["tab__name"]}>{name}</div>
+    </button>
+  );
+}
+function ProjectPreviews() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+  const [bottomBorderCoords, setBottomBorderCoords] = useState<
+    [number, number]
+  >([0, 0]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
+  return (
+    <>
+      <div
+        className={css["project-tabs-container"]}
+        style={
+          {
+            "--border-left-px": bottomBorderCoords[0] + "px",
+            "--border-right-px": bottomBorderCoords[1] + "px",
+          } as CSSProperties
+        }
+        ref={containerRef}
+      >
+        <ul className={css["project-tabs"]} role="tablist">
+          {featuredProjects.map(({ name, assetFolder }, i) => {
+            return (
+              <ProjectTab
+                name={name}
+                assetFolder={assetFolder}
+                isSelected={i === selectedProjectIndex}
+                key={assetFolder}
+                onClick={(coords: [number, number]) => {
+                  const offsetPx =
+                    containerRef.current?.getBoundingClientRect().left ?? 0;
+                  setSelectedProjectIndex(i);
+                  setBottomBorderCoords([
+                    coords[0] - offsetPx,
+                    coords[1] - offsetPx,
+                  ]);
+                }}
+              />
+            );
+          })}
+          <button className={css["tab"]}>
+            <img
+              className={css["tab__image"]}
+              src={
+                new URL("./assets/icons/go-to-icon.svg", import.meta.url).href
+              }
+              alt=""
+              style={{ height: "1em" }}
+            />
+            <div className={css["tab__name"]}>See more</div>
+          </button>
+        </ul>
+      </div>
+      <div className={css["panel-container"]}>
+        <AnimatePresence>
+          <motion.div
+            className={css["panel"]}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            // we want to keep the old panel visible for a while for a smoother transition,
+            // but setting opacity to 1 destroys the panel immediately
+            exit={{ opacity: 0.99 }}
+            key={selectedProjectIndex}
+          >
+            <img
+              className={css["panel__img"]}
+              src={
+                new URL(
+                  `./assets/projects/${featuredProjects[selectedProjectIndex].assetFolder}/main.png`,
+                  import.meta.url,
+                ).href
+              }
+              alt=""
+            />
+            <div className={css["panel__details"]}>
+              <span className={css["panel__details__description"]}>
+                {featuredProjects[selectedProjectIndex].description}
+              </span>
+              <div className={css["panel__details__footer"]}>
+                <button className={buttonCSS["button--animated"]}>
+                  More details
+                </button>
+                <a
+                  href={featuredProjects[selectedProjectIndex].link}
+                  target="_blank"
+                >
+                  <img src={externalLinkIcon} alt="" />
+                  Visit
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </>
+  );
+}
+export default function Projects() {
   return (
     <section className="centered-section">
       <div className={css["title-section"]}>
@@ -315,70 +474,7 @@ export default function Projects() {
         </p>
         <ContributorRow />
       </div>
-      <ul className={css["project-tabs"]} role="tablist">
-        {featuredProjects.map(({ name, assetFolder }, i) => {
-          return (
-            <button
-              className={css["tab"]}
-              role="tab"
-              aria-selected={i === selectedProjectIndex ? "true" : "false"}
-              onClick={() => setSelectedProjectIndex(i)}
-              key={assetFolder}
-            >
-              <img
-                className={css["tab__image"]}
-                src={
-                  new URL(
-                    `./assets/projects/${assetFolder}/icon.png`,
-                    import.meta.url,
-                  ).href
-                }
-                alt=""
-              />
-              <div className={css["tab__name"]}>{name}</div>
-            </button>
-          );
-        })}
-        <button className={css["tab"]}>
-          <img
-            className={css["tab__image"]}
-            src={new URL("./assets/icons/go-to-icon.svg", import.meta.url).href}
-            alt=""
-            style={{ height: "1em" }}
-          />
-          <div className={css["tab__name"]}>See more</div>
-        </button>
-      </ul>
-      <div className={css["panel-container"]}>
-        <AnimatePresence>
-          <motion.div
-            className={css["panel"]}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            key={selectedProjectIndex}
-          >
-            <a
-              href={featuredProjects[selectedProjectIndex].link}
-              target="_blank"
-            >
-              <img
-                className={css["panel__img"]}
-                src={
-                  new URL(
-                    `./assets/projects/${featuredProjects[selectedProjectIndex].assetFolder}/main.png`,
-                    import.meta.url,
-                  ).href
-                }
-                alt=""
-              />
-            </a>
-            <div className={css["panel__footer"]}>
-              {featuredProjects[selectedProjectIndex].description}
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <ProjectPreviews />
     </section>
   );
 }
