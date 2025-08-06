@@ -186,7 +186,7 @@
   &:hover {
     border-color: var(--black-300);
     &:active {
-      border-color: var(--black-400);
+      border-color: transparent;
     }
   }
 }
