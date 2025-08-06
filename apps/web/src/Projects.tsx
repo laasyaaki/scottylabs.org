@@ -5,7 +5,6 @@ import {
   useRef,
   useState,
   type CSSProperties,
-  type MouseEvent,
 } from "react";
 import css from "./Projects.module.css";
 import buttonCSS from "./components/Button/index.module.css";
@@ -472,9 +471,9 @@ export default function Projects() {
           We bring to life a variety of tech services geared towards improving
           the CMU campus experience and inspiring the community!
         </p>
-        <ContributorRow />
       </div>
       <ProjectPreviews />
+      <ContributorRow />
     </section>
   );
 }
