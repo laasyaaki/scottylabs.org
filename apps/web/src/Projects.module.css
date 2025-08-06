@@ -129,7 +129,7 @@
   border-bottom: var(--border-height) solid var(--black-100);
   position: relative;
   &::after {
-    transition: 0.5s cubic-bezier(0.27, 1.32, 0.51, 0.96);
+    transition: 0.5s cubic-bezier(0.27, 1.32, 0.41, 1);
     content: "";
     position: absolute;
     inset: auto 0 calc(-1 * var(--border-height));
