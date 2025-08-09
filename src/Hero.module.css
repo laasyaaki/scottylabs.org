@@ -2,6 +2,7 @@
   overflow: hidden;
   position: relative;
   height: 100vh;
+  max-height: 1000px;
 }
 .hero-section {
   padding: 10% 0 230px;
@@ -9,10 +10,11 @@
 }
 .hero-background {
   position: absolute;
-  left: 50%;
+  left: 25%;
   top: 0px;
   z-index: -1;
   height: 100vh;
+  max-height: 1000px;
   width: auto;
 }
 .title {
