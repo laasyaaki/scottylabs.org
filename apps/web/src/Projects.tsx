@@ -20,7 +20,7 @@ import prIcon from "./assets/icons/pr.svg";
 import commitIcon from "./assets/icons/commit.svg";
 import spinnerIcon from "./assets/icons/spinner.svg";
 import externalLinkIcon from "./assets/icons/go-to-icon.svg";
-import { number } from "zod";
+
 const fac = new FastAverageColor();
 
 const featuredProjects = [
@@ -110,6 +110,8 @@ function getTimeDeltaFromNow(pastDate: DateTime, now: DateTime) {
     "seconds",
     "milliseconds",
   ]);
+  if (!interval.isValid) return "in the future";
+
   if (daysCovered === 1) {
     if (duration.hours > 0) {
       return `${plurality(duration.hours, "hour")} ago`;
