@@ -322,7 +322,6 @@
     #f9f9f9 100%
   );
 
-  pointer-events: none; /* cursor "passes-through" element when inactive */
   display: none;
   animation: 0.2s fade-in-popup forwards ease-out;
 
