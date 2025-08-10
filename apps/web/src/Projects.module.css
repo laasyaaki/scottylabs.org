@@ -278,10 +278,8 @@
 }
 .contributor-pill-wrapper {
   position: relative;
-  &:hover .contribution {
+  &:hover .contribution-popup {
     display: flex;
-    animation: 0.2s fade-in-popup forwards ease-out;
-    pointer-events: inherit;
   }
 }
 .contributor-pill {
@@ -314,7 +312,7 @@
     }
   }
 }
-.contribution {
+.contribution-popup {
   /* in case the popup in its default position is not fully visible on the screen */
   --popup-offset-px: 0px;
   --bg-color: white;
@@ -325,7 +323,9 @@
   );
 
   pointer-events: none; /* cursor "passes-through" element when inactive */
-  display: flex;
+  display: none;
+  animation: 0.2s fade-in-popup forwards ease-out;
+
   opacity: 0;
   z-index: 727;
   position: absolute;
@@ -360,14 +360,14 @@
     mask-border: 14px solid red;
   }
 
-  & .contribution__pfp {
+  & .contribution-popup__pfp {
     height: 66px;
     aspect-ratio: 1/1;
     flex-shrink: 0;
     border-radius: 10px;
     display: block;
   }
-  & .contribution-description {
+  & .contribution-popup__description {
     min-width: 0;
     overflow-wrap: break-word;
     text-align: left;
@@ -375,7 +375,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
-    & .contribution-description__title {
+    & .contribution-popup__description__title {
       display: -webkit-box;
       -webkit-line-clamp: 3;
       line-clamp: 3;
@@ -384,18 +384,18 @@
       text-overflow: ellipsis;
       color: var(--black-900);
       font-size: 1rem;
-      & .contribution-description__title__pr-number {
+      & .contribution-popup__description__title__pr-number {
         color: var(--black-500);
         font-weight: lighter;
       }
-      & .contribution-description__title__icon {
+      & .contribution-popup__description__title__icon {
         height: 1rem;
         vertical-align: middle;
         margin-right: 7px;
         margin-bottom: 4px;
       }
     }
-    & .contribution-description__footer {
+    & .contribution-popup__description__footer {
       font-size: 0.75rem;
       & .footer__repo {
         color: var(--blue-600);

@@ -124,7 +124,7 @@ function getTimeDeltaFromNow(pastDate: DateTime, now: DateTime) {
     return daysCovered - 1 === 1 ? "yesterday" : `${daysCovered - 1} days ago`;
   }
 }
-function ContributionPopup({
+function Contributor({
   contribution,
 }: {
   contribution: z.infer<
@@ -135,21 +135,21 @@ function ContributionPopup({
   const [bgColor, setBgColor] = useState("#FFFFFF");
   const [popupOffsetPx, setPopupOffsetPx] = useState(0);
   const popupRef = useRef<HTMLDivElement | null>(null);
+  const nudgePopupsToBeInViewport = () => {
+    if (!popupRef.current) return;
+    popupRef.current.style.transform = `translateX(50%)`; // temporarily reset it to get new offsets
+    const boundingBox = popupRef.current.getBoundingClientRect();
+    if (boundingBox.left < 0) {
+      setPopupOffsetPx(-boundingBox.left);
+    } else if (boundingBox.right > window.innerWidth - 20) {
+      // innerWidth accounts for zoom, while outerWidth doesn't
+      setPopupOffsetPx(-(boundingBox.right - window.innerWidth + 20));
+    } else {
+      setPopupOffsetPx(0);
+    }
+    popupRef.current.style.transform = ""; //reset override
+  };
   useLayoutEffect(() => {
-    const nudgePopupsToBeInViewport = () => {
-      if (!popupRef.current) return;
-      popupRef.current.style.transform = `translateX(50%)`; // temporarily reset it to get new offsets
-      const boundingBox = popupRef.current.getBoundingClientRect();
-      if (boundingBox.left < 0) {
-        setPopupOffsetPx(-boundingBox.left);
-      } else if (boundingBox.right > window.innerWidth - 20) {
-        // innerWidth accounts for zoom, while outerWidth doesn't
-        setPopupOffsetPx(-(boundingBox.right - window.innerWidth + 20));
-      } else {
-        setPopupOffsetPx(0);
-      }
-      popupRef.current.style.transform = ""; //reset override
-    };
     nudgePopupsToBeInViewport();
     window.addEventListener("resize", () => nudgePopupsToBeInViewport());
     return () =>
@@ -168,72 +168,91 @@ function ContributionPopup({
   }, []);
   return (
     <div
-      className={css["contribution"]}
-      style={
-        {
-          "--bg-color": bgColor,
-          "--popup-offset-px": `${popupOffsetPx}px`,
-        } as React.CSSProperties
-      }
-      ref={popupRef}
+      className={css["contributor-pill-wrapper"]}
+      onMouseOver={nudgePopupsToBeInViewport}
     >
-      <a href={contribution.authorUrl} target="_blank">
-        <img
-          className={css["contribution__pfp"]}
-          src={contribution.authorPfpUrl}
-          alt=""
-        />
+      <a
+        className={css["contributor-pill"]}
+        href={contribution.authorUrl}
+        target="_blank"
+      >
+        <img src={contribution.authorPfpUrl} />
+        {contribution.authorUsername}
       </a>
-      <div className={css["contribution-description"]}>
-        <a
-          href={
-            contribution.type === "commit"
-              ? contribution.commitUrl
-              : contribution.prUrl
-          }
-          target="_blank"
-        >
-          <span className={css["contribution-description__title"]}>
-            {contribution.type === "pull_request" ? (
-              <span>
-                <img
-                  className={css["contribution-description__title__icon"]}
-                  src={prIcon}
-                  alt=""
-                />
-                {contribution.prTitle}
-                <span
-                  className={css["contribution-description__title__pr-number"]}
-                >
-                  {" "}
-                  #{contribution.prNumber}
-                </span>
-              </span>
-            ) : (
-              <span>
-                <img
-                  className={css["contribution-description__title__icon"]}
-                  src={commitIcon}
-                  alt=""
-                />
-                {contribution.commitMessage}
-              </span>
-            )}
-          </span>
+      <div
+        className={css["contribution-popup"]}
+        style={
+          {
+            "--bg-color": bgColor,
+            "--popup-offset-px": `${popupOffsetPx}px`,
+          } as React.CSSProperties
+        }
+        ref={popupRef}
+      >
+        <a href={contribution.authorUrl} target="_blank">
+          <img
+            className={css["contribution-popup__pfp"]}
+            src={contribution.authorPfpUrl}
+            alt=""
+          />
         </a>
-        <span className={css["contribution-description__footer"]}>
-          <a href={contribution.repoUrl} target="_blank">
-            <span className={css["footer__repo"]}>
-              {contribution.repoOrg}/{contribution.repoName}
+        <div className={css["contribution-popup__description"]}>
+          <a
+            href={
+              contribution.type === "commit"
+                ? contribution.commitUrl
+                : contribution.prUrl
+            }
+            target="_blank"
+          >
+            <span className={css["contribution-popup__description__title"]}>
+              {contribution.type === "pull_request" ? (
+                <span>
+                  <img
+                    className={
+                      css["contribution-popup__description__title__icon"]
+                    }
+                    src={prIcon}
+                    alt=""
+                  />
+                  {contribution.prTitle}
+                  <span
+                    className={
+                      css["contribution-popup__description__title__pr-number"]
+                    }
+                  >
+                    {" "}
+                    #{contribution.prNumber}
+                  </span>
+                </span>
+              ) : (
+                <span>
+                  <img
+                    className={
+                      css["contribution-popup__description__title__icon"]
+                    }
+                    src={commitIcon}
+                    alt=""
+                  />
+                  {contribution.commitMessage}
+                </span>
+              )}
             </span>
           </a>
-          <span className={css["footer__time"]}>
-            {getTimeDeltaFromNow(
-              DateTime.fromISO(contribution.time, { zone: "local" }),
-              now,
-            )}
+          <span className={css["contribution-popup__description__footer"]}>
+            <a href={contribution.repoUrl} target="_blank">
+              <span className={css["footer__repo"]}>
+                {contribution.repoOrg}/{contribution.repoName}
+              </span>
+            </a>
+            <span className={css["footer__time"]}>
+              {getTimeDeltaFromNow(
+                DateTime.fromISO(contribution.time, { zone: "local" }),
+                now,
+              )}
+            </span>
           </span>
-        </span>
+        </div>
       </div>
     </div>
   );
@@ -256,19 +275,7 @@ function ContributorRow() {
 
         {data ? (
           data.body.slice(0, 5).map((contribution, i) => {
-            return (
-              <div className={css["contributor-pill-wrapper"]} key={i}>
-                <a
-                  className={css["contributor-pill"]}
-                  href={contribution.authorUrl}
-                  target="_blank"
-                >
-                  <img src={contribution.authorPfpUrl} />
-                  {contribution.authorUsername}
-                </a>
-                <ContributionPopup contribution={contribution} />
-              </div>
-            );
+            return <Contributor contribution={contribution} key={i} />;
           })
         ) : isLoading ? (
           Array.from(Array(5)).map((_, i) => {
