@@ -255,9 +255,9 @@ function ContributorRow() {
         </span>
 
         {data ? (
-          data.body.slice(0, 5).map((contribution) => {
+          data.body.slice(0, 5).map((contribution, i) => {
             return (
-              <div className={css["contributor-pill-wrapper"]}>
+              <div className={css["contributor-pill-wrapper"]} key={i}>
                 <a
                   className={css["contributor-pill"]}
                   href={contribution.authorUrl}
