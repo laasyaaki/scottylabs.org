@@ -1,11 +1,15 @@
+.carousel-container {
+  overflow: hidden;
+  margin-top: -60px;
+}
 .carousel {
   height: 300px;
-  margin-top: -35px;
   display: flex;
   gap: 25px;
-  overflow-x: scroll;
   align-items: stretch;
   padding-bottom: 20px;
+  width: fit-content;
+  translate: -2000px;
 }
 .carousel__image {
   border-radius: var(--border-radius-base);

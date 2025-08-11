@@ -1,15 +1,47 @@
+import { useLayoutEffect, useRef, useState } from "react";
 import css from "./ImageCarousel.module.css";
 import { getAllImageLinksInAssetDirectory } from "./utils/files";
 
 export default function ImageCarousel() {
   const imageLinks = getAllImageLinksInAssetDirectory("carousel-images");
-
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const CAROUSEL_SPEED_PX_PER_SECOND = -50;
+  const [loadedImages, setLoadedImages] = useState<string[]>([]);
+  useLayoutEffect(() => {
+    const zero = performance.now();
+    let running = true;
+    const updatePosition = () => {
+      if (!running) return;
+      const elapsed = performance.now() - zero;
+      const offsetX = (elapsed / 1000) * CAROUSEL_SPEED_PX_PER_SECOND - 2000;
+      if (carouselRef.current) {
+        const rightX = carouselRef.current.getBoundingClientRect().right;
+        if (rightX <= window.innerWidth + 500) {
+          console.log(rightX, "extend");
+          // innerWidth accounts for page zoom
+          setLoadedImages((loadedImages) => [
+            ...loadedImages,
+            imageLinks[Math.floor(Math.random() * imageLinks.length)],
+          ]);
+        }
+        carouselRef.current.style.translate = `${offsetX}px`;
+      }
+      requestAnimationFrame(updatePosition);
+    };
+    requestAnimationFrame(updatePosition);
+    return () => {
+      running = false;
+    };
+  }, [CAROUSEL_SPEED_PX_PER_SECOND]);
+  // console.log(loadedImages);
   return (
-    <section className="centered-section">
-      <div className={css["carousel"]}>
-        {imageLinks.map((url) => (
-          <img className={css["carousel__image"]} src={url} key={url} alt="" />
-        ))}
+    <section className={css["carousel-container"]}>
+      <div className="centered-section">
+        <div className={css["carousel"]} ref={carouselRef}>
+          {loadedImages.map((url, i) => (
+            <img className={css["carousel__image"]} src={url} key={i} alt="" />
+          ))}
+        </div>
       </div>
     </section>
   );
