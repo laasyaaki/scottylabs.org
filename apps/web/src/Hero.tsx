@@ -40,7 +40,9 @@ function Hero() {
           </div>
 
           <link rel="preload" href={heroBg} as="image" />
-          <img className={css["hero-background"]} src={heroBg} />
+        </div>
+        <div className={css["hero-background"]}>
+          <img src={heroBg} alt="" />
         </div>
       </div>
       <div className={css["events-container"]}>

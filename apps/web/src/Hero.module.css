@@ -3,16 +3,23 @@
   position: relative;
 }
 .hero-section {
-  padding: 10% 0 230px;
+  padding-top: 10%;
+  height: 100vh;
+  max-height: 800px;
+  min-height: 700px;
+  box-sizing: border-box;
   position: relative;
 }
 .hero-background {
   position: absolute;
-  left: 50%;
-  bottom: -104px;
-  z-index: -1;
-  height: 850px;
-  width: auto;
+  left: 45%;
+  top: 0px;
+  bottom: 100px;
+  & > img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
 }
 .title {
   font-weight: 700;
@@ -94,7 +101,7 @@
 
 .events-container {
   position: absolute;
-  bottom: 0;
+  bottom: 110px;
   left: 0;
   right: 0;
   padding: 15px 0;
