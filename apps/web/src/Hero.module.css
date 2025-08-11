@@ -1,21 +1,24 @@
 .hero-container {
   overflow: hidden;
   position: relative;
-  height: 100vh;
-  max-height: 1000px;
 }
 .hero-section {
-  padding: 10% 0 230px;
+  padding-top: 10%;
+  height: 100vh;
+  max-height: 800px;
+  box-sizing: border-box;
   position: relative;
 }
 .hero-background {
   position: absolute;
-  left: 25%;
+  left: 45%;
   top: 0px;
-  z-index: -1;
-  height: 100vh;
-  max-height: 1000px;
-  width: auto;
+  bottom: 100px;
+  & > img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
 }
 .title {
   font-weight: 700;
