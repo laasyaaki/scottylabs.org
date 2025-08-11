@@ -6,18 +6,22 @@ export default function ImageCarousel() {
   const imageLinks = getAllImageLinksInAssetDirectory("carousel-images");
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const CAROUSEL_SPEED_PX_PER_SECOND = -50;
-  const [loadedImages, setLoadedImages] = useState<string[]>([]);
+  const [loadedImages, setLoadedImages] = useState<string[]>(
+    Array(10)
+      .fill(true)
+      .map(() => imageLinks[Math.floor(Math.random() * imageLinks.length)]),
+  );
   useLayoutEffect(() => {
-    const zero = performance.now();
+    const zero = document.timeline.currentTime as number;
     let running = true;
-    const updatePosition = () => {
+    const updatePosition = (ts: number) => {
       if (!running) return;
-      const elapsed = performance.now() - zero;
+      const elapsed = ts - zero;
+
       const offsetX = (elapsed / 1000) * CAROUSEL_SPEED_PX_PER_SECOND - 2000;
       if (carouselRef.current) {
         const rightX = carouselRef.current.getBoundingClientRect().right;
         if (rightX <= window.innerWidth + 500) {
-          console.log(rightX, "extend");
           // innerWidth accounts for page zoom
           setLoadedImages((loadedImages) => [
             ...loadedImages,
