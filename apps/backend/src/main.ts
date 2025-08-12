@@ -7,8 +7,19 @@ import { getRecentActivity, getContributors } from "./db/dbQueries";
 import env from "./env";
 
 setInterval(() => runContributionScrape("scottylabs"), 10000);
-
-const app = fastify();
+const envToLogger = {
+  development: {
+    transport: {
+      target: "pino-pretty",
+      options: {
+        translateTime: "HH:MM:ss Z",
+        ignore: "pid,hostname",
+      },
+    },
+  },
+  production: true,
+};
+const app = fastify({ logger: envToLogger[env.ENV] });
 await app.register(cors, {
   origin: true, // should probably be more strict after prod deployment
 });
@@ -40,7 +51,6 @@ app.get("/", (req, res) => {
 const start = async () => {
   try {
     await app.listen({ port: env.PORT, host: "0.0.0.0" });
-    console.log(`Ready on :${env.PORT}!`);
   } catch (err) {
     app.log.error(err);
     process.exit(1);
