@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./TartanHacks.module.css";
 import tartanhacksLogo from "./assets/tartanhacks-logo.svg";
 import Button from "./components/Button";
 import { getAllImageLinksInAssetDirectory } from "./utils/files";
+import ImageCarousel from "./ImageCarousel";
+import clsx from "clsx";
 
 function getRandomLetter(targetChar: string, chanceForTarget: number) {
   if (Math.random() <= chanceForTarget) return targetChar;
@@ -20,12 +22,36 @@ const alternateNamesForParticipants = [
   "morning yogis",
   "hackers",
 ];
+function generateIntermediateWord(
+  prevWord: string,
+  newWord: string,
+  frontierIndex: number,
+) {
+  const len = Math.max(prevWord.length, newWord.length);
+  const LETTER_CHANGE_WINDOW_SIZE = 1;
+
+  let intermediateWord = "";
+  for (let i = 0; i < len; i++) {
+    if (i <= frontierIndex - LETTER_CHANGE_WINDOW_SIZE) {
+      intermediateWord += newWord[i] || " ";
+    } else if (i <= frontierIndex) {
+      intermediateWord += getRandomLetter(
+        newWord[i] || " ",
+        newWord[i] === undefined ? 1 : 0,
+      ); // if new word is shorter, replace extra characters in randomWindow with ' '
+    } else {
+      intermediateWord += prevWord[i] || " ";
+    }
+  }
+  return intermediateWord;
+}
+
 function StatTile() {
   const [wordIndex, setWordIndex] = useState(0);
-  const [currentWord, setCurrentWord] = useState(
+  const [displayedWord, setDisplayedWord] = useState(
     alternateNamesForParticipants[wordIndex],
   );
-  const prevWordRef = useRef("");
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setWordIndex(
@@ -33,53 +59,52 @@ function StatTile() {
       );
     }, 4000);
     return () => clearInterval(intervalId);
-  }, [alternateNamesForParticipants]);
+  }, []);
+
+  // sets up loop for transitioning in-between words
   useEffect(() => {
-    const startTime = +new Date();
+    const startTime = Date.now();
     const wordToTransitionTo = alternateNamesForParticipants[wordIndex];
-    const prevWord = prevWordRef.current;
-
-    prevWordRef.current = wordToTransitionTo;
+    const prevWord =
+      alternateNamesForParticipants[
+        (wordIndex - 1 + alternateNamesForParticipants.length) %
+          alternateNamesForParticipants.length
+      ];
     let finished = false;
-
     const intervalId = setInterval(() => {
-      const len = Math.max(prevWord.length, wordToTransitionTo.length);
-      const frontierIndex = Math.floor((+new Date() - startTime) / 100);
-      const windowSize = 1;
-      let newWordState = "";
-      for (let i = 0; i < len; i++) {
-        if (i <= frontierIndex - windowSize) {
-          newWordState += wordToTransitionTo[i] || " ";
-        } else if (i <= frontierIndex) {
-          newWordState += getRandomLetter(
-            wordToTransitionTo[i] || " ",
-            wordToTransitionTo[i] === undefined ? 1 : 0,
-          ); // if new word is shorter, replace extra characters in randomWindow with ' '
-        } else {
-          newWordState += prevWord[i] || " ";
-        }
-      }
-
-      setCurrentWord(newWordState);
-      if (newWordState.trimEnd() === wordToTransitionTo) {
+      const frontierIndex = Math.floor((Date.now() - startTime) / 100);
+      const intermediateState = generateIntermediateWord(
+        prevWord,
+        wordToTransitionTo,
+        frontierIndex,
+      );
+      setDisplayedWord(intermediateState.trimEnd());
+      if (intermediateState.trimEnd() === wordToTransitionTo) {
         finished = true;
         clearInterval(intervalId);
       }
     }, 30);
     return () => {
-      if (!finished) clearInterval(intervalId);
+      if (!finished) {
+        // we should've finished the transition though
+        clearInterval(intervalId);
+      }
     };
   }, [wordIndex]);
+
   return (
-    <div className={css["photo-gallery__stat-box"]}>
-      <div className={css["stat-box__number"]}>700+</div>
-      <div className={css["stat-box__description"]}>{currentWord}</div>
+    <div className={css["stat-box"]}>
+      <div>
+        <div className={css["stat-box__number"]}>700+</div>
+        <div className={css["stat-box__description"]}>
+          {displayedWord.replace(/ /g, "\u00A0")}
+          {/* replace normal spaces with the non-breaking space */}
+        </div>
+      </div>
     </div>
   );
 }
 export default function TartanHacks() {
-  const pics = getAllImageLinksInAssetDirectory("tartanhacks-photos");
-
   return (
     <section className={css["main-container"]}>
       <div className="centered-section">
@@ -87,23 +112,34 @@ export default function TartanHacks() {
           We host Pittsburgh's largest annual hackathon,
         </h1>
         <img className={css["tartanhacks-logo"]} src={tartanhacksLogo} alt="" />
-        <div className={css["photo-gallery"]}>
-          {pics.slice(0, 5).map((pic) => (
-            <img
-              className={css["photo-gallery__image"]}
-              src={pic}
-              alt=""
-              key={pic}
-            />
-          ))}
-          <StatTile />
-        </div>
-        <Button
-          label="View all events"
-          variant="primary"
-          className={css["all-events-button"]}
+      </div>
+      <div
+        className={clsx(
+          css["carousel-container"],
+          css["carousel-container--first"],
+        )}
+      >
+        <ImageCarousel
+          heightPx={150}
+          speedPxPerSecond={50}
+          imageLinks={getAllImageLinksInAssetDirectory("tartanhacks-photos")}
+          gapPx={15}
         />
       </div>
+      <div className={css["carousel-container"]}>
+        <ImageCarousel
+          heightPx={200}
+          speedPxPerSecond={-30}
+          imageLinks={getAllImageLinksInAssetDirectory("tartanhacks-photos")}
+          gapPx={15}
+          PeriodicTileInsert={StatTile}
+        />
+      </div>
+      <Button
+        label="View all events"
+        variant="primary"
+        className={css["all-events-button"]}
+      />
     </section>
   );
 }

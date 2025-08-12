@@ -42,7 +42,7 @@ function Hero() {
           <link rel="preload" href={heroBg} as="image" />
         </div>
         <div className={css["hero-background"]}>
-          <img src={heroBg} alt="" />
+          <img src={heroBg} alt="" fetchPriority="high" />
         </div>
       </div>
       <div className={css["events-container"]}>

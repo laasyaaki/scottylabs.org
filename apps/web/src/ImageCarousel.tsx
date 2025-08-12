@@ -1,31 +1,79 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type JSX } from "react";
 import css from "./ImageCarousel.module.css";
-import { getAllImageLinksInAssetDirectory } from "./utils/files";
+import clsx from "clsx";
 
-export default function ImageCarousel() {
-  const imageLinks = getAllImageLinksInAssetDirectory("carousel-images");
+export default function ImageCarousel({
+  imageLinks,
+  speedPxPerSecond,
+  heightPx,
+  gapPx,
+  PeriodicTileInsert,
+}: {
+  imageLinks: string[];
+  speedPxPerSecond: number;
+  heightPx: number;
+  gapPx?: number;
+  PeriodicTileInsert?: () => React.ReactNode;
+}) {
   const carouselRef = useRef<HTMLDivElement | null>(null);
-  const CAROUSEL_SPEED_PX_PER_SECOND = -50;
-  const [loadedImages, setLoadedImages] = useState<string[]>(
+  const endOfCarouselRef = useRef<HTMLDivElement | null>(null);
+  const direction = speedPxPerSecond > 0 ? "right" : "left";
+  const LOADING_BUFFER_PX = 500;
+  const [imagesVisibleOnScreen, setImagesVisibleOnScreen] = useState(5); //approximately
+  useEffect(() => {
+    const updateCustomTilePositioning = () => {
+      setImagesVisibleOnScreen(Math.max(2, Math.ceil(window.innerWidth / 300)));
+    };
+    window.addEventListener("resize", updateCustomTilePositioning);
+    updateCustomTilePositioning();
+    return () =>
+      window.removeEventListener("resize", updateCustomTilePositioning);
+  }, []);
+  const [tiles, setTiles] = useState<React.ReactNode[]>(
     Array(10)
       .fill(true)
-      .map(() => imageLinks[Math.floor(Math.random() * imageLinks.length)]),
+      .map(() => (
+        <img
+          className={css["carousel__image"]}
+          src={imageLinks[Math.floor(Math.random() * imageLinks.length)]}
+          alt=""
+          key={Math.random()}
+          // it really doesn't matter since we're never changing this element
+        />
+      )),
   );
   useLayoutEffect(() => {
-    const zero = document.timeline.currentTime as number;
+    let prevRenderTime = document.timeline.currentTime as number;
+    let totalElapsed = 0;
     let running = true;
-    const updatePosition = (ts: number) => {
-      if (!running) return;
-      const elapsed = ts - zero;
 
-      const offsetX = (elapsed / 1000) * CAROUSEL_SPEED_PX_PER_SECOND - 2000;
-      if (carouselRef.current) {
-        const rightX = carouselRef.current.getBoundingClientRect().right;
-        if (rightX <= window.innerWidth + 500) {
+    const updatePosition = (curRenderTime: number) => {
+      if (!running) return;
+      totalElapsed += Math.min(500, curRenderTime - prevRenderTime); // in case user loses focus of the tab and comes back, we don't want significant amounts of time passing in between (because then we'll trigger a billion image loads and lag the page)
+      prevRenderTime = curRenderTime;
+      const offsetX =
+        (totalElapsed / 1000) * speedPxPerSecond +
+        (direction === "right" ? 2000 : -2000);
+      if (carouselRef.current && endOfCarouselRef.current) {
+        const { left: posX } = endOfCarouselRef.current.getBoundingClientRect();
+
+        if (
+          (direction === "left" &&
+            posX <= window.innerWidth + LOADING_BUFFER_PX) ||
+          (direction === "right" && posX >= -LOADING_BUFFER_PX)
+        ) {
           // innerWidth accounts for page zoom
-          setLoadedImages((loadedImages) => [
-            ...loadedImages,
-            imageLinks[Math.floor(Math.random() * imageLinks.length)],
+          // add in an additional image (or manual tile)
+
+          setTiles((tiles) => [
+            ...tiles,
+            <img
+              className={css["carousel__image"]}
+              src={imageLinks[Math.floor(Math.random() * imageLinks.length)]}
+              alt=""
+              key={Math.random()}
+              // it really doesn't matter since we're never changing this element
+            />,
           ]);
         }
         carouselRef.current.style.translate = `${offsetX}px`;
@@ -36,17 +84,39 @@ export default function ImageCarousel() {
     return () => {
       running = false;
     };
-  }, [CAROUSEL_SPEED_PX_PER_SECOND]);
+  }, [speedPxPerSecond, imageLinks, LOADING_BUFFER_PX, direction]);
   // console.log(loadedImages);
   return (
-    <section className={css["carousel-container"]}>
-      <div className="centered-section">
-        <div className={css["carousel"]} ref={carouselRef}>
-          {loadedImages.map((url, i) => (
-            <img className={css["carousel__image"]} src={url} key={i} alt="" />
-          ))}
-        </div>
+    <div className={css["carousel-container"]}>
+      <div
+        className={clsx(
+          css["carousel"],
+          speedPxPerSecond > 0 && css["carousel--flipped"],
+        )}
+        ref={carouselRef}
+        style={{ height: heightPx, gap: gapPx }}
+      >
+        {tiles.flatMap((tile, i) => {
+          if (
+            (i + 2) % (imagesVisibleOnScreen - 1) === 0 &&
+            PeriodicTileInsert
+          ) {
+            // insert tile
+            return [
+              tile,
+              <div
+                key={Math.floor(i / (imagesVisibleOnScreen - 1))}
+                style={{ flexShrink: 0 }}
+              >
+                <PeriodicTileInsert />
+              </div>,
+            ];
+          } else {
+            return [tile];
+          }
+        })}
+        <div ref={endOfCarouselRef} />
       </div>
-    </section>
+    </div>
   );
 }

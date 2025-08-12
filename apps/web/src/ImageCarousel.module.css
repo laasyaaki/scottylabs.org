@@ -1,16 +1,17 @@
 .carousel-container {
   overflow: hidden;
-  margin-top: -60px;
 }
 .carousel {
-  height: 300px;
   display: flex;
   gap: 25px;
   align-items: stretch;
-  padding-bottom: 20px;
-  width: fit-content;
-  translate: -2000px;
-}
-.carousel__image {
-  border-radius: var(--border-radius-base);
+  /* this allows the div to function essentially as a pointer, and flex-direction dictates which side of the pointer the carousel should grow in */
+  width: 0;
+  translate: 0;
+  &.carousel--flipped {
+    flex-direction: row-reverse;
+  }
+  & > .carousel__image {
+    border-radius: var(--border-radius-base);
+  }
 }
