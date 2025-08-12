@@ -1,5 +1,11 @@
 .carousel-container {
   overflow: hidden;
+  &.carousel-container--flipped {
+    & > .carousel {
+      margin-left: auto;
+      flex-direction: row-reverse;
+    }
+  }
 }
 .carousel {
   display: flex;
@@ -8,9 +14,7 @@
   /* this allows the div to function essentially as a pointer, and flex-direction dictates which side of the pointer the carousel should grow in */
   width: 0;
   translate: 0;
-  &.carousel--flipped {
-    flex-direction: row-reverse;
-  }
+
   & > .carousel__image {
     border-radius: var(--border-radius-base);
   }

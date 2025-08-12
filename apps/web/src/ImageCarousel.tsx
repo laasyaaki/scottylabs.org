@@ -51,9 +51,7 @@ export default function ImageCarousel({
       if (!running) return;
       totalElapsed += Math.min(500, curRenderTime - prevRenderTime); // in case user loses focus of the tab and comes back, we don't want significant amounts of time passing in between (because then we'll trigger a billion image loads and lag the page)
       prevRenderTime = curRenderTime;
-      const offsetX =
-        (totalElapsed / 1000) * speedPxPerSecond +
-        (direction === "right" ? 2000 : -2000);
+      const offsetX = (totalElapsed / 1000) * speedPxPerSecond;
       if (carouselRef.current && endOfCarouselRef.current) {
         const { left: posX } = endOfCarouselRef.current.getBoundingClientRect();
 
@@ -87,12 +85,14 @@ export default function ImageCarousel({
   }, [speedPxPerSecond, imageLinks, LOADING_BUFFER_PX, direction]);
   // console.log(loadedImages);
   return (
-    <div className={css["carousel-container"]}>
+    <div
+      className={clsx(
+        css["carousel-container"],
+        direction === "right" && css["carousel-container--flipped"],
+      )}
+    >
       <div
-        className={clsx(
-          css["carousel"],
-          speedPxPerSecond > 0 && css["carousel--flipped"],
-        )}
+        className={css["carousel"]}
         ref={carouselRef}
         style={{ height: heightPx, gap: gapPx }}
       >
