@@ -8,12 +8,11 @@ export async function getRecentActivity() {
     .select({
       author_id: commitTable.author_id,
       latest_commit_time: sql`MAX(${commitTable.committed_at})`.as("latest_commit_time"),
-      repo_id: commitTable.repo_id,
     })
     .from(commitTable)
     .innerJoin(repoTable, eq(commitTable.repo_id, repoTable.id))
     .where(eq(repoTable.check_type, "commits")) // only get commit activity for repos with commit tracking (as opposed to PR tracking for more mature projects)
-    .groupBy(commitTable.repo_id, commitTable.author_id) // the condensing part
+    .groupBy(commitTable.author_id) // the condensing part
     .orderBy(desc(sql`latest_commit_time`))
     .limit(10)
     .as("t");
@@ -26,7 +25,6 @@ export async function getRecentActivity() {
       and(
         eq(commitTable.author_id, latestCommitsQuery.author_id),
         eq(commitTable.committed_at, latestCommitsQuery.latest_commit_time),
-        eq(commitTable.repo_id, latestCommitsQuery.repo_id),
       ),
     )
     .innerJoin(userTable, eq(commitTable.author_id, userTable.id))
@@ -35,13 +33,12 @@ export async function getRecentActivity() {
   const latestPRsQuery = db
     .select({
       author_id: pullRequestTable.author_id,
-      repo_id: pullRequestTable.repo_id,
       latest_merged_at: sql`MAX(${pullRequestTable.merged_at})`.as("latest_merged_at"),
     })
     .from(pullRequestTable)
     .innerJoin(repoTable, eq(pullRequestTable.repo_id, repoTable.id))
     .where(eq(repoTable.check_type, "pull_request"))
-    .groupBy(pullRequestTable.repo_id, pullRequestTable.author_id)
+    .groupBy(pullRequestTable.author_id)
     .orderBy(desc(sql`latest_merged_at`))
     .limit(10)
     .as("t");
@@ -52,7 +49,6 @@ export async function getRecentActivity() {
       latestPRsQuery,
       and(
         eq(pullRequestTable.author_id, latestPRsQuery.author_id),
-        eq(pullRequestTable.repo_id, latestPRsQuery.repo_id),
         eq(pullRequestTable.merged_at, latestPRsQuery.latest_merged_at),
       ),
     )

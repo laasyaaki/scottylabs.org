@@ -29,9 +29,12 @@ const s = initServer();
 const router = s.router(contract, {
   getLatestActivity: async () => {
     const { recentCommits, recentPRs } = await getRecentActivity();
+    const mergedData = [...recentCommits, ...recentPRs].sort((a, b) => b.time.localeCompare(a.time));
     return {
       status: 200,
-      body: [...recentCommits, ...recentPRs].sort((a, b) => b.time.localeCompare(a.time)),
+      body: mergedData.filter(
+        (data, i) => mergedData.findIndex((arData) => arData.authorUsername === data.authorUsername) === i,
+      ), // get the first occurring contrib, github usernames are unique so this is fine
     };
   },
   async getContributors({ params: { org, repo } }) {
