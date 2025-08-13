@@ -1,6 +1,6 @@
 import Button from "./components/Button";
 import css from "./Hero.module.css";
-import heroBg from "./assets/hero-bg.svg";
+import heroBg from "./assets/hero-bg.svg?inline";
 
 function Hero() {
   return (
