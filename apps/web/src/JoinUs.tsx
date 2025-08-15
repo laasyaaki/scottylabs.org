@@ -48,7 +48,7 @@ export default function JoinUs() {
           </div>
           <div className={css["calendar"]}>
             <iframe
-              src="https://calendar.google.com/calendar/embed?src=admin%40scottylabs.org&ctz=America%2FNew_York&mode=week"
+              src="https://calendar.google.com/calendar/embed?src=admin%40scottylabs.org&ctz=America%2FNew_York&mode=agenda"
               width="0"
               height="0"
             />
