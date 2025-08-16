@@ -9,7 +9,7 @@ function getIcon(url: string) {
 const socialLinks = [
   {
     icon: getIcon("tartan-connect.png"),
-    name: "Tartan Connect",
+    name: "Tartan-Connect",
     url: "https://tartanconnect.cmu.edu/scottylabs/club_signup",
     color: "hsl(0,100%,30%)",
   },
