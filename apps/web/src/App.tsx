@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Header from "./Header";
 import Hero from "./Hero";
 import ImageCarousel from "./ImageCarousel";
@@ -20,6 +21,7 @@ function App() {
         <Projects />
         <TartanHacks />
         <JoinUs />
+        <Footer />
       </main>
     </>
   );
