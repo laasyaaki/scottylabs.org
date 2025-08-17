@@ -28,9 +28,5 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  },
-  "dependencies": {
-    "@remix-run/dev": "^2.17.0",
-    "@remix-run/node": "^2.17.0"
   }
 }
