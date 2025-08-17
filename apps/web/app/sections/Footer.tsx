@@ -6,7 +6,7 @@ import linkedinIcon from "../assets/icons/socials/linkedin.svg";
 import mediumIcon from "../assets/icons/socials/medium.svg";
 import slackIcon from "../assets/icons/socials/slack.svg";
 import emailIcon from "../assets/icons/socials/email.svg";
-import divider from "../assets/icons/socials/social-divider.svg";
+import divider from "../assets/icons/socials/social-divider.png";
 // I didn't use the go.scottylabs.org links because they take over 1s to redirect you to the actual destination
 // if that's fixed, I can replace these with go.scottylabs.org
 const socialLinks = [
