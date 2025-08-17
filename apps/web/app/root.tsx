@@ -14,9 +14,10 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StrictMode } from "react";
 import { tsr } from "./utils/tsr";
-import satoshiFont from "./assets/fonts/Satoshi-Regular.woff2?url";
-import satoshiFontBold from "./assets/fonts/Satoshi-Bold.woff2?url";
-import satoshiFontMedium from "./assets/fonts/Satoshi-Medium.woff2?url";
+import satoshiFont from "./assets/fonts/Satoshi-Regular.woff2";
+import satoshiFontBold from "./assets/fonts/Satoshi-Bold.woff2";
+import satoshiFontMedium from "./assets/fonts/Satoshi-Medium.woff2";
+import jetbrainsMono from "./assets/fonts/JetBrainsMono-Regular.ttf";
 const queryClient = new QueryClient();
 
 export const links: Route.LinksFunction = () => [
@@ -37,6 +38,13 @@ export const links: Route.LinksFunction = () => [
   {
     rel: "preload",
     href: satoshiFontMedium,
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "preload",
+    href: jetbrainsMono,
     as: "font",
     type: "font/woff2",
     crossOrigin: "anonymous",
