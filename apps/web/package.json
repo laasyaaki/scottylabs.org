@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "dotenv -- react-router dev",
     "build": "react-router typegen && tsc -v && tsc -b --verbose && react-router build",
-    "start": "PORT=5173 react-router-serve ./build/server/index.js",
+    "start": "PORT=5173 react-router-serve ./build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -18,6 +18,7 @@
     "@tanstack/react-query-devtools": "^5.83.0",
     "@ts-rest/core": "^3.52.1",
     "@ts-rest/react-query": "^3.52.1",
+    "@vercel/react-router": "^1.2.2",
     "clsx": "^2.1.1",
     "fast-average-color": "^9.5.0",
     "isbot": "^5",
