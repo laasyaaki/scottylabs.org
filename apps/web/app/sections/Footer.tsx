@@ -7,6 +7,7 @@ import mediumIcon from "../assets/icons/socials/medium.svg";
 import slackIcon from "../assets/icons/socials/slack.svg";
 import emailIcon from "../assets/icons/socials/email.svg";
 import divider from "../assets/icons/socials/social-divider.png";
+import React from "react";
 // I didn't use the go.scottylabs.org links because they take over 1s to redirect you to the actual destination
 // if that's fixed, I can replace these with go.scottylabs.org
 const socialLinks = [
@@ -56,12 +57,11 @@ export default function Footer() {
         </div>
         {socialLinks.map(({ icon, name, url, color }, i) => {
           return (
-            <>
+            <React.Fragment key={name}>
               <a
                 className={css["social-link"]}
                 href={url}
                 target="_blank"
-                key={name}
                 style={{ "--bg-color": color } as CSSProperties}
               >
                 <div>
@@ -70,13 +70,9 @@ export default function Footer() {
                 </div>
               </a>
               {i !== socialLinks.length - 1 && (
-                <img
-                  className={css["social-link-divider"]}
-                  key={`${name}-divider`}
-                  src={divider}
-                />
+                <img className={css["social-link-divider"]} src={divider} />
               )}
-            </>
+            </React.Fragment>
           );
         })}
       </div>
