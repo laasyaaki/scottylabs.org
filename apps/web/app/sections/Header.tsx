@@ -1,12 +1,12 @@
 import css from "./Header.module.css";
 import clsx from "clsx";
 
-import scottylabsLogo from "./assets/scottylabs-logo.svg";
-import aboutIcon from "./assets/icons/about.svg";
-import teamIcon from "./assets/icons/team.svg";
-import projectsIcon from "./assets/icons/projects.svg";
-import eventsIcon from "./assets/icons/events.svg";
-import sponsorsIcon from "./assets/icons/sponsors.svg";
+import scottylabsLogo from "../assets/scottylabs-logo.svg";
+import aboutIcon from "../assets/icons/about.svg";
+import teamIcon from "../assets/icons/team.svg";
+import projectsIcon from "../assets/icons/projects.svg";
+import eventsIcon from "../assets/icons/events.svg";
+import sponsorsIcon from "../assets/icons/sponsors.svg";
 const navLinks = [
   {
     icon: aboutIcon,

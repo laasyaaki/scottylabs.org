@@ -1,7 +1,7 @@
 /**
  * This is frankly very ugly, but import.meta.glob() can only accept string literals
  * https://stackoverflow.com/questions/72077023/import-meta-glob-can-only-accept-string-literals
- * @param dir ex. ./assets/carousel/*
+ * @param dir
  * @returns
  */
 export function getAllImageLinksInAssetDirectory(
