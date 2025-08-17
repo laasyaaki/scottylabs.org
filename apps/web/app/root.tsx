@@ -21,6 +21,9 @@ export const links: Route.LinksFunction = () => [
   {
     rel: "preload",
     href: satoshiFont,
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous",
   },
 ];
 
