@@ -7,20 +7,20 @@ import {
   type CSSProperties,
 } from "react";
 import css from "./Projects.module.css";
-import buttonCSS from "./components/Button/index.module.css";
+import buttonCSS from "../components/Button/index.module.css";
 import { AnimatePresence, motion } from "motion/react";
-import { getAllImageLinksInAssetDirectory } from "./utils/files";
+import { getAllImageLinksInAssetDirectory } from "../utils/files";
 import clsx from "clsx";
-import { tsr } from "./utils/tsr";
+import { tsr } from "../utils/tsr";
 import { DateTime, Interval } from "luxon";
 import type { contract } from "@apps/backend/contract";
 import type z from "zod";
 import { FastAverageColor } from "fast-average-color";
-import prIcon from "./assets/icons/pr.svg";
-import commitIcon from "./assets/icons/commit.svg";
-import spinnerIcon from "./assets/icons/spinner.svg";
-import externalLinkIcon from "./assets/icons/go-to-icon.svg";
-
+import prIcon from "../assets/icons/pr.svg";
+import commitIcon from "../assets/icons/commit.svg";
+import spinnerIcon from "../assets/icons/spinner.svg";
+import externalLinkIcon from "../assets/icons/go-to-icon.svg";
+import goToIcon from "../assets/icons/go-to-icon.svg";
 const fac = new FastAverageColor();
 
 const featuredProjects = [
@@ -347,10 +347,7 @@ function ProjectTab({
     >
       <img
         className={css["tab__image"]}
-        src={
-          new URL(`./assets/projects/${assetFolder}/icon.png`, import.meta.url)
-            .href
-        }
+        src={`/projects/${assetFolder}/icon.png`}
         onLoad={() => {
           if (isSelected) updateBottomBorderPosition();
         }}
@@ -402,9 +399,7 @@ function ProjectPreviews() {
           <button className={css["tab"]}>
             <img
               className={css["tab__image"]}
-              src={
-                new URL("./assets/icons/go-to-icon.svg", import.meta.url).href
-              }
+              src={goToIcon}
               alt=""
               style={{ height: "1em" }}
             />
@@ -425,12 +420,7 @@ function ProjectPreviews() {
           >
             <img
               className={css["panel__img"]}
-              src={
-                new URL(
-                  `./assets/projects/${featuredProjects[selectedProjectIndex].assetFolder}/main.png`,
-                  import.meta.url,
-                ).href
-              }
+              src={`/projects/${featuredProjects[selectedProjectIndex].assetFolder}/main.png`}
               alt=""
             />
             <div className={css["panel__details"]}>

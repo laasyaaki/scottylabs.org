@@ -1,6 +1,6 @@
-import Button from "./components/Button";
+import Button from "../components/Button";
 import css from "./Hero.module.css";
-import heroBg from "./assets/hero-bg.svg?inline"; // basically gets embedded into the source code so there's not a moment where the bg image is blank.
+import heroBg from "../assets/hero-bg.svg?inline"; // basically gets embedded into the source code so there's not a moment where the bg image is blank.
 
 function Hero() {
   return (

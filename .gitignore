@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .env
 .vite-inspect
+
+.react-router
+build

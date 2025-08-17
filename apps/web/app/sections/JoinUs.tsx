@@ -1,4 +1,3 @@
-import Button from "./components/Button";
 import css from "./JoinUs.module.css";
 const recurringEvents = [
   {
