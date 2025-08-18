@@ -31,7 +31,7 @@
   & > .social-link {
     --bg-percent: 0%;
     --bg-color: red;
-    width: 75px;
+    width: 95px;
     display: flex;
     align-items: center;
     transition: 0.1s --bg-percent ease-out;
