@@ -1,7 +1,16 @@
-import { useEffect, useLayoutEffect, useRef, useState, type JSX } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import css from "./ImageCarousel.module.css";
 import clsx from "clsx";
 
+function shuffleArray(ar: string[]) {
+  const shuffledAr = [...ar];
+  const N = shuffledAr.length;
+  for (let i = 0; i < N; i++) {
+    const randI = Math.floor(Math.random() * (N - i)) + i; // rand([i,N-1])
+    [shuffledAr[i], shuffledAr[randI]] = [shuffledAr[randI], shuffledAr[i]];
+  }
+  return shuffledAr;
+}
 export default function ImageCarousel({
   imageLinks,
   speedPxPerSecond,
@@ -20,6 +29,12 @@ export default function ImageCarousel({
   const direction = speedPxPerSecond > 0 ? "right" : "left";
   const LOADING_BUFFER_PX = 500;
   const [imagesVisibleOnScreen, setImagesVisibleOnScreen] = useState(5); //approximately
+  const shuffledImageLinks = useMemo(
+    () => shuffleArray(imageLinks),
+    [imageLinks],
+  );
+  const INITIAL_IMAGES_TO_LOAD = 10;
+
   useEffect(() => {
     const updateCustomTilePositioning = () => {
       setImagesVisibleOnScreen(Math.max(2, Math.ceil(window.innerWidth / 300)));
@@ -29,20 +44,25 @@ export default function ImageCarousel({
     return () =>
       window.removeEventListener("resize", updateCustomTilePositioning);
   }, []);
-  const [tiles, setTiles] = useState<React.ReactNode[]>(
-    Array(10)
-      .fill(true)
-      .map(() => (
-        <img
-          className={css["carousel__image"]}
-          src={imageLinks[Math.floor(Math.random() * imageLinks.length)]}
-          alt=""
-          key={Math.random()}
-          // it really doesn't matter since we're never changing this element
-        />
-      )),
-  );
-  useLayoutEffect(() => {
+  const [tiles, setTiles] = useState<React.ReactNode[]>([]);
+
+  useEffect(() => {
+    setTiles(
+      Array(INITIAL_IMAGES_TO_LOAD)
+        .fill(true)
+        .map((_, i) => (
+          <img
+            className={css["carousel__image"]}
+            src={shuffledImageLinks[i % shuffledImageLinks.length]}
+            alt=""
+            key={Math.random()}
+            // the key doesn't matter since we're never changing this element
+          />
+        )),
+    );
+  }, [shuffledImageLinks]); // we are doing initialization here to avoid hydration errors
+
+  useEffect(() => {
     let prevRenderTime = document.timeline.currentTime as number;
     let totalElapsed = 0;
     let running = true;
@@ -67,10 +87,10 @@ export default function ImageCarousel({
             ...tiles,
             <img
               className={css["carousel__image"]}
-              src={imageLinks[Math.floor(Math.random() * imageLinks.length)]}
+              src={shuffledImageLinks[tiles.length % shuffledImageLinks.length]} // NOTE: this will no longer work for sequential image assignment if we choose to remove images that leave viewport (also note that using a ref to keep track of this will be buggy, partly due to react strict mode)
               alt=""
               key={Math.random()}
-              // it really doesn't matter since we're never changing this element
+              // the key doesn't matter since we're never changing this element
             />,
           ]);
         }
@@ -82,8 +102,8 @@ export default function ImageCarousel({
     return () => {
       running = false;
     };
-  }, [speedPxPerSecond, imageLinks, LOADING_BUFFER_PX, direction]);
-  // console.log(loadedImages);
+  }, [speedPxPerSecond, shuffledImageLinks, LOADING_BUFFER_PX, direction]);
+
   return (
     <div
       className={clsx(
