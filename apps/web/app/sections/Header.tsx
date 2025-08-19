@@ -2,17 +2,12 @@ import css from "./Header.module.css";
 import clsx from "clsx";
 
 import scottylabsLogo from "../assets/scottylabs-logo.svg";
-import aboutIcon from "../assets/icons/about.svg";
 import teamIcon from "../assets/icons/team.svg";
 import projectsIcon from "../assets/icons/projects.svg";
 import eventsIcon from "../assets/icons/events.svg";
 import sponsorsIcon from "../assets/icons/sponsors.svg";
+import { NavLink, useLocation } from "react-router";
 const navLinks = [
-  {
-    icon: aboutIcon,
-    url: "/about",
-    text: "About",
-  },
   {
     icon: teamIcon,
     url: "/team",
@@ -35,35 +30,41 @@ const navLinks = [
   },
 ];
 function Header() {
+  const location = useLocation();
   return (
     <header className={css["main-header-container"]}>
       <div className={css["main-header-layout"]}>
-        <button
+        <NavLink
           className={css["logo"]}
-          onClick={() =>
-            window.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: "smooth",
-            })
-          }
+          to={"/"}
+          // onClick={() =>
+          //   window.scrollTo({
+          //     top: 0,
+          //     left: 0,
+          //     behavior: "smooth",
+          //   })
+          // }
+          viewTransition
+          prefetch="intent"
         >
           <img className={css["logo__img"]} src={scottylabsLogo} />
 
           <div className={css["logo__text"]}>ScottyLabs</div>
-        </button>
+        </NavLink>
         <nav className={css["main-nav"]}>
           {navLinks.map(({ icon, url, text }) => (
             <a aria-current={url === "/about"} key={url}>
-              <button
-                className={clsx(
-                  css["nav-button"],
-                  url === "/about" && css["nav-button--active"],
-                )}
+              <NavLink
+                className={({ isActive }) =>
+                  clsx(css["nav-button"], isActive && css["nav-button--active"])
+                }
+                to={url}
+                viewTransition
+                prefetch="intent"
               >
                 <img className={css["nav-button__icon"]} src={icon} />
                 <div className={css["nav-button__text"]}>{text}</div>
-              </button>
+              </NavLink>
             </a>
           ))}
         </nav>

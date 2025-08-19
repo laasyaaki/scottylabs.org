@@ -50,8 +50,8 @@
 }
 
 .nav-button--active {
-  background-color: var(--black-50);
-  border-color: var(--black-300);
+  background-color: var(--blue-50);
+  border-color: var(--black-200);
 }
 .nav-button__icon {
   height: 1.1em;
