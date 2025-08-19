@@ -1,18 +1,13 @@
 import css from "./Header.module.css";
 import clsx from "clsx";
 
-import scottylabsLogo from "../assets/scottylabs-logo.svg";
-import teamIcon from "../assets/icons/team.svg";
-import projectsIcon from "../assets/icons/projects.svg";
-import eventsIcon from "../assets/icons/events.svg";
-import sponsorsIcon from "../assets/icons/sponsors.svg";
+import scottylabsLogo from "../../assets/scottylabs-logo.svg";
+import teamIcon from "../../assets/icons/team.svg";
+import projectsIcon from "../../assets/icons/projects.svg";
+import eventsIcon from "../../assets/icons/events.svg";
+import sponsorsIcon from "../../assets/icons/sponsors.svg";
 import { NavLink, useLocation } from "react-router";
 const navLinks = [
-  {
-    icon: teamIcon,
-    url: "/team",
-    text: "Team",
-  },
   {
     icon: projectsIcon,
     url: "/projects",
@@ -22,6 +17,11 @@ const navLinks = [
     icon: eventsIcon,
     url: "/events",
     text: "Events",
+  },
+  {
+    icon: teamIcon,
+    url: "/team",
+    text: "Team",
   },
   {
     icon: sponsorsIcon,

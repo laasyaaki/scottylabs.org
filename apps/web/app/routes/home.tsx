@@ -1,8 +1,8 @@
-import Hero from "../sections/Hero";
-import ImageCarousel from "../sections/ImageCarousel";
-import JoinUs from "../sections/JoinUs";
-import Projects from "../sections/Projects";
-import TartanHacks from "../sections/TartanHacks";
+import Hero from "../sections/home/Hero";
+import ImageCarousel from "../components/ImageCarousel";
+import JoinUs from "../sections/home/JoinUs";
+import Projects from "../sections/home/Projects";
+import TartanHacks from "../sections/home/TartanHacks";
 import { getAllImageLinksInAssetDirectory } from "../utils/files";
 
 export default function Home() {

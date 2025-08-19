@@ -61,7 +61,7 @@
     right: 10px;
   }
   &.tool-logo-slot--ai-san:hover {
-    content: url("../assets/ai-san.png");
+    content: url("../../assets/ai-san.png");
   }
 }
 .title-section__header__design-text {
@@ -358,7 +358,7 @@
     bottom: -20px;
     height: 20px;
     background: var(--bg-gradient);
-    mask-image: url("../assets/icons/popup-arrow.svg");
+    mask-image: url("../../assets/icons/popup-arrow.svg");
     mask-repeat: no-repeat;
     mask-position: calc(50% - var(--popup-offset-px)) 0;
     mask-size: auto 40%;

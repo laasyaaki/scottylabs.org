@@ -9,7 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./index.css";
-import Header from "./sections/Header";
+import Header from "./sections/home/Header";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StrictMode } from "react";
@@ -18,7 +18,7 @@ import satoshiFont from "./assets/fonts/Satoshi-Regular.woff2";
 import satoshiFontBold from "./assets/fonts/Satoshi-Bold.woff2";
 import satoshiFontMedium from "./assets/fonts/Satoshi-Medium.woff2";
 import jetbrainsMono from "./assets/fonts/JetBrainsMono-Regular.ttf";
-import Footer from "./sections/Footer";
+import Footer from "./sections/home/Footer";
 import errorCSS from "./Error.module.css";
 import errorRyo from "./assets/ryo.webp";
 const queryClient = new QueryClient();

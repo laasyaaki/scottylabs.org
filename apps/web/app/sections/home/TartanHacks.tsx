@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import css from "./TartanHacks.module.css";
-import tartanhacksLogo from "../assets/tartanhacks-logo.svg";
-import Button from "../components/Button";
-import { getAllImageLinksInAssetDirectory } from "../utils/files";
-import ImageCarousel from "../sections/ImageCarousel";
+import tartanhacksLogo from "../../assets/tartanhacks-logo.svg";
+import Button from "../../components/Button";
+import { getAllImageLinksInAssetDirectory } from "../../utils/files";
+import ImageCarousel from "../../components/ImageCarousel";
 import clsx from "clsx";
 
 function getRandomLetter(targetChar: string, chanceForTarget: number) {
