@@ -1,4 +1,3 @@
-import Footer from "../sections/Footer";
 import Hero from "../sections/Hero";
 import ImageCarousel from "../sections/ImageCarousel";
 import JoinUs from "../sections/JoinUs";
@@ -26,7 +25,6 @@ export default function Home() {
       <Projects />
       <TartanHacks />
       <JoinUs />
-      <Footer />
     </>
   );
 }

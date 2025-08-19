@@ -18,6 +18,9 @@ import satoshiFont from "./assets/fonts/Satoshi-Regular.woff2";
 import satoshiFontBold from "./assets/fonts/Satoshi-Bold.woff2";
 import satoshiFontMedium from "./assets/fonts/Satoshi-Medium.woff2";
 import jetbrainsMono from "./assets/fonts/JetBrainsMono-Regular.ttf";
+import Footer from "./sections/Footer";
+import errorCSS from "./Error.module.css";
+import errorRyo from "./assets/ryo.webp";
 const queryClient = new QueryClient();
 
 export const links: Route.LinksFunction = () => [
@@ -66,6 +69,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <tsr.ReactQueryProvider>
               <Header />
               <main>{children}</main>
+              <Footer />
+
               <ScrollRestoration />
               <Scripts />
             </tsr.ReactQueryProvider>
@@ -76,8 +81,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
-// TODO: what goes in layout vs. App?
-// TODO: import index.css
+
 export default function App() {
   return <Outlet />;
 }
@@ -98,16 +102,16 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     stack = error.stack;
   }
 
-  // TODO:
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <div className={errorCSS["error-container"]}>
+      <h1 className={errorCSS["error-message"]}>{message}</h1>
+      <p className={errorCSS["error-details"]}>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className={errorCSS["error-stack"]}>
           <code>{stack}</code>
         </pre>
       )}
-    </main>
+      <img src={errorRyo} height={400} />
+    </div>
   );
 }
