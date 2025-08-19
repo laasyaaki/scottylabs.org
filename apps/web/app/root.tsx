@@ -53,7 +53,12 @@ export const links: Route.LinksFunction = () => [
     crossOrigin: "anonymous",
   },
 ];
-
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "ScottyLabs" },
+    { name: "description", content: "The landing page for Scottylabs" },
+  ];
+}
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
