@@ -17,6 +17,7 @@ import { tsr } from "./utils/tsr";
 import satoshiFont from "./assets/fonts/Satoshi-Regular.woff2";
 import satoshiFontBold from "./assets/fonts/Satoshi-Bold.woff2";
 import satoshiFontMedium from "./assets/fonts/Satoshi-Medium.woff2";
+import satoshiFontBlack from "./assets/fonts/Satoshi-Black.woff2";
 import jetbrainsMono from "./assets/fonts/JetBrainsMono-Regular.ttf";
 import Footer from "./sections/home/Footer";
 import errorCSS from "./Error.module.css";
@@ -41,6 +42,13 @@ export const links: Route.LinksFunction = () => [
   {
     rel: "preload",
     href: satoshiFontMedium,
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "preload",
+    href: satoshiFontBlack,
     as: "font",
     type: "font/woff2",
     crossOrigin: "anonymous",
