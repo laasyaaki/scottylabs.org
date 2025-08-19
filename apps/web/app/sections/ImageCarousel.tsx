@@ -60,9 +60,6 @@ export default function ImageCarousel({
           />
         )),
     );
-  }, [shuffledImageLinks]); // we are doing initialization here to avoid hydration errors
-
-  useEffect(() => {
     let prevRenderTime = document.timeline.currentTime as number;
     let totalElapsed = 0;
     let running = true;
@@ -78,7 +75,9 @@ export default function ImageCarousel({
         if (
           (direction === "left" &&
             posX <= window.innerWidth + LOADING_BUFFER_PX) ||
-          (direction === "right" && posX >= -LOADING_BUFFER_PX)
+          (direction === "right" &&
+            posX >= -LOADING_BUFFER_PX &&
+            totalElapsed >= 1000)
         ) {
           // innerWidth accounts for page zoom
           // add in an additional image (or manual tile)
