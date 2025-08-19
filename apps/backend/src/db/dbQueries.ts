@@ -113,3 +113,32 @@ export async function getContributors(repoOrg: string, repoName: string) {
     isTechLead: contributor.tech_lead !== null,
   }));
 }
+export async function getLatestUpdate(repoId: number) {
+  const userQuery = db.select().from(userTable).as("u");
+  const latestCommits = db
+    .select({
+      repo_id: commitTable.repo_id,
+      last_commit_time: sql`MAX(${commitTable.committed_at})`.as("alias"),
+    })
+    .from(commitTable)
+    .groupBy(commitTable.repo_id);
+  const result = (
+    await db
+      .select()
+      .from(commitTable)
+      .innerJoin(
+        userQuery,
+        and(
+          eq(commitTable.author_id, userQuery.id),
+          eq(commitTable.repo_id, repoId),
+          sql`(${commitTable.repo_id},${commitTable.committed_at}) IN ${latestCommits}`,
+        ),
+      )
+  ).map((entry) => ({
+    updatedDate: entry.commits.committed_at.toISOString(),
+    author: entry.u.name ?? entry.u.username,
+    authorURL: entry.u.account_url,
+  }));
+  if (result.length === 0) return undefined;
+  return result[0];
+}

@@ -62,4 +62,25 @@ export const contract = c.router({
       ),
     },
   },
+  lastUpdated: {
+    method: "GET",
+    path: "/github/:repoId/lastUpdated",
+    pathParams: z.object({
+      repoId: z
+        .string()
+        .transform((str) => Number(str))
+        .refine((val) => !isNaN(val)),
+    }),
+    responses: {
+      200: z
+        .object({
+          updatedDate: z.string().refine((val) => !isNaN(Date.parse(val)), {
+            message: "invalid ISO string",
+          }),
+          author: z.string(),
+          authorURL: z.string(),
+        })
+        .optional(),
+    },
+  },
 });

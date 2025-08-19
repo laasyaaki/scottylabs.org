@@ -30,7 +30,6 @@ const navLinks = [
   },
 ];
 function Header() {
-  const location = useLocation();
   return (
     <header className={css["main-header-container"]}>
       <div className={css["main-header-layout"]}>
@@ -44,7 +43,6 @@ function Header() {
           //     behavior: "smooth",
           //   })
           // }
-          viewTransition
           prefetch="intent"
         >
           <img className={css["logo__img"]} src={scottylabsLogo} />
@@ -53,19 +51,17 @@ function Header() {
         </NavLink>
         <nav className={css["main-nav"]}>
           {navLinks.map(({ icon, url, text }) => (
-            <a aria-current={url === "/about"} key={url}>
-              <NavLink
-                className={({ isActive }) =>
-                  clsx(css["nav-button"], isActive && css["nav-button--active"])
-                }
-                to={url}
-                viewTransition
-                prefetch="intent"
-              >
-                <img className={css["nav-button__icon"]} src={icon} />
-                <div className={css["nav-button__text"]}>{text}</div>
-              </NavLink>
-            </a>
+            <NavLink
+              className={({ isActive }) =>
+                clsx(css["nav-button"], isActive && css["nav-button--active"])
+              }
+              to={url}
+              prefetch="intent"
+              key={url}
+            >
+              <img className={css["nav-button__icon"]} src={icon} />
+              <div className={css["nav-button__text"]}>{text}</div>
+            </NavLink>
           ))}
         </nav>
       </div>

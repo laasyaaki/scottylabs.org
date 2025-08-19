@@ -3,7 +3,7 @@ import { initServer } from "@ts-rest/fastify";
 import { contract } from "./contract";
 import cors from "@fastify/cors";
 import { runContributionScrape } from "./db/refreshDb";
-import { getRecentActivity, getContributors } from "./db/dbQueries";
+import { getRecentActivity, getContributors, getLatestUpdate } from "./db/dbQueries";
 import env from "./env";
 
 setInterval(() => runContributionScrape("scottylabs"), 10000);
@@ -42,6 +42,9 @@ const router = s.router(contract, {
       status: 200,
       body: await getContributors(org, repo),
     };
+  },
+  async lastUpdated({ params: { repoId } }) {
+    return { status: 200, body: await getLatestUpdate(repoId) };
   },
 });
 

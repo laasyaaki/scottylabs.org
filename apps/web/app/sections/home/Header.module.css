@@ -43,7 +43,6 @@
   border: 1px solid transparent;
   border-radius: var(--border-radius-base);
 
-  cursor: pointer;
   &:hover {
     background-color: var(--black-50);
   }

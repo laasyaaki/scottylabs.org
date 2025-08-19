@@ -1,0 +1,50 @@
+.container {
+  margin-top: 73px;
+  display: flex;
+  gap: 40px;
+}
+.title {
+  font-size: 2.8rem;
+  color: var(--black-900);
+  font-weight: 900;
+}
+.description {
+  color: var(--black-900);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 25px;
+  line-height: 1.5;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.projects-img {
+  margin-top: -50px;
+  --angle: 0deg;
+  mask-image: url("../../assets/projects-page/projects.svg?inline");
+  background-image: linear-gradient(
+    var(--angle),
+    #40d2fc 0.08%,
+    #1f4ce0 40.82%,
+    #fb1a32 78.5%
+  );
+  animation: gradient-animation 9s linear infinite;
+  /* animation-delay: 14s; */
+  mask-size: contain;
+  flex-shrink: 0;
+  & > img {
+    height: 350px;
+    opacity: 0;
+  }
+}
+@keyframes gradient-animation {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
