@@ -65,7 +65,7 @@ export default function ProjectPanel({
         </Link>
         <div className={css["project-icon-container"]}>
           {technologiesUsed.map((icon) => (
-            <div className={css["project-icon"]}>
+            <div className={css["project-icon"]} key={icon.name}>
               <div className={css["project-icon__tooltip"]}>{icon.name}</div>
               <img src={icon.url} alt="" />
             </div>
