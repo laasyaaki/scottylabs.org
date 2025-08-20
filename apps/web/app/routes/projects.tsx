@@ -14,7 +14,7 @@ export default function Component() {
     <>
       <Header />
       <ProjectPanel
-        repoId={1011266352}
+        repoIds={[461300766]}
         description={
           "Bringing together course information, schedules and FCE data, it makes it possible for CMU students to plan their semesters and browse for courses."
         }

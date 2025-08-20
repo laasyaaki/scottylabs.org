@@ -64,23 +64,22 @@ export const contract = c.router({
   },
   lastUpdated: {
     method: "GET",
-    path: "/github/:repoId/lastUpdated",
-    pathParams: z.object({
-      repoId: z
+    path: "/github/lastUpdated",
+    query: z.object({
+      repoIds: z
         .string()
-        .transform((str) => Number(str))
-        .refine((val) => !isNaN(val)),
+        .transform((str) => str.split(",").map((s) => Number(s)))
+        .refine((repoIds) => !repoIds.some((val) => isNaN(val))),
     }),
     responses: {
-      200: z
-        .object({
-          updatedDate: z.string().refine((val) => !isNaN(Date.parse(val)), {
-            message: "invalid ISO string",
-          }),
-          author: z.string(),
-          authorURL: z.string(),
-        })
-        .optional(),
+      200: z.object({
+        updatedDate: z.string().refine((val) => !isNaN(Date.parse(val)), {
+          message: "invalid ISO string",
+        }),
+        author: z.string(),
+        authorURL: z.string(),
+      }),
+      404: z.object({}),
     },
   },
 });

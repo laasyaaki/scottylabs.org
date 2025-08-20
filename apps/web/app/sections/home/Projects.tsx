@@ -12,7 +12,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { getAllImageLinksInAssetDirectory } from "../../utils/files";
 import clsx from "clsx";
 import { tsr } from "../../utils/tsr";
-import { DateTime, Interval } from "luxon";
+import { DateTime } from "luxon";
 import type { contract } from "@apps/backend/contract";
 import type z from "zod";
 import { FastAverageColor } from "fast-average-color";
@@ -21,6 +21,7 @@ import commitIcon from "../../assets/icons/commit.svg";
 import spinnerIcon from "../../assets/icons/spinner.svg";
 import externalLinkIcon from "../../assets/icons/go-to-icon.svg";
 import goToIcon from "../../assets/icons/go-to-icon.svg";
+import { getTimeDeltaFromNow } from "../../utils/time";
 const fac = new FastAverageColor();
 
 const featuredProjects = [
@@ -93,37 +94,7 @@ function DesignBoxDecoration() {
     </div>
   );
 }
-function plurality(intervalOfTime: number, singularUnit: string) {
-  if (intervalOfTime === 1) {
-    return `${intervalOfTime} ${singularUnit}`;
-  } else {
-    return `${intervalOfTime} ${singularUnit}s`;
-  }
-}
-function getTimeDeltaFromNow(pastDate: DateTime, now: DateTime) {
-  const interval = Interval.fromDateTimes(pastDate, now);
-  const daysCovered = interval.count("day");
-  const duration = interval.toDuration([
-    "days",
-    "hours",
-    "minutes",
-    "seconds",
-    "milliseconds",
-  ]);
-  if (!interval.isValid) return "in the future";
 
-  if (daysCovered === 1) {
-    if (duration.hours > 0) {
-      return `${plurality(duration.hours, "hour")} ago`;
-    }
-    if (duration.minutes > 0) {
-      return `${plurality(duration.minutes, "minute")} ago`;
-    }
-    return `${plurality(duration.seconds, "second")} ago`;
-  } else {
-    return daysCovered - 1 === 1 ? "yesterday" : `${daysCovered - 1} days ago`;
-  }
-}
 function Contributor({
   contribution,
 }: {

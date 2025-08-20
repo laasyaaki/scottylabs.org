@@ -113,7 +113,7 @@ export async function getContributors(repoOrg: string, repoName: string) {
     isTechLead: contributor.tech_lead !== null,
   }));
 }
-export async function getLatestUpdate(repoId: number) {
+export async function getLatestUpdate(repoIds: number[]) {
   const userQuery = db.select().from(userTable).as("u");
   const latestCommits = db
     .select({
@@ -130,10 +130,12 @@ export async function getLatestUpdate(repoId: number) {
         userQuery,
         and(
           eq(commitTable.author_id, userQuery.id),
-          eq(commitTable.repo_id, repoId),
+          sql`${commitTable.repo_id} IN ${repoIds}`,
           sql`(${commitTable.repo_id},${commitTable.committed_at}) IN ${latestCommits}`,
         ),
       )
+      .orderBy(desc(commitTable.committed_at))
+      .limit(1)
   ).map((entry) => ({
     updatedDate: entry.commits.committed_at.toISOString(),
     author: entry.u.name ?? entry.u.username,

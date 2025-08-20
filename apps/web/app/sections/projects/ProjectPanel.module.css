@@ -57,6 +57,15 @@
     }
   }
 }
+.last-updated {
+  color: var(--black-400);
+  margin-top: 8px;
+  & > a {
+    color: var(--black-400);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
 @keyframes fade-in {
   0% {
     opacity: 0;

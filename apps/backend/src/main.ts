@@ -43,8 +43,15 @@ const router = s.router(contract, {
       body: await getContributors(org, repo),
     };
   },
-  async lastUpdated({ params: { repoId } }) {
-    return { status: 200, body: await getLatestUpdate(repoId) };
+  async lastUpdated({ query: { repoIds } }) {
+    const lastUpdate = await getLatestUpdate(repoIds);
+    if (lastUpdate === undefined) {
+      return {
+        status: 404,
+        body: {},
+      };
+    }
+    return { status: 200, body: lastUpdate };
   },
 });
 
