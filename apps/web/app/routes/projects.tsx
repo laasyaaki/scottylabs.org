@@ -1,11 +1,35 @@
 import { Header } from "../sections/projects/Header";
+import {
+  JavascriptIcon,
+  MongoDBIcon,
+  NextJSIcon,
+  ReactIcon,
+  TailwindIcon,
+  TypescriptIcon,
+} from "../sections/projects/Icons";
 import ProjectPanel from "../sections/projects/ProjectPanel";
 
 export default function Component() {
   return (
     <>
       <Header />
-      <ProjectPanel repoId={1011266352} />
+      <ProjectPanel
+        repoId={1011266352}
+        description={
+          "Bringing together course information, schedules and FCE data, it makes it possible for CMU students to plan their semesters and browse for courses."
+        }
+        imageURLs={[]}
+        technologiesUsed={[
+          JavascriptIcon,
+          TypescriptIcon,
+          ReactIcon,
+          NextJSIcon,
+          TailwindIcon,
+          MongoDBIcon,
+        ]}
+        name="CMU Courses"
+        url="https://cmucourses.com/"
+      />
     </>
   );
 }
