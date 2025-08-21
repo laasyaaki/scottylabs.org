@@ -102,10 +102,6 @@ function ProjectImages({ imageURLs }: { imageURLs: string[] }) {
             );
             if (childrenXOffsets.length === 0) return;
 
-            const indexToGoTo = 0;
-
-            console.log(indexToGoTo, info.velocity.x);
-
             leftOffset.set(
               leftOffset.get() -
                 getBestImageOffset(
