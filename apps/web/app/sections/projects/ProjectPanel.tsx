@@ -120,8 +120,8 @@ function ProjectImages({ imageURLs }: { imageURLs: string[] }) {
           }}
           dragMomentum={false}
         >
-          {imageURLs.map((url) => (
-            <img className={css[""]} src={url} alt="" />
+          {imageURLs.map((url, i) => (
+            <img className={css[""]} src={url} alt="" key={i} />
           ))}
         </motion.div>
       </div>
