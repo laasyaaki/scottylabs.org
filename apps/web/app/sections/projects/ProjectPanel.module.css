@@ -6,6 +6,7 @@
   & > .title-container {
     display: flex;
     gap: 10px;
+    flex-shrink: 0;
     & > .project-title {
       font-weight: 700;
       color: var(--black-900);
@@ -51,8 +52,15 @@
           inset: 100% 0 -6px 0;
         }
       }
-      &:hover > .project-icon__tooltip {
-        display: block;
+      &:hover {
+        & > img {
+          scale: 1.1;
+          rotate: -3deg;
+          /* this is so quirky I love it lmao */
+        }
+        & > .project-icon__tooltip {
+          display: block;
+        }
       }
     }
   }
@@ -74,5 +82,33 @@
   100% {
     opacity: 1;
     margin-bottom: 6px;
+  }
+}
+.project-description {
+  margin-top: 15px;
+
+  max-width: 730px;
+
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--black-900);
+}
+.project-images-container {
+  padding: 0;
+}
+.project-images {
+  display: flex;
+  gap: 45px;
+  margin-top: 50px;
+
+  height: 400px;
+  width: fit-content;
+
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
+  & > img {
+    pointer-events: none;
   }
 }

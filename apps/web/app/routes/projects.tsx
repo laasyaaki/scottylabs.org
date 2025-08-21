@@ -8,6 +8,7 @@ import {
   TypescriptIcon,
 } from "../sections/projects/Icons";
 import ProjectPanel from "../sections/projects/ProjectPanel";
+import { getAllImageLinksInAssetDirectory } from "../utils/files";
 
 export default function Component() {
   return (
@@ -18,7 +19,7 @@ export default function Component() {
         description={
           "Bringing together course information, schedules and FCE data, it makes it possible for CMU students to plan their semesters and browse for courses."
         }
-        imageURLs={[]}
+        imageURLs={getAllImageLinksInAssetDirectory("cmu-courses")}
         technologiesUsed={[
           JavascriptIcon,
           TypescriptIcon,
