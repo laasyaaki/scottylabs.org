@@ -22,7 +22,37 @@ import jetbrainsMono from "./assets/fonts/JetBrainsMono-Regular.ttf";
 import Footer from "./sections/home/Footer";
 import errorCSS from "./Error.module.css";
 import errorRyo from "./assets/ryo.webp";
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      /**
+       * 5s should be enough to just keep identical query waterfalls low
+       * @example if one page components uses a query that is also used further down the tree
+       */
+      staleTime: 5000,
+
+      // Don't retry on 404s and other client errors
+      retry: (failureCount, error) => {
+        if (error instanceof Response) {
+          // Don't retry on client errors (4xx)
+          if (error.status >= 400 && error.status < 500) {
+            return false;
+          }
+          // Retry on server errors (5xx)
+          return failureCount < 3;
+        }
+        // Retry network errors
+        if (error instanceof TypeError && error.message === "Failed to fetch") {
+          return failureCount < 3;
+        }
+        return false;
+      },
+
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+    },
+  },
+});
 
 export const links: Route.LinksFunction = () => [
   {

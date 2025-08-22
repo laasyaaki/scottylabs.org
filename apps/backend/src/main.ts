@@ -37,10 +37,10 @@ const router = s.router(contract, {
       ), // get the first occurring contrib, github usernames are unique so this is fine
     };
   },
-  async getContributors({ params: { org, repo } }) {
+  async getContributors({ query: { repoIds } }) {
     return {
       status: 200,
-      body: await getContributors(org, repo),
+      body: await getContributors(repoIds),
     };
   },
   async lastUpdated({ query: { repoIds } }) {

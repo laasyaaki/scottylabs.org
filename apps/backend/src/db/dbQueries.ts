@@ -83,30 +83,33 @@ export async function getRecentActivity() {
   };
 }
 
-export async function getContributors(repoOrg: string, repoName: string) {
-  const repo = await db.query.repoTable.findFirst({
-    where: and(eq(repoTable.org, repoOrg), eq(repoTable.name, repoName)),
-  });
-  if (repo === undefined) return [];
-  const contributorSubquery = db
+export async function getContributors(repoIds: number[]) {
+  const contributorsFromThoseReposTable = db
     .select({
       author_id: commitTable.author_id,
       latest_commit_date: sql<string>`MAX(${commitTable.committed_at})`.as("latest_commit_date"),
     })
     .from(commitTable)
-    .where(eq(commitTable.repo_id, repo.id))
+    .where(sql`${commitTable.repo_id} IN ${repoIds}`)
     .groupBy(commitTable.author_id)
     .as("data");
-  const techLeadSubquery = db.select().from(techLeadTable).where(eq(techLeadTable.repo_id, repo.id)).as("tech_lead");
+  const techLeadsFromThoseReposTable = db
+    .select({ user_id: techLeadTable.user_id })
+    .from(techLeadTable)
+    .where(sql`${techLeadTable.repo_id} IN ${repoIds}`)
+    .groupBy(techLeadTable.user_id)
+    .as("tech_lead");
   const contributors = await db
     .select()
-    .from(contributorSubquery)
-    .innerJoin(userTable, eq(contributorSubquery.author_id, userTable.id))
-    .leftJoin(techLeadSubquery, eq(contributorSubquery.author_id, techLeadSubquery.user_id));
+    .from(contributorsFromThoseReposTable)
+    .innerJoin(userTable, eq(contributorsFromThoseReposTable.author_id, userTable.id))
+    .leftJoin(
+      techLeadsFromThoseReposTable,
+      eq(contributorsFromThoseReposTable.author_id, techLeadsFromThoseReposTable.user_id),
+    );
 
   return contributors.map((contributor) => ({
-    username: contributor.users.username,
-    name: contributor.users.name,
+    username: contributor.users.name ?? contributor.users.username, // default to actual name, if exists
     latestCommitDate: contributor.data.latest_commit_date, // this is actually not ISO date format but whatever format Drizzle decided to spit out when doing a GROUP BY query. still parsable tho.
     pfpUrl: contributor.users.pfp_url,
     accLink: contributor.users.account_url,

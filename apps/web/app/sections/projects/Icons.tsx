@@ -7,6 +7,10 @@ import reactIcon from "../../assets/icons/apps/React.svg";
 import tailwindIcon from "../../assets/icons/apps/Tailwind CSS.svg";
 import typescriptIcon from "../../assets/icons/apps/TypeScript.svg";
 import vercelIcon from "../../assets/icons/apps/Vercel.svg";
+import bocchiIcon from "../../assets/icons/apps/bocchi.png";
+
+// When adding new assets, try to pick out svgs, since they have effectively infinite resolution
+// if the resulting image is not a square (ex. see the mongoDBIcon), please crop out the whitespace so it looks better on the site. arigato!
 export interface Icon {
   url: string;
   name: string;
@@ -47,4 +51,8 @@ export const TypescriptIcon: Icon = {
 export const VercelIcon: Icon = {
   url: vercelIcon,
   name: "Vercel",
+};
+export const BocchiIcon: Icon = {
+  url: bocchiIcon,
+  name: "This site has a history of being run by weebs",
 };

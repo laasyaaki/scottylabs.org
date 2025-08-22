@@ -46,14 +46,20 @@ export const contract = c.router({
   },
   getContributors: {
     method: "GET",
-    path: "/github/:org/:repo/contributors",
+    path: "/github/contributors",
+    query: z.object({
+      repoIds: z
+        .string()
+        .transform((s) => s.split(",").map((repoId) => Number(repoId)))
+        .refine((repoIds) => !repoIds.some((id) => isNaN(id))),
+    }),
     responses: {
       200: z.array(
         z.object({
           username: z.string(),
-          name: z.string().nullable(),
+          /** returns Date string in SQL format, because Drizzle just feels like it */
           latestCommitDate: z.string().refine((val) => !isNaN(Date.parse(val)), {
-            message: "invalid ISO string",
+            message: "invalid date string",
           }),
           pfpUrl: z.string().url(),
           accLink: z.string().url(),
