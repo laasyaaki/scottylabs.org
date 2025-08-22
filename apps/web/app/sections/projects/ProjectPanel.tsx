@@ -176,69 +176,71 @@ function ContributorSection({ repoIds }: { repoIds: number[] }) {
       shouldShowContributorInMinimizedView(contributor),
     ).length;
     const HEIGHT_TRANSITION_SECONDS = 0.4;
+    const contributorsToDisplay = data.body
+      .sort((c1, c2) => {
+        if (c1.isTechLead !== c2.isTechLead) return c1.isTechLead ? -1 : 1; // order tech leads first
+        return c2.latestCommitDate.localeCompare(c1.latestCommitDate);
+      })
+      .filter(
+        (contributor) =>
+          showAllContributors ||
+          shouldShowContributorInMinimizedView(contributor),
+      );
+    if (contributorsToDisplay.length === 0) {
+      return (
+        <div className={css["contributor-none"]}>No recent contributors!</div>
+      );
+    }
     return (
       <div className={css["contributor-container"]}>
         <AnimatePresence mode="popLayout">
-          {data.body
-            .sort((c1, c2) => {
-              if (c1.isTechLead !== c2.isTechLead)
-                return c1.isTechLead ? -1 : 1; // order tech leads first
-              return c2.latestCommitDate.localeCompare(c1.latestCommitDate);
-            })
-            .filter(
-              (contributor) =>
-                showAllContributors ||
-                shouldShowContributorInMinimizedView(contributor),
-            )
-            .map((contributor, i) => (
-              <motion.a
-                className={css["contributor-pill"]}
-                href={contributor.accLink}
-                target="_blank"
-                key={contributor.accLink}
-                initial={{ opacity: 0 }}
-                exit={{
-                  opacity: 0,
-                  transition: {
-                    ease: "easeOut",
-                    duration: 0.1,
-                    delay:
-                      (data.body.length - 1 - i) *
-                      (HEIGHT_TRANSITION_SECONDS /
-                        (data.body.length - contributorCountInMinimizedView) /
-                        2),
-                  },
-                }}
-                animate={{ opacity: 1 }}
-                transition={{
+          {contributorsToDisplay.map((contributor, i) => (
+            <motion.a
+              className={css["contributor-pill"]}
+              href={contributor.accLink}
+              target="_blank"
+              key={contributor.accLink}
+              initial={{ opacity: 0 }}
+              exit={{
+                opacity: 0,
+                transition: {
                   ease: "easeOut",
-                  duration: 0.3,
+                  duration: 0.1,
                   delay:
+                    (data.body.length - 1 - i) *
                     (HEIGHT_TRANSITION_SECONDS /
-                      (data.body.length - contributorCountInMinimizedView)) *
-                    Math.max(0, i - contributorCountInMinimizedView), // so the first new pill when you expand always has delay 0
-                }}
-              >
-                <img
-                  className={css["contributor-pill__img"]}
-                  src={contributor.pfpUrl}
-                />
-                <div className={css["contributor-pill__text-section"]}>
-                  {contributor.isTechLead && (
-                    <div
-                      className={
-                        css["contributor-pill__text-section__tech-lead"]
-                      }
-                    >
-                      TECH LEAD
-                    </div>
-                  )}
-                  <div className={css["contributor-pill__text-section__name"]}>
-                    {contributor.username}
+                      (data.body.length - contributorCountInMinimizedView) /
+                      2),
+                },
+              }}
+              animate={{ opacity: 1 }}
+              transition={{
+                ease: "easeOut",
+                duration: 0.3,
+                delay:
+                  (HEIGHT_TRANSITION_SECONDS /
+                    (data.body.length - contributorCountInMinimizedView)) *
+                  Math.max(0, i - contributorCountInMinimizedView), // so the first new pill when you expand always has delay 0
+              }}
+            >
+              <img
+                className={css["contributor-pill__img"]}
+                src={contributor.pfpUrl}
+              />
+              <div className={css["contributor-pill__text-section"]}>
+                {contributor.isTechLead && (
+                  <div
+                    className={css["contributor-pill__text-section__tech-lead"]}
+                  >
+                    TECH LEAD
                   </div>
+                )}
+                <div className={css["contributor-pill__text-section__name"]}>
+                  {contributor.username}
                 </div>
-              </motion.a>
-            ))}
+              </div>
+            </motion.a>
+          ))}
         </AnimatePresence>
       </div>
     );
