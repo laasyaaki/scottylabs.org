@@ -132,6 +132,14 @@ function ContributorSection({ repoIds }: { repoIds: number[] }) {
   });
   const [showAllContributors, setShowAllContributors] = useState(false);
   const DATE_CUTOFF_FOR_CONTRIBUTORS = DateTime.local(2025, 5, 1);
+  const shouldShowContributorInMinimizedView = (
+    contributor: NonNullable<typeof data>["body"][0],
+  ) => {
+    return (
+      DateTime.fromSQL(contributor.latestCommitDate) >=
+      DATE_CUTOFF_FOR_CONTRIBUTORS
+    );
+  };
   const contributorContainerRef = useRef<HTMLDivElement | null>(null); // for dynamic height rescaling
   const [outerWrapperHeight, setOuterWrapperHeight] = useState(0);
   useLayoutEffect(() => {
@@ -164,20 +172,23 @@ function ContributorSection({ repoIds }: { repoIds: number[] }) {
         </div>
       );
     }
+    const contributorCountInMinimizedView = data.body.filter((contributor) =>
+      shouldShowContributorInMinimizedView(contributor),
+    ).length;
+    const HEIGHT_TRANSITION_SECONDS = 0.4;
     return (
       <div className={css["contributor-container"]}>
         <AnimatePresence mode="popLayout">
           {data.body
             .sort((c1, c2) => {
               if (c1.isTechLead !== c2.isTechLead)
-                return c1.isTechLead ? -1 : 1;
+                return c1.isTechLead ? -1 : 1; // order tech leads first
               return c2.latestCommitDate.localeCompare(c1.latestCommitDate);
             })
             .filter(
               (contributor) =>
                 showAllContributors ||
-                DateTime.fromSQL(contributor.latestCommitDate) >=
-                  DATE_CUTOFF_FOR_CONTRIBUTORS,
+                shouldShowContributorInMinimizedView(contributor),
             )
             .map((contributor, i) => (
               <motion.a
@@ -192,14 +203,20 @@ function ContributorSection({ repoIds }: { repoIds: number[] }) {
                     ease: "easeOut",
                     duration: 0.1,
                     delay:
-                      (data.body.length - 1 - i) * (0.4 / data.body.length / 2),
+                      (data.body.length - 1 - i) *
+                      (HEIGHT_TRANSITION_SECONDS /
+                        (data.body.length - contributorCountInMinimizedView) /
+                        2),
                   },
                 }}
                 animate={{ opacity: 1 }}
                 transition={{
                   ease: "easeOut",
                   duration: 0.3,
-                  delay: (0.4 / data.body.length) * i,
+                  delay:
+                    (HEIGHT_TRANSITION_SECONDS /
+                      (data.body.length - contributorCountInMinimizedView)) *
+                    Math.max(0, i - contributorCountInMinimizedView), // so the first new pill when you expand always has delay 0
                 }}
               >
                 <img
@@ -228,13 +245,18 @@ function ContributorSection({ repoIds }: { repoIds: number[] }) {
   };
   return (
     <div className="centered-section">
-      <div
-        className={css["outer-wrapper"]}
-        style={{ height: outerWrapperHeight }}
-      >
-        {/* this div lets us know when the height on the inside has changed */}
-        <div ref={contributorContainerRef}>{InnerBox()}</div>
-
+      {/* this one has the actual styling for the box */}
+      <div className={css["section-wrapper"]}>
+        {/* this div is just to animate the height of whatever's inside */}
+        <div
+          className={css["dynamic-height-wrapper"]}
+          style={{ height: outerWrapperHeight }}
+        >
+          {/* this div lets us know when the height on the inside has changed and so then 
+        can smoothly transition the wrapper div height to that height */}
+          <div ref={contributorContainerRef}>{InnerBox()}</div>
+        </div>
+        <div className={css["contributors-label"]}>Contributors</div>
         {(isPending || data?.status === 200) && (
           <motion.button
             className={clsx(
@@ -249,7 +271,7 @@ function ContributorSection({ repoIds }: { repoIds: number[] }) {
               ? "Loading contributors..."
               : !showAllContributors
                 ? "All contributors"
-                : "Show only this year's contributors"}
+                : "Show only this school year's contributors"}
             {!isPending && (
               <img className={css[""]} src={downChevronIcon} alt="" />
             )}

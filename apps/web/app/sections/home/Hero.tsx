@@ -5,7 +5,7 @@ import heroBg from "../../assets/hero-bg.svg?inline"; // basically gets embedded
 function Hero() {
   return (
     <section className={css["hero-container"]}>
-      <div className="centered-section">
+      <div className="centered-section centered-section--relative">
         <div className={css["hero-section"]}>
           <div className={css["title-container"]}>
             <span className={css["title"]}>
