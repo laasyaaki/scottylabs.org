@@ -10,7 +10,8 @@ export function getAllImageLinksInAssetDirectory(
     | "design-app-icons"
     | "code-app-icons"
     | "tartanhacks-photos"
-    | "cmu-courses",
+    | "cmu-courses"
+    | "cmu-eats",
 ): string[] {
   switch (dir) {
     case "carousel-images":
@@ -48,6 +49,14 @@ export function getAllImageLinksInAssetDirectory(
     case "cmu-courses":
       return Object.values(
         import.meta.glob("../assets/projects-page/cmu-courses/*", {
+          eager: true,
+          query: "url",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        }) as Record<string, any>,
+      ).map((data) => data.default);
+    case "cmu-eats":
+      return Object.values(
+        import.meta.glob("../assets/projects-page/cmu-eats/*", {
           eager: true,
           query: "url",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any

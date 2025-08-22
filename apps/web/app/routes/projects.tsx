@@ -1,12 +1,14 @@
 import { Header } from "../sections/projects/Header";
 import {
   BocchiIcon,
+  CSSIcon,
   JavascriptIcon,
   MongoDBIcon,
   NextJSIcon,
   ReactIcon,
   TailwindIcon,
   TypescriptIcon,
+  ViteIcon,
 } from "../sections/projects/Icons";
 import ProjectPanel from "../sections/projects/ProjectPanel";
 import { getAllImageLinksInAssetDirectory } from "../utils/files";
@@ -37,13 +39,37 @@ export default function Component() {
         description={
           "CMUEats is your one-stop-shop for finding out what campus dining locations are open right now."
         }
-        imageURLs={getAllImageLinksInAssetDirectory("cmu-courses")}
-        technologiesUsed={[TypescriptIcon, ReactIcon, BocchiIcon]}
+        imageURLs={getAllImageLinksInAssetDirectory("cmu-eats")}
+        technologiesUsed={[
+          TypescriptIcon,
+          ReactIcon,
+          CSSIcon,
+          ViteIcon,
+          BocchiIcon,
+        ]}
         name="CMU Eats"
         url="https://cmueats.com/"
       />
       <ProjectPanel
-        repoIds={[461300766]}
+        repoIds={[
+          907552548, 314884445, 412883321, 910847128, 941314467, 983636067,
+          1005207710, 1008068854, 511749350, 606940704, 801739296, 819120359,
+          847150918,
+        ]}
+        /*  This list of IDs includes
+            cmumaps-utils
+            print-status-map
+            scottymaps
+            cmumaps-data-visualization-deprecated
+            cmumaps
+            cmumaps-data
+            cmumaps-rust
+            cmumaps-data-acquisitor
+            scottymaps-data
+            cmumap-data
+            cmumaps-graph-visualization
+            cmumaps-deprecated
+            cmumaps-data-deprecated */
         description={
           "Bringing together course information, schedules and FCE data, it makes it possible for CMU students to plan their semesters and browse for courses."
         }
@@ -56,8 +82,8 @@ export default function Component() {
           TailwindIcon,
           MongoDBIcon,
         ]}
-        name="CMU Courses"
-        url="https://cmucourses.com/"
+        name="CMU Maps"
+        url="https://cmumaps.com/"
       />
       <ProjectPanel
         repoIds={[461300766]}

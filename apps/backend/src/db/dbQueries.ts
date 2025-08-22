@@ -106,7 +106,7 @@ export async function getContributors(repoIds: number[]) {
     .leftJoin(
       techLeadsFromThoseReposTable,
       eq(contributorsFromThoseReposTable.author_id, techLeadsFromThoseReposTable.user_id),
-    );
+    ); // so you're considered a tech lead if you're a tech lead for any of the repos
 
   return contributors.map((contributor) => ({
     username: contributor.users.name ?? contributor.users.username, // default to actual name, if exists
