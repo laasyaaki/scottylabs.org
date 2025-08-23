@@ -6,14 +6,17 @@ import TartanHacks from "../sections/home/TartanHacks";
 import { getAllImageLinksInAssetDirectory } from "../utils/files";
 
 export default function Home() {
+  const isMobile = true;
   return (
     <>
       <Hero />
-      <ImageCarousel
-        heightPx={300}
-        speedPxPerSecond={-50}
-        imageLinks={getAllImageLinksInAssetDirectory("carousel-images")}
-      />
+      {!isMobile && (
+        <ImageCarousel
+          heightPx={300}
+          speedPxPerSecond={-50}
+          imageLinks={getAllImageLinksInAssetDirectory("carousel-images")}
+        />
+      )}
       <Projects />
       <TartanHacks />
       <JoinUs />

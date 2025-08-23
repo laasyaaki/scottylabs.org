@@ -9,6 +9,8 @@ export default function Button({
   variant: "primary" | "outlined";
   className?: string;
 }) {
+  const isMobile = true;
+
   return (
     <button
       className={clsx(
