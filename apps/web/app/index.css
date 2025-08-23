@@ -108,6 +108,16 @@ li {
     position: relative;
   }
 }
+.centered-section-mobile {
+  --padding: 20px;
+  --max-container-width: 1200px;
+  padding-inline: var(--padding);
+  margin-inline: auto;
+  max-width: var(--max-container-width);
+  &.centered-section--relative {
+    position: relative;
+  }
+}
 a {
   text-decoration: none;
 }

@@ -105,7 +105,51 @@ function StatTile() {
   );
 }
 export default function TartanHacks() {
-  return (
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(
+    navigator.userAgent,
+  );
+
+  return isMobile ? (
+    <section className={css["main-container"]}>
+      <div className="centered-section-mobile">
+        <h2 className={css["header-mobile"]}>
+          We host Pittsburgh's largest annual hackathon,
+        </h2>
+        <img
+          className={css["tartanhacks-logo-mobile"]}
+          src={tartanhacksLogo}
+          alt=""
+        />
+      </div>
+      <div
+        className={clsx(
+          css["carousel-container"],
+          css["carousel-container--first"],
+        )}
+      >
+        <ImageCarousel
+          heightPx={150}
+          speedPxPerSecond={50}
+          imageLinks={getAllImageLinksInAssetDirectory("tartanhacks-photos")}
+          gapPx={15}
+        />
+      </div>
+      <div className={css["carousel-container"]}>
+        <ImageCarousel
+          heightPx={200}
+          speedPxPerSecond={-30}
+          imageLinks={getAllImageLinksInAssetDirectory("tartanhacks-photos")}
+          gapPx={15}
+          PeriodicTileInsert={StatTile}
+        />
+      </div>
+      <Button
+        label="View all events"
+        variant="primary"
+        className={css["all-events-button"]}
+      />
+    </section>
+  ) : (
     <section className={css["main-container"]}>
       <div className="centered-section">
         <h1 className={css["header"]}>

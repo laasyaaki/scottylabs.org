@@ -6,7 +6,10 @@ import TartanHacks from "../sections/home/TartanHacks";
 import { getAllImageLinksInAssetDirectory } from "../utils/files";
 
 export default function Home() {
-  const isMobile = true;
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(
+    navigator.userAgent,
+  );
+
   return (
     <>
       <Hero />

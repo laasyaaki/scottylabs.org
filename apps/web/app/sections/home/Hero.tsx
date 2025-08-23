@@ -5,11 +5,13 @@ import scottylabsLogo from "../../assets/scottylabs-logo-grey.svg?inline";
 import ImageFader from "../../components/ImageFader";
 import { getAllImageLinksInAssetDirectory } from "../../utils/files";
 function Hero() {
-  const isMobile = true;
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(
+    navigator.userAgent,
+  );
 
   return isMobile ? (
     <section className={css["hero-container"]}>
-      <div className="centered-section centered-section--relative">
+      <div className="centered-section-mobile centered-section--relative">
         <div className={css["hero-section-mobile"]}>
           <div className={css["title-container"]}>
             <span className={css["title-mobile"]}>ScottyLabs</span>
@@ -50,7 +52,7 @@ function Hero() {
         />
       </div>
       <div className={css["events-container"]}>
-        <div className="centered-section">
+        <div className="centered-section-mobile">
           <div className={css["events"]}>
             {[
               "Read about demo day",

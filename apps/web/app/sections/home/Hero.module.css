@@ -162,6 +162,7 @@
 .events-container {
   position: relative;
   width: 100%;
+  bottom: 110px;
   overflow: scroll;
   left: 0;
   right: 0;

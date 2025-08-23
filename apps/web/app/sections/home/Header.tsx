@@ -33,7 +33,9 @@ const navLinks = [
   },
 ];
 function Header() {
-  const isMobile = true;
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(
+    navigator.userAgent,
+  );
 
   const [isOpen, setIsOpen] = useState(false);
 

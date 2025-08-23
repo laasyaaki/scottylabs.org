@@ -9,11 +9,23 @@
   text-align: center;
   margin: auto;
 }
+.header-mobile {
+  color: var(--black-900);
+  text-align: center;
+}
 .tartanhacks-logo {
   margin: 40px auto 0;
   display: block;
   height: 80px;
 }
+
+.tartanhacks-logo-mobile {
+  width: 100%;
+  margin: 20px auto 0;
+  display: block;
+  height: 80px;
+}
+
 .stat-box {
   background-color: #120902;
   border: 5px solid #90662e;

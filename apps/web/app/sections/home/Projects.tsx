@@ -544,10 +544,12 @@ function ProjectPreviews() {
 }
 
 export default function Projects() {
-  const isMobile = true;
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(
+    navigator.userAgent,
+  );
 
   return isMobile ? (
-    <section className="centered-section">
+    <section className="centered-section-mobile">
       <div className={css["title-section-mobile"]}>
         <div className={css["title-section__header-mobile"]}>
           From{" "}
