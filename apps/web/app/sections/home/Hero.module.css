@@ -175,8 +175,9 @@
 }
 .image-fader-container {
   position: relative;
+  border-radius: var(--border-radius-base);
+  margin: 5px;
   height: 300px;
-  width: 100%;
   overflow: hidden;
 }
 .events {
