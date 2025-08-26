@@ -276,54 +276,6 @@ function ContributorRow() {
   );
 }
 
-function ContributorRowMobile() {
-  const { data, error, isLoading } = tsr.getLatestActivity.useQuery({
-    queryKey: ["latestActivity"],
-  });
-  if (error !== null || data?.body.length === 0) {
-    console.error(error);
-    return;
-  }
-
-  return (
-    <div>
-      <div className={css["contributor-row-container-mobile"]}>
-        <span className={css["contributor-pill-container__text"]}>
-          Recent contributors:
-        </span>
-
-        {data ? (
-          data.body.slice(0, 5).map((contribution, i) => {
-            return <Contributor contribution={contribution} key={i} />;
-          })
-        ) : isLoading ? (
-          Array.from(Array(5)).map((_, i) => {
-            return (
-              <div className={css["contributor-pill-wrapper"]} key={i}>
-                <a
-                  className={clsx(
-                    css["contributor-pill"],
-                    css["contributor-pill--inactive"],
-                  )}
-                >
-                  <img
-                    src={spinnerIcon}
-                    alt=""
-                    className={css["contributor-pill__loading-icon"]}
-                  />
-                  Loading...
-                </a>
-              </div>
-            );
-          })
-        ) : (
-          <></> // case that we should never hit
-        )}
-      </div>
-    </div>
-  );
-}
-
 function ProjectTab({
   name,
   assetFolder,
@@ -377,82 +329,6 @@ function ProjectTab({
     </button>
   );
 }
-function ProjectPreviewsMobile() {
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-  const [bottomBorderCoords, setBottomBorderCoords] = useState<
-    [number, number]
-  >([0, 0]);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  return (
-    <>
-      <div className={css["panel-container"]}>
-        <AnimatePresence>
-          <motion.div
-            className={css["panel-mobile"]}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            // we want to keep the old panel visible for a while for a smoother transition,
-            // but setting opacity to 1 destroys the panel immediately
-            exit={{ opacity: 0.99 }}
-            key={selectedProjectIndex}
-          >
-            <img
-              className={css["panel__img"]}
-              src={`/projects/${featuredProjects[selectedProjectIndex].assetFolder}/main.png`}
-              alt=""
-            />
-            <div className={css["panel__details-mobile"]}>
-              <span className={css["panel__details__description"]}>
-                {featuredProjects[selectedProjectIndex].description}
-              </span>
-              <div className={css["panel__details__footer"]}>
-                <a
-                  href={featuredProjects[selectedProjectIndex].link}
-                  target="_blank"
-                >
-                  <img
-                    className={css["tab__image"]}
-                    src={`/projects/${featuredProjects[selectedProjectIndex].assetFolder}/icon.png`}
-                    alt=""
-                  />
-                  Visit {featuredProjects[selectedProjectIndex].name}
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-      <div
-        className={css["project-tabs-container"]}
-        style={
-          {
-            "--border-left-px": bottomBorderCoords[0] + "px",
-            "--border-right-px": bottomBorderCoords[1] + "px",
-          } as CSSProperties
-        }
-        ref={containerRef}
-      >
-        <ul className={css["project-tabs"]} role="tablist">
-          {featuredProjects.map((_, i) => {
-            return (
-              <div
-                className={css["tab-handle"]}
-                aria-selected={i === selectedProjectIndex ? "true" : "false"} // TODO: figure out why this is not correct
-                onClick={() => {
-                  setSelectedProjectIndex(i);
-                }}
-              />
-            );
-          })}
-          {/* jump to projects page */}
-          <img className={css["tab__image"]} src={externalLinkIcon} alt="" />
-        </ul>
-      </div>
-    </>
-  );
-}
-
 function ProjectPreviews() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
   const [bottomBorderCoords, setBottomBorderCoords] = useState<
@@ -462,6 +338,7 @@ function ProjectPreviews() {
 
   return (
     <>
+      {/* Desktop tabs - shown first on desktop, hidden on mobile */}
       <div
         className={css["project-tabs-container"]}
         style={
@@ -503,6 +380,8 @@ function ProjectPreviews() {
           </button>
         </ul>
       </div>
+
+      {/* Panel - shown after tabs on desktop, before tabs on mobile */}
       <div className={css["panel-container"]}>
         <AnimatePresence>
           <motion.div
@@ -532,49 +411,46 @@ function ProjectPreviews() {
                   target="_blank"
                 >
                   <img src={externalLinkIcon} alt="" />
-                  Visit
+                  <span className={css["desktop-visit-text"]}>Visit</span>
+                  <img
+                    className={css["mobile-project-icon"]}
+                    src={`/projects/${featuredProjects[selectedProjectIndex].assetFolder}/icon.png`}
+                    alt=""
+                  />
+                  <span className={css["mobile-visit-text"]}>
+                    Visit {featuredProjects[selectedProjectIndex].name}
+                  </span>
                 </a>
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Mobile tab handles - shown after panel on mobile, hidden on desktop */}
+      <div className={css["mobile-tabs-container"]}>
+        <ul className={css["project-tabs"]} role="tablist">
+          {featuredProjects.map((_, i) => {
+            return (
+              <div
+                className={css["tab-handle"]}
+                aria-selected={i === selectedProjectIndex ? "true" : "false"}
+                onClick={() => {
+                  setSelectedProjectIndex(i);
+                }}
+                key={`handle-${i}`}
+              />
+            );
+          })}
+          <img className={css["tab__image"]} src={externalLinkIcon} alt="" />
+        </ul>
+      </div>
     </>
   );
 }
 
 export default function Projects() {
-  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(
-    navigator.userAgent,
-  );
-
-  return isMobile ? (
-    <section className="centered-section-mobile">
-      <div className={css["title-section-mobile"]}>
-        <div className={css["title-section__header-mobile"]}>
-          From{" "}
-          <span className={css["title-section__header__design-text"]}>
-            Design
-            <DesignBoxDecoration />
-          </span>{" "}
-          to{" "}
-          <span className={css["title-section__header__code-block"]}>
-            {"<"}
-          </span>
-          Development
-          <span className={css["title-section__header__code-block"]}>
-            {"/>"}
-          </span>
-        </div>
-        <p className={css["title-section__desc-mobile"]}>
-          We bring to life a variety of tech services geared towards improving
-          the CMU campus experience and inspiring the community!
-        </p>
-      </div>
-      <ProjectPreviewsMobile />
-      <ContributorRowMobile />
-    </section>
-  ) : (
+  return (
     <section className="centered-section">
       <div className={css["title-section"]}>
         <h1 className={css["title-section__header"]}>

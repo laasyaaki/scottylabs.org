@@ -10,6 +10,7 @@ import hamburgerIcon from "../../assets/icons/hamburger.svg";
 import closeIcon from "../../assets/icons/close.svg";
 import { NavLink, useLocation } from "react-router";
 import { useCallback, useState } from "react";
+import { useIsMobile } from "../../hooks/useIsMobile";
 const navLinks = [
   {
     icon: projectsIcon,
@@ -33,9 +34,7 @@ const navLinks = [
   },
 ];
 function Header() {
-  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(
-    navigator.userAgent,
-  );
+  const isMobile = useIsMobile();
 
   const [isOpen, setIsOpen] = useState(false);
 

@@ -13,13 +13,6 @@
   min-height: 500px;
   gap: 30px;
 }
-.times-and-calendar-wrapper-mobile {
-  margin-top: 60px;
-  display: grid;
-  grid-template-rows: 400px 1fr;
-  min-height: 500px;
-  gap: 30px;
-}
 .calendar {
   outline: 1px solid var(--black-300);
   transition: 0.1s all;
@@ -83,4 +76,14 @@
 .all-events-button {
   display: block;
   margin: 65px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .times-and-calendar-wrapper {
+    grid-template-columns: none;
+    grid-template-rows: 400px 1fr;
+  }
+  .calendar {
+    height: 400px;
+  }
 }

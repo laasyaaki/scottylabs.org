@@ -4,11 +4,11 @@ import JoinUs from "../sections/home/JoinUs";
 import Projects from "../sections/home/Projects";
 import TartanHacks from "../sections/home/TartanHacks";
 import { getAllImageLinksInAssetDirectory } from "../utils/files";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 export default function Home() {
-  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(
-    navigator.userAgent,
-  );
+  // mobile if screen width less than 768
+  const isMobile = useIsMobile();
 
   return (
     <>
