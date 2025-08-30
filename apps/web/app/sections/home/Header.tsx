@@ -9,7 +9,7 @@ import sponsorsIcon from "../../assets/icons/sponsors.svg";
 import hamburgerIcon from "../../assets/icons/hamburger.svg?inline";
 import closeIcon from "../../assets/icons/close.svg?inline";
 import { NavLink, useLocation } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 
 const navLinks = [
@@ -42,76 +42,82 @@ function Header() {
   }, [location]);
 
   return (
-    <header
-      className={clsx(
-        css["main-header-container"],
-        menuOpen && css["main-header-container--mobile-menu-open"],
-      )}
-    >
-      <div className={css["main-header-layout"]}>
-        <NavLink className={css["logo"]} to={"/"} prefetch="intent">
-          <img className={css["logo__img"]} src={scottylabsLogo} />
-
-          <div className={css["logo__text"]}>ScottyLabs</div>
-        </NavLink>
-        <nav className={css["main-nav--desktop"]}>
-          {navLinks.map(({ icon, url, text }) => (
-            <NavLink
-              className={({ isActive }) =>
-                clsx(css["nav-button"], isActive && css["nav-button--active"])
-              }
-              to={url}
-              prefetch="intent"
-              key={url}
-            >
-              <img className={css["nav-button__icon"]} src={icon} />
-              <div className={css["nav-button__text"]}>{text}</div>
-            </NavLink>
-          ))}
-        </nav>
-        <img
-          src={menuOpen ? closeIcon : hamburgerIcon}
-          className={css["main-nav--mobile"]}
-          onClick={() => {
-            setMenuIsOpen((prev) => !prev);
-          }}
-        />
-      </div>
-
-      {/* mobile hamburger menu, expanded */}
-      <motion.div
-        animate={{ height: menuOpen ? "auto" : 0 }}
-        style={{ overflow: "hidden" }}
-        transition={
-          menuOpen
-            ? {
-                type: "spring",
-                damping: 15,
-                stiffness: 150,
-              }
-            : {}
-        }
+    <>
+      <header
+        className={clsx(
+          css["main-header-container"],
+          menuOpen && css["main-header-container--mobile-menu-open"],
+        )}
       >
-        <div className={css["hamburger-menu"]}>
-          {navLinks.map(({ icon, url, text }) => (
-            <NavLink
-              className={({ isActive }) =>
-                clsx(
-                  css["nav-button-mobile"],
-                  isActive && css["nav-button-mobile--active"],
-                )
-              }
-              to={url}
-              prefetch="render"
-              key={url}
-            >
-              <img src={icon} />
-              <div>{text}</div>
-            </NavLink>
-          ))}
+        <div className={css["main-header-layout"]}>
+          <NavLink className={css["logo"]} to={"/"} prefetch="intent">
+            <img className={css["logo__img"]} src={scottylabsLogo} />
+
+            <div className={css["logo__text"]}>ScottyLabs</div>
+          </NavLink>
+          <nav className={css["main-nav--desktop"]}>
+            {navLinks.map(({ icon, url, text }) => (
+              <NavLink
+                className={({ isActive }) =>
+                  clsx(css["nav-button"], isActive && css["nav-button--active"])
+                }
+                to={url}
+                prefetch="intent"
+                key={url}
+              >
+                <img className={css["nav-button__icon"]} src={icon} />
+                <div className={css["nav-button__text"]}>{text}</div>
+              </NavLink>
+            ))}
+          </nav>
+          <img
+            src={menuOpen ? closeIcon : hamburgerIcon}
+            className={css["main-nav--mobile"]}
+            onClick={() => {
+              setMenuIsOpen((prev) => !prev);
+            }}
+          />
         </div>
-      </motion.div>
-    </header>
+
+        {/* mobile hamburger menu, expanded */}
+        <motion.div
+          animate={{ height: menuOpen ? "auto" : 0 }}
+          style={{ overflow: "hidden" }}
+          transition={
+            menuOpen
+              ? {
+                  type: "spring",
+                  damping: 15,
+                  stiffness: 150,
+                }
+              : {}
+          }
+        >
+          <div className={css["hamburger-menu"]}>
+            {navLinks.map(({ icon, url, text }) => (
+              <NavLink
+                className={({ isActive }) =>
+                  clsx(
+                    css["nav-button-mobile"],
+                    isActive && css["nav-button-mobile--active"],
+                  )
+                }
+                to={url}
+                prefetch="render"
+                key={url}
+              >
+                <img src={icon} />
+                <div>{text}</div>
+              </NavLink>
+            ))}
+          </div>
+        </motion.div>
+      </header>
+      {/* the most temporary of solutions to put the main content in the correct place despite the header being position:fixed */}
+      {/* we could do position:sticky, but this introduces layout jank when the hamburger menu opens on mobile. */}
+      <div className={css["faux-div"]}></div>
+      {/* height is manually styled with css */}
+    </>
   );
 }
 

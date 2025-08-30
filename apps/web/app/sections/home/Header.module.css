@@ -1,6 +1,7 @@
 .main-header-container {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset: 0 0 auto;
+
   backdrop-filter: blur(40px);
   background: rgba(255, 255, 255, 0.809);
   z-index: 999;
@@ -9,11 +10,16 @@
 .hamburger-menu {
   display: none;
 }
+.faux-div {
+  height: 80px;
+}
 .main-header-layout {
   max-width: 1400px;
   margin-inline: auto;
-  padding: 20px 25px;
+  padding: 0 25px;
+  height: 80px;
   display: flex;
+  align-items: center;
   & .logo {
     display: flex;
     gap: 10px;
@@ -66,7 +72,12 @@
     border-bottom: 1px solid var(--black-300);
     background: var(--black-50);
   }
+  .faux-div {
+    height: 70px;
+  }
   .main-header-layout {
+    height: 70px;
+
     & .main-nav--desktop {
       display: none;
     }

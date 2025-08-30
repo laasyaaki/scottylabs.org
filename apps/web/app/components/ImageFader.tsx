@@ -31,45 +31,45 @@ export default function ImageFader({
   const [fadeState, setFadeState] = useState<"fade-in" | "fade-out">("fade-in");
   const [showPeriodicTile, setShowPeriodicTile] = useState(false);
 
-  useEffect(() => {
-    let fadeTimeout: number;
-    let displayTimeout: number;
-    if (fadeState === "fade-in") {
-      fadeTimeout = setTimeout(() => {
-        setFadeState("fade-out");
-      }, displayDuration);
-    } else {
-      fadeTimeout = setTimeout(() => {
-        // Show periodic tile if needed
-        if (
-          PeriodicTileInsert &&
-          (currentIndex + 1) %
-            Math.max(2, Math.ceil(window.innerWidth / 300) - 1) ===
-            0
-        ) {
-          setShowPeriodicTile(true);
-          displayTimeout = setTimeout(() => {
-            setShowPeriodicTile(false);
-            setCurrentIndex((i) => (i + 1) % shuffledImageLinks.length);
-            setFadeState("fade-in");
-          }, displayDuration);
-        } else {
-          setCurrentIndex((i) => (i + 1) % shuffledImageLinks.length);
-          setFadeState("fade-in");
-        }
-      }, FADE_DURATION_MS);
-    }
-    return () => {
-      clearTimeout(fadeTimeout);
-      clearTimeout(displayTimeout);
-    };
-  }, [
-    fadeState,
-    currentIndex,
-    PeriodicTileInsert,
-    shuffledImageLinks.length,
-    displayDuration,
-  ]);
+  // useEffect(() => {
+  //   let fadeTimeout: number;
+  //   let displayTimeout: number;
+  //   if (fadeState === "fade-in") {
+  //     fadeTimeout = setTimeout(() => {
+  //       setFadeState("fade-out");
+  //     }, displayDuration);
+  //   } else {
+  //     fadeTimeout = setTimeout(() => {
+  //       // Show periodic tile if needed
+  //       if (
+  //         PeriodicTileInsert &&
+  //         (currentIndex + 1) %
+  //           Math.max(2, Math.ceil(window.innerWidth / 300) - 1) ===
+  //           0
+  //       ) {
+  //         setShowPeriodicTile(true);
+  //         displayTimeout = setTimeout(() => {
+  //           setShowPeriodicTile(false);
+  //           setCurrentIndex((i) => (i + 1) % shuffledImageLinks.length);
+  //           setFadeState("fade-in");
+  //         }, displayDuration);
+  //       } else {
+  //         setCurrentIndex((i) => (i + 1) % shuffledImageLinks.length);
+  //         setFadeState("fade-in");
+  //       }
+  //     }, FADE_DURATION_MS);
+  //   }
+  //   return () => {
+  //     clearTimeout(fadeTimeout);
+  //     clearTimeout(displayTimeout);
+  //   };
+  // }, [
+  //   fadeState,
+  //   currentIndex,
+  //   PeriodicTileInsert,
+  //   shuffledImageLinks.length,
+  //   displayDuration,
+  // ]);
 
   return (
     <div
