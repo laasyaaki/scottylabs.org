@@ -102,6 +102,8 @@ export default function Component() {
         name="CMU Courses"
         url="https://cmucourses.com/"
       />
+      {/* random temporary spacer */}
+      <div style={{ height: "150px" }}></div>
     </>
   );
 }
