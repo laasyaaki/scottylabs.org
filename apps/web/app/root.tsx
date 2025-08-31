@@ -6,7 +6,6 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-import { Helmet } from "react-helmet";
 
 import type { Route } from "./+types/root";
 import "./index.css";
