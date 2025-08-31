@@ -22,6 +22,7 @@ import jetbrainsMono from "./assets/fonts/JetBrainsMono-Regular.ttf";
 import Footer from "./sections/home/Footer";
 import errorCSS from "./Error.module.css";
 import errorRyo from "./assets/ryo.webp";
+import { PostHogProvider } from "./utils/posthog";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -111,17 +112,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <StrictMode>
-          <QueryClientProvider client={queryClient}>
-            <tsr.ReactQueryProvider>
-              <Header />
-              <main>{children}</main>
-              <Footer />
+          <PostHogProvider>
+            <QueryClientProvider client={queryClient}>
+              <tsr.ReactQueryProvider>
+                <Header />
+                <main>{children}</main>
+                <Footer />
 
-              <ScrollRestoration />
-              <Scripts />
-            </tsr.ReactQueryProvider>
-            <ReactQueryDevtools />
-          </QueryClientProvider>
+                <ScrollRestoration />
+                <Scripts />
+              </tsr.ReactQueryProvider>
+              <ReactQueryDevtools />
+            </QueryClientProvider>
+          </PostHogProvider>
         </StrictMode>
       </body>
     </html>
