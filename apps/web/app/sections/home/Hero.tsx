@@ -1,6 +1,7 @@
 import Button from "../../components/Button";
 import css from "./Hero.module.css";
 import heroBg from "../../assets/hero-bg.svg?inline"; // basically gets embedded into the source code so there's not a moment where the bg image is blank.
+import { Link } from "react-router";
 
 function Hero() {
   return (
@@ -35,8 +36,15 @@ function Hero() {
           </div>
 
           <div className={css["action-buttons"]}>
-            <Button label="View Products" variant="primary" />
-            <Button label="Join Us" variant="outlined" />
+            <Link to={"/projects"}>
+              <Button label="View Products" variant="primary" />
+            </Link>
+            <Link
+              to={"https://tartanconnect.cmu.edu/scottylabs/club_signup"}
+              target="_blank"
+            >
+              <Button label="Join Us" variant="outlined" />
+            </Link>
           </div>
 
           <link rel="preload" href={heroBg} as="image" />

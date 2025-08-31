@@ -1,3 +1,5 @@
+import InProgress from "../components/InProgress";
+
 export default function Component() {
-  return <div>Hi</div>;
+  return <InProgress />;
 }
