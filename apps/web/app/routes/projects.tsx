@@ -9,6 +9,7 @@ import {
   TailwindIcon,
   TypescriptIcon,
   ViteIcon,
+  PostgresIcon,
 } from "../sections/projects/Icons";
 import ProjectPanel from "../sections/projects/ProjectPanel";
 import { getAllImageLinksInAssetDirectory } from "../utils/files";
@@ -71,16 +72,15 @@ export default function Component() {
             cmumaps-deprecated
             cmumaps-data-deprecated */
         description={
-          "Bringing together course information, schedules and FCE data, it makes it possible for CMU students to plan their semesters and browse for courses."
+          "CMUMaps combines indoor and outdoor maps and navigation so that you will never get lost again on campus."
         }
-        imageURLs={getAllImageLinksInAssetDirectory("cmu-courses")}
+        imageURLs={getAllImageLinksInAssetDirectory("cmu-maps")}
         technologiesUsed={[
-          JavascriptIcon,
           TypescriptIcon,
           ReactIcon,
-          NextJSIcon,
+          ViteIcon,
           TailwindIcon,
-          MongoDBIcon,
+          PostgresIcon,
         ]}
         name="CMU Maps"
         url="https://cmumaps.com/"
@@ -88,19 +88,18 @@ export default function Component() {
       <ProjectPanel
         repoIds={[461300766]}
         description={
-          "Bringing together course information, schedules and FCE data, it makes it possible for CMU students to plan their semesters and browse for courses."
+          "Lost and found is the official lost and found service for the Cohon University Center!  We help reunite lost items with their owners."
         }
-        imageURLs={getAllImageLinksInAssetDirectory("cmu-courses")}
+        imageURLs={getAllImageLinksInAssetDirectory("lost-and-found")}
         technologiesUsed={[
-          JavascriptIcon,
           TypescriptIcon,
           ReactIcon,
           NextJSIcon,
           TailwindIcon,
-          MongoDBIcon,
+          PostgresIcon,
         ]}
-        name="CMU Courses"
-        url="https://cmucourses.com/"
+        name="Lost and Found"
+        url="https://lostandfound.andrew.cmu.edu"
       />
       {/* random temporary spacer */}
       <div style={{ height: "150px" }}></div>

@@ -10,6 +10,7 @@ import vercelIcon from "../../assets/icons/apps/Vercel.svg";
 import bocchiIcon from "../../assets/icons/apps/bocchi.png";
 import viteIcon from "../../assets/icons/apps/Vite.js.svg";
 import cssIcon from "../../assets/icons/apps/CSS3.svg";
+import postgresIcon from "../../assets/icons/postgres.svg";
 // When adding new assets, try to pick out svgs, since they have effectively infinite resolution
 // if the resulting image is not a square (ex. see the mongoDBIcon), please crop out the whitespace so it looks better on the site. arigato!
 export interface Icon {
@@ -64,4 +65,8 @@ export const ViteIcon = {
 export const CSSIcon = {
   url: cssIcon,
   name: "Vanilla CSS",
+};
+export const PostgresIcon = {
+  url: postgresIcon,
+  name: "PostgreSQL",
 };
