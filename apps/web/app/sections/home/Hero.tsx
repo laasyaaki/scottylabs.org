@@ -36,7 +36,7 @@ function Hero() {
           </div>
 
           <div className={css["action-buttons"]}>
-            <Link to={"/projects"}>
+            <Link to={"/projects"} prefetch="viewport">
               <Button label="View Products" variant="primary" />
             </Link>
             <Link
@@ -57,13 +57,24 @@ function Hero() {
         <div className="centered-section">
           <div className={css["events"]}>
             {[
-              "Read about demo day",
-              "Register for TartanHacks",
-              "Check out CMUCal",
-            ].map((txt) => (
-              <button className={css["events__button"]} key={txt}>
-                {txt}
-              </button>
+              {
+                text: "Check out CMUGPT",
+                url: "https://cmugpt.com/",
+              },
+              {
+                text: "Join our TartanConnect",
+                url: "https://tartanconnect.cmu.edu/scottylabs/club_signup",
+              },
+              {
+                text: "Read about our new entrepreneurship initiative!",
+                url: "https://medium.com/tartanhacks/introducing-foundry-carnegie-mellons-first-student-led-startup-accelerator-4c71a0902c10",
+              },
+            ].map(({ text, url }) => (
+              <Link to={url} target="_blank">
+                <button className={css["events__button"]} key={text}>
+                  {text}
+                </button>
+              </Link>
             ))}
           </div>
         </div>

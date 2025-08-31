@@ -22,8 +22,10 @@ import spinnerIcon from "../../assets/icons/spinner.svg";
 import externalLinkIcon from "../../assets/icons/go-to-icon.svg";
 import goToIcon from "../../assets/icons/go-to-icon.svg";
 import { getTimeDeltaFromNow } from "../../utils/time";
+import { Link } from "react-router";
 const fac = new FastAverageColor();
 
+// note that if you want the project preview to link directly to the correct section in Projects, make sure the `name` field is the same
 const featuredProjects = [
   {
     name: "CMU Courses",
@@ -399,9 +401,13 @@ function ProjectPreviews() {
                 {featuredProjects[selectedProjectIndex].description}
               </span>
               <div className={css["panel__details__footer"]}>
-                <button className={buttonCSS["button--animated"]}>
-                  More details
-                </button>
+                <Link
+                  to={"projects#" + featuredProjects[selectedProjectIndex].name}
+                >
+                  <button className={buttonCSS["button--animated"]}>
+                    More details
+                  </button>
+                </Link>
                 <a
                   href={featuredProjects[selectedProjectIndex].link}
                   target="_blank"

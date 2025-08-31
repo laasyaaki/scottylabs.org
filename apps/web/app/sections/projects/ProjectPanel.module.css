@@ -1,5 +1,10 @@
 .project-section {
   margin-top: 100px;
+  position: relative;
+  .project-hash-anchor {
+    position: absolute;
+    top: -75px;
+  }
 }
 .header {
   display: flex;
@@ -7,6 +12,7 @@
   font-size: 2.125rem;
 
   & > .title-container {
+    outline: none;
     display: flex;
     gap: 10px;
     flex-shrink: 0;

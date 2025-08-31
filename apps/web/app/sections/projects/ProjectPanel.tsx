@@ -304,9 +304,16 @@ export default function ProjectPanel({
 }) {
   return (
     <section className={css["project-section"]}>
+      {/* the sole purpose of this is so that you can jump directly to a project section using a hash link */}
+      <Link id={name} to={"#"} className={css["project-hash-anchor"]} />
       <div className="centered-section">
         <div className={css["header"]}>
-          <Link to={url} target="_blank" className={css["title-container"]}>
+          <Link
+            to={url}
+            target="_blank"
+            className={css["title-container"]}
+            id={name}
+          >
             <h2 className={css["project-title"]}>{name}</h2>
             <img src={linkIcon} className={css["project-link-icon"]} />
           </Link>

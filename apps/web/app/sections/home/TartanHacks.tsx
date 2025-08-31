@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import { getAllImageLinksInAssetDirectory } from "../../utils/files";
 import ImageCarousel from "../../components/ImageCarousel";
 import clsx from "clsx";
+import { Link } from "react-router";
 
 function getRandomLetter(targetChar: string, chanceForTarget: number) {
   if (Math.random() <= chanceForTarget) return targetChar;
@@ -135,11 +136,13 @@ export default function TartanHacks() {
           PeriodicTileInsert={StatTile}
         />
       </div>
-      <Button
-        label="View all events"
-        variant="primary"
-        className={css["all-events-button"]}
-      />
+      <Link to="/events" prefetch="viewport">
+        <Button
+          label="View all events"
+          variant="primary"
+          className={css["all-events-button"]}
+        />
+      </Link>
     </section>
   );
 }
