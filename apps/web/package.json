@@ -27,6 +27,7 @@
     "posthog-js": "^1.261.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-helmet": "^6.1.0",
     "react-router": "^7.8.1",
     "zod": "^3.25.76"
   },
@@ -36,6 +37,7 @@
     "@types/luxon": "^3.7.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "@types/react-helmet": "^6.1.11",
     "@vitejs/plugin-react": "^4.4.1",
     "dotenv-cli": "^8.0.0",
     "eslint": "^9.25.0",
