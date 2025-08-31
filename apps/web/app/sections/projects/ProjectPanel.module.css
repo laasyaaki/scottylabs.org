@@ -19,6 +19,7 @@
     & > .project-title {
       font-weight: 700;
       color: var(--black-900);
+      flex-shrink: 0;
     }
     & > .project-link-icon {
       vertical-align: bottom;
