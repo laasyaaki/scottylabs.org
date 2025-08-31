@@ -29,14 +29,13 @@
     display: flex;
     /* counteract inner padding on project-icon */
     margin: 0 -5px;
-    height: 0.8em;
     align-self: center;
     & > .project-icon {
       padding: 0 5px;
       position: relative;
       & > img {
         border-radius: 5px;
-        height: 100%;
+        height: 0.8em;
         display: block;
       }
       & > .project-icon__tooltip {
