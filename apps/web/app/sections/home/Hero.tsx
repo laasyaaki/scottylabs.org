@@ -70,10 +70,8 @@ function Hero() {
                 url: "https://medium.com/tartanhacks/introducing-foundry-carnegie-mellons-first-student-led-startup-accelerator-4c71a0902c10",
               },
             ].map(({ text, url }) => (
-              <Link to={url} target="_blank">
-                <button className={css["events__button"]} key={text}>
-                  {text}
-                </button>
+              <Link to={url} target="_blank" key={url}>
+                <button className={css["events__button"]}>{text}</button>
               </Link>
             ))}
           </div>
