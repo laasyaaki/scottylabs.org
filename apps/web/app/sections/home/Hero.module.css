@@ -5,9 +5,7 @@
 }
 .hero-section {
   padding-top: 7%;
-  height: 100vh;
-  max-height: 800px;
-  min-height: 700px;
+  height: 700px;
   box-sizing: border-box;
   position: relative;
 }
