@@ -24,7 +24,7 @@
     "isbot": "^5",
     "luxon": "^3.7.1",
     "motion": "^12.17.0",
-    "pdfjs-dist": "^5.4.149",
+    "posthog-js": "^1.261.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-pdf": "^10.1.0",

@@ -17,4 +17,7 @@ export default defineConfig({
     //   outputDir: ".vite-inspect",
     // }),
   ],
+  ssr: {
+    noExternal: ["posthog-js", "posthog-js/react"], // https://posthog.com/docs/libraries/remix
+  },
 });
