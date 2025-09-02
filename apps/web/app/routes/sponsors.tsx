@@ -1,5 +1,5 @@
-import InProgress from "../components/InProgress";
+import PacketViewer from "../components/PacketViewer";
 
-export default function Component() {
-  return <InProgress />;
+export default function Sponsors() {
+  return <PacketViewer />;
 }
