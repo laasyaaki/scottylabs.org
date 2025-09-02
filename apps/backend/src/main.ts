@@ -59,7 +59,7 @@ s.registerRouter(contract, router, app, {
   responseValidation: true,
 });
 app.get("/", (req, res) => {
-  res.redirect("https://bucket-production-718d.up.railway.app/miku/videoplayback%20(52).mp4");
+  res.redirect("https://bucket.minio.scottylabs.org/scottylabs.org/videoplayback%20(52).mp4");
 });
 const start = async () => {
   try {
