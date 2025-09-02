@@ -37,7 +37,7 @@ function Hero() {
 
           <div className={css["action-buttons"]}>
             <Link to={"/projects"} prefetch="viewport">
-              <Button label="View Products" variant="primary" />
+              <Button label="View Projects" variant="primary" />
             </Link>
             <Link
               to={"https://tartanconnect.cmu.edu/scottylabs/club_signup"}

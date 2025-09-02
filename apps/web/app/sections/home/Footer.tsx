@@ -13,7 +13,7 @@ import React from "react";
 const socialLinks = [
   {
     icon: tartanConnectIcon,
-    name: "Tartan-Connect",
+    name: "Tartan Connect",
     url: "https://tartanconnect.cmu.edu/scottylabs/club_signup",
     color: "hsl(0,100%,30%)",
   },

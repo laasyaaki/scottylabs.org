@@ -13,16 +13,16 @@ const navLinks = [
     url: "/projects",
     text: "Projects",
   },
-  {
-    icon: eventsIcon,
-    url: "/events",
-    text: "Events",
-  },
-  {
-    icon: teamIcon,
-    url: "/team",
-    text: "Team",
-  },
+  // {
+  //   icon: eventsIcon,
+  //   url: "/events",
+  //   text: "Events",
+  // },
+  // {
+  //   icon: teamIcon,
+  //   url: "/team",
+  //   text: "Team",
+  // },
   {
     icon: sponsorsIcon,
     url: "/sponsors",

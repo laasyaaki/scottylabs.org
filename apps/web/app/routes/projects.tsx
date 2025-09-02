@@ -86,7 +86,7 @@ export default function Component() {
         url="https://cmumaps.com/"
       />
       <ProjectPanel
-        repoIds={[461300766]}
+        repoIds={[561467360, 308943713, 295896072]}
         description={
           "Lost and found is the official lost and found service for the Cohon University Center!  We help reunite lost items with their owners."
         }

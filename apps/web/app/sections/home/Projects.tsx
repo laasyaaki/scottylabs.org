@@ -369,15 +369,17 @@ function ProjectPreviews() {
               />
             );
           })}
-          <button className={css["tab"]}>
-            <img
-              className={css["tab__image"]}
-              src={goToIcon}
-              alt=""
-              style={{ height: "1em" }}
-            />
-            <div className={css["tab__name"]}>See more</div>
-          </button>
+          <Link to="/projects">
+            <button className={css["tab"]}>
+              <img
+                className={css["tab__image"]}
+                src={goToIcon}
+                alt=""
+                style={{ height: "1em" }}
+              />
+              <div className={css["tab__name"]}>See more</div>
+            </button>
+          </Link>
         </ul>
       </div>
       <div className={css["panel-container"]}>
