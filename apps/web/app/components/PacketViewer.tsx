@@ -1,13 +1,13 @@
 import css from "./PacketViewer.module.css";
-import PacketPDF from "/ScottyLabs_Sponsorship_Packet.pdf";
 
 export default function PacketViewer() {
-  const sponsorPacketURL = "/ScottyLabs_Sponsorship_Packet.pdf";
+  const sponsorPacketURL =
+    "https://bucket.minio.scottylabs.org/scottylabs.org/ScottyLabs_Sponsorship_Packet.pdf";
   return (
     <div className={css["pageContent"]}>
       <div className={css["sponsorPacketContainer"]}>
         <object
-          data={PacketPDF}
+          data={sponsorPacketURL}
           type="application/pdf"
           className={css["sponsorPacket"]}
         >
