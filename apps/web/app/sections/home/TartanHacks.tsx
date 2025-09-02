@@ -136,13 +136,13 @@ export default function TartanHacks() {
           PeriodicTileInsert={StatTile}
         />
       </div>
-      <Link to="/events" prefetch="viewport">
+      {/* <Link to="/events" prefetch="viewport">
         <Button
           label="View all events"
           variant="primary"
           className={css["all-events-button"]}
         />
-      </Link>
+      </Link> */}
     </section>
   );
 }
