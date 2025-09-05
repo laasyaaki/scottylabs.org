@@ -8,9 +8,9 @@ export default function ClerkSignIn() {
         // signUpUrl="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         appearance={{
           elements: {
-            // footerAction: {
-            //   display: "none",
-            // },
+            footerAction: {
+              display: "none", // hide sign up button
+            },
             formButtonPrimary: {
               boxSizing: "border-box",
               // so that the sign in button width matches input field width
