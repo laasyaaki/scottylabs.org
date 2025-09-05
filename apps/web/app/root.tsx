@@ -23,6 +23,12 @@ import errorCSS from "./Error.module.css";
 import errorRyo from "./assets/ryo.webp";
 import { PostHogProvider } from "./providers/PostHogProvider";
 import { rootAuthLoader } from "@clerk/react-router/ssr.server";
+import {
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignInButton,
+} from "@clerk/react-router";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -137,7 +143,18 @@ export default function App({ loaderData }: Route.ComponentProps) {
     <ClerkProvider
       loaderData={loaderData}
       allowedRedirectOrigins={["https://cmucourses.com"]}
+      localization={{
+        signIn: {
+          start: {
+            subtitle: "Welcome! Please use your andrew email to log in",
+          },
+        },
+        formFieldInputPlaceholder__emailAddress: "andrewid@andrew.cmu.edu",
+      }}
     >
+      {/* <SignedIn>
+        <UserButton />
+      </SignedIn> */}
       <Outlet />
     </ClerkProvider>
   );
