@@ -140,7 +140,10 @@ export default function App({ loaderData }: Route.ComponentProps) {
   return (
     <ClerkProvider
       loaderData={loaderData}
-      allowedRedirectOrigins={["https://cmucourses.com"]}
+      allowedRedirectOrigins={[
+        "https://cmucourses.com",
+        "https://www.cmucourses.com",
+      ]}
       localization={{
         signIn: {
           start: {
