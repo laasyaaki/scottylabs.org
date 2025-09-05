@@ -1,5 +1,6 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
@@ -168,6 +169,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         </pre>
       )}
       <img src={errorRyo} height={400} />
+      <br />
+      <Link to={"/"} className={errorCSS["error-go-home"]}>
+        <button>Go home</button>
+      </Link>
     </div>
   );
 }
