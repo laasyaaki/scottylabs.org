@@ -55,7 +55,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  min-width: 950px; /* temp measure until we get mobile version */
 }
 main {
   flex-grow: 1;
