@@ -6,10 +6,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { ClerkProvider } from "@clerk/react-router";
 import type { Route } from "./+types/root";
 import "./index.css";
-import Header from "./sections/home/Header";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StrictMode } from "react";
@@ -19,10 +18,10 @@ import satoshiFontBold from "./assets/fonts/Satoshi-Bold.woff2";
 import satoshiFontMedium from "./assets/fonts/Satoshi-Medium.woff2";
 import satoshiFontBlack from "./assets/fonts/Satoshi-Black.woff2";
 import jetbrainsMono from "./assets/fonts/JetBrainsMono-Regular.ttf";
-import Footer from "./sections/home/Footer";
 import errorCSS from "./Error.module.css";
 import errorRyo from "./assets/ryo.webp";
 import { PostHogProvider } from "./providers/PostHogProvider";
+import { rootAuthLoader } from "@clerk/react-router/ssr.server";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,7 +54,9 @@ const queryClient = new QueryClient({
     },
   },
 });
-
+export async function loader(args: Route.LoaderArgs) {
+  return rootAuthLoader(args);
+}
 export const links: Route.LinksFunction = () => [
   {
     rel: "preload",
@@ -116,9 +117,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <PostHogProvider>
             <QueryClientProvider client={queryClient}>
               <tsr.ReactQueryProvider>
-                <Header />
-                <main>{children}</main>
-                <Footer />
+                {children}
 
                 <ScrollRestoration />
                 <Scripts />
@@ -132,8 +131,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
+export default function App({ loaderData }: Route.ComponentProps) {
+  return (
+    <ClerkProvider
+      loaderData={loaderData}
+      allowedRedirectOrigins={["https://cmucourses.com"]}
+    >
+      <Outlet />
+    </ClerkProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
