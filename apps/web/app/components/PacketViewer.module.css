@@ -1,5 +1,39 @@
-.sponsor-packet {
-  width: 100%;
-  height: calc(100vh - 140px);
-  margin: 30px 0 90px;
+.main-container {
+  display: flex;
+  gap: 150px;
+  margin: 30px 0 70px;
+  .left-section {
+    h1 {
+      font-size: 2rem;
+      color: var(--black-900);
+
+      text-align: center;
+    }
+    .sponsors-container {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      object-fit: contain;
+      flex-wrap: wrap;
+      gap: 10px;
+      .sponsor {
+        height: 90px;
+        width: 100%;
+        background-color: #f3f5f8;
+        padding: 20px 15px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        &.sponsor--premier {
+          grid-column: 1/4;
+
+          height: 115px;
+          padding: 20px;
+        }
+      }
+    }
+  }
+  .sponsor-packet-cover {
+    height: 400px;
+    margin-right: 50px;
+  }
 }

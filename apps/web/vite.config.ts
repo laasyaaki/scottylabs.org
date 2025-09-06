@@ -9,7 +9,7 @@ export default defineConfig({
     reactRouter(),
     ViteImageOptimizer({
       jpg: {
-        quality: 50,
+        quality: 90,
       },
     }),
     // Inspect({

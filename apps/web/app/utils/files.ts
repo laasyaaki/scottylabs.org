@@ -13,7 +13,9 @@ export function getAllImageLinksInAssetDirectory(
     | "cmu-courses"
     | "cmu-eats"
     | "cmu-maps"
-    | "lost-and-found",
+    | "lost-and-found"
+    | "sponsor-logos-partner"
+    | "sponsor-logos-premier",
 ): string[] {
   switch (dir) {
     case "carousel-images":
@@ -75,6 +77,22 @@ export function getAllImageLinksInAssetDirectory(
     case "lost-and-found":
       return Object.values(
         import.meta.glob("../assets/projects-page/lost-and-found/*", {
+          eager: true,
+          query: "url",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        }) as Record<string, any>,
+      ).map((data) => data.default);
+    case "sponsor-logos-partner":
+      return Object.values(
+        import.meta.glob("../assets/sponsors-page/sponsors/partner/*", {
+          eager: true,
+          query: "url",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        }) as Record<string, any>,
+      ).map((data) => data.default);
+    case "sponsor-logos-premier":
+      return Object.values(
+        import.meta.glob("../assets/sponsors-page/sponsors/premier/*", {
           eager: true,
           query: "url",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
