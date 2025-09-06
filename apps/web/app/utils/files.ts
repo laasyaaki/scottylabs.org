@@ -15,6 +15,7 @@ export function getAllImageLinksInAssetDirectory(
     | "cmu-maps"
     | "lost-and-found"
     | "sponsor-logos-partner"
+    | "sponsor-logos-smaller"
     | "sponsor-logos-premier",
 ): string[] {
   switch (dir) {
@@ -93,6 +94,14 @@ export function getAllImageLinksInAssetDirectory(
     case "sponsor-logos-premier":
       return Object.values(
         import.meta.glob("../assets/sponsors-page/sponsors/premier/*", {
+          eager: true,
+          query: "url",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        }) as Record<string, any>,
+      ).map((data) => data.default);
+    case "sponsor-logos-smaller":
+      return Object.values(
+        import.meta.glob("../assets/sponsors-page/sponsors/smaller/*", {
           eager: true,
           query: "url",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any

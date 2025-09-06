@@ -13,12 +13,12 @@
     .sponsors-container {
       margin-top: 30px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       object-fit: contain;
       flex-wrap: wrap;
       gap: 8px;
       .sponsor {
-        height: 90px;
+        height: 70px;
         width: 100%;
         background-color: hsl(216, 26%, 96%);
         padding: 20px 15px;
@@ -32,10 +32,14 @@
           outline-width: 2px;
         }
         &.sponsor--premier {
-          grid-column: 1/4;
+          grid-column: span 2;
 
           height: 115px;
           padding: 20px;
+        }
+        &.sponsor--smaller {
+          height: 50px;
+          padding: 10px;
         }
       }
     }
@@ -49,7 +53,7 @@
         -webkit-user-drag: none;
       }
       p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         text-align: center;
         color: var(--black-900);
         margin-top: 10px;

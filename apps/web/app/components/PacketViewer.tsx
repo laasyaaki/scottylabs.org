@@ -16,6 +16,10 @@ export default function PacketViewer() {
       url,
       status: "partner" as const,
     })),
+    ...getAllImageLinksInAssetDirectory("sponsor-logos-smaller").map((url) => ({
+      url,
+      status: "smaller" as const,
+    })),
   ];
   return (
     <section className={"centered-section"}>
@@ -28,6 +32,7 @@ export default function PacketViewer() {
                 className={clsx(
                   css["sponsor"],
                   status === "premier" && css["sponsor--premier"],
+                  status === "smaller" && css["sponsor--smaller"],
                 )}
                 src={url}
                 alt={url}
