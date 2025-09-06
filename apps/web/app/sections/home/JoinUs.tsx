@@ -2,11 +2,11 @@ import css from "./JoinUs.module.css";
 const recurringEvents = [
   {
     name: "GBM",
-    time: "Every other Monday, 6-7 PM",
+    time: "Every other Wednesday, 5-6 PM",
     locations: [
       {
         department: "All",
-        location: "Tepper 2611",
+        location: "Location TBD",
       },
     ],
   },
@@ -16,8 +16,8 @@ const recurringEvents = [
     locations: [
       { department: "Tech", location: "Tepper 2612" },
       { department: "Design", location: "Tepper 3801" },
-      { department: "Labrador", location: "Tepper 2700" },
-      { department: "Bootcamp", location: "Tepper 2613" },
+      { department: "Labrador", location: "Swartz Center (Tepper 2713)" },
+      // { department: "Bootcamp", location: "Tepper 2613" },
       { department: "Events/Outreach/Finance", location: "Tepper 3808" },
     ],
   },
@@ -47,7 +47,7 @@ export default function JoinUs() {
           </div>
           <div className={css["calendar"]}>
             <iframe
-              src="https://calendar.google.com/calendar/embed?src=admin%40scottylabs.org&ctz=America%2FNew_York&mode=agenda"
+              src="https://calendar.google.com/calendar/embed?src=admin%40scottylabs.org&ctz=America%2FNew_York&mode=week"
               width="0"
               height="0"
             />
