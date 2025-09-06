@@ -2,6 +2,7 @@ import css from "./PacketViewer.module.css";
 import sponsorPacketCover from "../assets/sponsors-page/sponsor-packet/cover.png";
 import { getAllImageLinksInAssetDirectory } from "../utils/files";
 import clsx from "clsx";
+import { Link } from "react-router";
 
 export default function PacketViewer() {
   const sponsorPacketURL =
@@ -35,11 +36,18 @@ export default function PacketViewer() {
             ))}
           </div>
         </div>
-        <img
-          className={css["sponsor-packet-cover"]}
-          src={sponsorPacketCover}
-          alt=""
-        />
+        <div className={css["right-section"]}>
+          <div className={css["right-section-sticky"]}>
+            <Link to={sponsorPacketURL} target="_blank">
+              <img
+                className={css["sponsor-packet-cover"]}
+                src={sponsorPacketCover}
+                alt=""
+              />
+            </Link>
+            <p>(Click to view)</p>
+          </div>
+        </div>
       </div>
     </section>
   );
