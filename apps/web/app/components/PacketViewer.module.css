@@ -38,8 +38,7 @@
           padding: 20px;
         }
         &.sponsor--smaller {
-          height: 50px;
-          padding: 10px;
+          opacity: 50%;
         }
       }
     }
