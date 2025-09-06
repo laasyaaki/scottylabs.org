@@ -2,7 +2,6 @@
   display: flex;
   gap: 75px;
   margin: 30px 50px 70px 0;
-  min-height: calc(100vh - 338px); /* yea probably clean this up TODO: */
   .left-section {
     h1 {
       font-size: 2rem;
@@ -18,27 +17,42 @@
       flex-wrap: wrap;
       gap: 8px;
       .sponsor {
-        height: 70px;
         width: 100%;
         background-color: hsl(216, 26%, 96%);
-        padding: 20px 15px;
         box-sizing: border-box;
         border-radius: 10px;
         outline: 0px solid hsl(216, 26%, 83%);
         transition: 0.1s all;
-        -webkit-user-drag: none;
-        &:hover {
+        img {
+          filter: brightness(0.9);
+          transition: 0.2s all;
+          height: 100%;
+          width: 100%;
+          -webkit-user-drag: none;
+        }
+        &:hover:not(.sponsor--placeholder) {
           background-color: hsl(216, 26%, 91%);
           outline-width: 2px;
+          img {
+            filter: brightness(1);
+          }
         }
         &.sponsor--premier {
           grid-column: span 2;
 
           height: 115px;
           padding: 20px;
+          img {
+            filter: brightness(1);
+          }
+        }
+        &.sponsor--partner {
+          height: 70px;
+          padding: 20px 15px;
         }
         &.sponsor--smaller {
-          opacity: 50%;
+          height: 50px;
+          padding: 14px 10px;
         }
       }
     }

@@ -1,43 +1,56 @@
 import css from "./PacketViewer.module.css";
 import sponsorPacketCover from "../assets/sponsors-page/sponsor-packet/cover.png";
-import { getAllImageLinksInAssetDirectory } from "../utils/files";
 import clsx from "clsx";
 import { Link } from "react-router";
-
+import { sponsors, type SponsorTypes } from "../sections/sponsors/sponsors";
+const SponsorTile = ({
+  imageUrl,
+  type,
+  websiteUrl,
+}: {
+  imageUrl?: string;
+  type: SponsorTypes;
+  websiteUrl?: string;
+}) => {
+  return (
+    <a
+      href={websiteUrl}
+      target="_blank"
+      className={clsx(
+        css["sponsor"],
+        type === "premier" && css["sponsor--premier"],
+        type === "lowest" && css["sponsor--smaller"],
+        type === "partner" && css["sponsor--partner"],
+        imageUrl === undefined && css["sponsor--placeholder"],
+      )}
+    >
+      {imageUrl && <img src={imageUrl} alt={imageUrl} key={imageUrl} />}
+    </a>
+  );
+};
 export default function PacketViewer() {
   const sponsorPacketURL =
     "https://bucket.minio.scottylabs.org/scottylabs.org/ScottyLabs_Sponsorship_Packet.pdf";
-  const logos = [
-    ...getAllImageLinksInAssetDirectory("sponsor-logos-premier").map((url) => ({
-      url,
-      status: "premier" as const,
-    })),
-    ...getAllImageLinksInAssetDirectory("sponsor-logos-partner").map((url) => ({
-      url,
-      status: "partner" as const,
-    })),
-    ...getAllImageLinksInAssetDirectory("sponsor-logos-smaller").map((url) => ({
-      url,
-      status: "smaller" as const,
-    })),
-  ];
+  const premierSponsors = sponsors.filter((s) => s.type === "premier");
+  const partnerSponsors = sponsors.filter((s) => s.type === "partner");
+  const lowestSponsors = sponsors.filter((s) => s.type === "lowest");
   return (
     <section className={"centered-section"}>
       <div className={css["main-container"]}>
         <div className={css["left-section"]}>
           <h1>ScottyLabs is proudly sponsored by</h1>
           <div className={css["sponsors-container"]}>
-            {logos.map(({ url, status }) => (
-              <img
-                className={clsx(
-                  css["sponsor"],
-                  status === "premier" && css["sponsor--premier"],
-                  status === "smaller" && css["sponsor--smaller"],
-                )}
-                src={url}
-                alt={url}
-                key={url}
-              />
+            {premierSponsors.map(({ imageUrl, type, websiteUrl }) => (
+              <SponsorTile {...{ imageUrl, type, websiteUrl }} />
+            ))}
+            {partnerSponsors.map(({ imageUrl, type, websiteUrl }) => (
+              <SponsorTile {...{ imageUrl, type, websiteUrl }} />
+            ))}
+            {/* temporary padding */}
+            <SponsorTile type="partner" />
+
+            {lowestSponsors.map(({ imageUrl, type, websiteUrl }) => (
+              <SponsorTile {...{ imageUrl, type, websiteUrl }} />
             ))}
           </div>
         </div>
