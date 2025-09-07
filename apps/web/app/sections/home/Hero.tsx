@@ -58,12 +58,12 @@ function Hero() {
           <div className={css["events"]}>
             {[
               {
-                text: "Check out CMUGPT",
-                url: "https://cmugpt.com/",
+                text: "Formally Join ScottyLabs",
+                url: "https://go.scottylabs.org/interest",
               },
               {
-                text: "Join our TartanConnect",
-                url: "https://tartanconnect.cmu.edu/scottylabs/club_signup",
+                text: "Check out CMUGPT",
+                url: "https://cmugpt.com/",
               },
               {
                 text: "Read about our new entrepreneurship initiative!",
