@@ -29,6 +29,7 @@ import {
   UserButton,
   SignInButton,
 } from "@clerk/react-router";
+import env from "./utils/env";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -140,10 +141,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
   return (
     <ClerkProvider
       loaderData={loaderData}
-      allowedRedirectOrigins={[
-        "https://cmucourses.com",
-        "https://www.cmucourses.com",
-      ]}
+      allowedRedirectOrigins={env.VITE_PUBLIC_CLERK_ALLOWED_REDIRECT_ORIGINS}
       localization={{
         signIn: {
           start: {
