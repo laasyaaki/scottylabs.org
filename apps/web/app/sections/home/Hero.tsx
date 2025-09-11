@@ -58,16 +58,16 @@ function Hero() {
           <div className={css["events"]}>
             {[
               {
-                text: "Formally Join ScottyLabs",
-                url: "https://go.scottylabs.org/interest",
+                text: "Hear from Accenture Recruiters + Alums!",
+                url: "https://go.scottylabs.org/accenture",
+              },
+              {  
+                text: "Register to hear from ScottyLabs Alums!",
+                url: "https://go.scottylabs.org/alumpanel",
               },
               {
                 text: "Check out CMUGPT",
                 url: "https://cmugpt.com/",
-              },
-              {
-                text: "Read about our new entrepreneurship initiative!",
-                url: "https://medium.com/tartanhacks/introducing-foundry-carnegie-mellons-first-student-led-startup-accelerator-4c71a0902c10",
               },
             ].map(({ text, url }) => (
               <Link to={url} target="_blank" key={url}>
