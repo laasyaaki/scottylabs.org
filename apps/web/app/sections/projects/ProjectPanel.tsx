@@ -1,11 +1,11 @@
 import { tsr } from "../../utils/tsr";
 import css from "./ProjectPanel.module.css";
 import linkIcon from "../../assets/icons/link.svg";
-import type { Icon } from "./Icons";
+import type { Icon } from "./icons";
 import { Link } from "react-router";
 import { getTimeDeltaFromNow } from "../../utils/time";
 import { DateTime } from "luxon";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSpring, motion, AnimatePresence } from "motion/react";
 import clsx from "clsx";
 import downChevronIcon from "../../assets/down-chevron.svg";

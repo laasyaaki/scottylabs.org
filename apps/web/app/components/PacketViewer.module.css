@@ -1,5 +1,122 @@
-.sponsor-packet {
-  width: 100%;
-  height: calc(100vh - 140px);
-  margin: 30px 0 90px;
+.main-container {
+  display: flex;
+  gap: 75px;
+  margin: 30px 50px 70px 0;
+  .left-section {
+    --underline-color: hsl(200, 15%, 49%);
+    /* background-color: hsl(197, 28%, 90%); */
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.7)),
+      url("../assets/sponsors-page/check-bg.jpg");
+    background-size: cover;
+    padding: 20px 40px;
+    border: 2px solid hsl(197, 28%, 55%);
+    border-radius: 4px;
+    .check-input-container {
+      display: flex;
+      gap: 40px;
+    }
+    .check-input-row {
+      &:first-child {
+        flex-grow: 1;
+      }
+      pre {
+        font-size: 1rem;
+        color: var(--black-500);
+        margin-right: 20px;
+        margin-bottom: 0;
+      }
+      span {
+        font-family: "Royalty";
+        font-size: 3rem;
+        margin-bottom: -4px;
+      }
+      color: var(--black-900);
+      border-bottom: 2px solid var(--underline-color);
+      border-right: 2px solid var(--underline-color);
+      margin-top: 40px;
+      height: 10px;
+      display: flex;
+      align-items: flex-end;
+    }
+    .sponsors-container {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      object-fit: contain;
+      flex-wrap: wrap;
+      row-gap: 10px;
+      column-gap: 15px;
+      .sponsor {
+        --tile-bg-color: hsl(216, 26%, 96%);
+        width: 100%;
+        /* background-color: var(--tile-bg-color); */
+        border-bottom: 2px solid var(--underline-color);
+        box-sizing: border-box;
+        transition: 0.1s all;
+        outline: 0px solid hsl(200, 15%, 41%);
+        outline-offset: -8px;
+        img {
+          height: 100%;
+          width: 100%;
+          -webkit-user-drag: none;
+          object-fit: contain;
+          object-position: bottom;
+        }
+        &:hover:not(.sponsor--placeholder) {
+          background-color: hsl(200, 65%, 91%);
+          outline-width: 2px;
+          outline-offset: -2px;
+        }
+        &.sponsor--premier {
+          grid-column: span 2;
+
+          height: 100px;
+          padding: 20px 20px 10px;
+        }
+        &.sponsor--partner {
+          height: 70px;
+          padding: 20px 15px 10px;
+        }
+        &.sponsor--smaller {
+          height: 50px;
+          padding: 14px 10px 10px;
+        }
+        &.sponsor--placeholder {
+          background-color: transparent;
+          border-bottom: 2px dashed var(--underline-color);
+          text-align: center;
+          color: var(--black-500);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+    .check-numbers {
+      font-family: "micr";
+      font-size: 1.4rem;
+      text-align: left;
+      color: var(--black-900);
+      margin-top: 40px;
+    }
+  }
+  .right-section {
+    .right-section-sticky {
+      position: sticky;
+      top: 100px;
+      .sponsor-packet-cover {
+        width: 100%;
+        -webkit-user-drag: none;
+      }
+      p {
+        font-size: 1.25rem;
+        text-align: center;
+        color: var(--black-900);
+        margin-top: 10px;
+      }
+    }
+    width: 300px;
+    flex-shrink: 0;
+  }
 }

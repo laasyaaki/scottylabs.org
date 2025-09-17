@@ -10,7 +10,7 @@ import {
   TypescriptIcon,
   ViteIcon,
   PostgresIcon,
-} from "../sections/projects/Icons";
+} from "../sections/projects/icons";
 import ProjectPanel from "../sections/projects/ProjectPanel";
 import { getAllImageLinksInAssetDirectory } from "../utils/files";
 

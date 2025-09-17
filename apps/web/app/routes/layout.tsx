@@ -4,13 +4,20 @@ import Footer from "../sections/home/Footer";
 
 export default function Layout() {
   return (
-    <div style={{ minWidth: 950 }}>
+    <div
+      style={{
+        minWidth: 950,
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <Header />
       {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
       {/* <meta name="viewport" content="width=1524" /> */}
       <meta name="viewport" content="width=device-width, initial-scale=.3" />
       {/* https://stackoverflow.com/questions/31334481/how-to-force-desktop-view-on-mobile-devices */}
-      <main>
+      <main style={{ flexGrow: 1 }}>
         <Outlet />
       </main>
       <Footer />
