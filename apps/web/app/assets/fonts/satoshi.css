@@ -157,3 +157,17 @@
   font-display: swap;
   font-style: italic;
 }
+@font-face {
+  font-family: "micr";
+  src: url("../fonts/micrenc.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Royalty";
+  src: url("../fonts/Royalty Free.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
