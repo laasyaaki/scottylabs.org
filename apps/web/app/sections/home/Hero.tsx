@@ -31,8 +31,9 @@ function Hero() {
           </div>
           <div className={css["marketing-text"]}>
             We’re a student-run organization dedicated to building tech that
-            enhances campus life—empowering the CMU community to create,
-            collaborate, and solve real-world problems through apps and events.
+            enhances campus life—empowering the Carnegie Mellon University
+            community to create, collaborate, and solve real-world problems
+            through apps and events.
           </div>
 
           <div className={css["action-buttons"]}>
@@ -61,7 +62,7 @@ function Hero() {
                 text: "Hear from Accenture Recruiters + Alums!",
                 url: "https://go.scottylabs.org/accenture",
               },
-              {  
+              {
                 text: "Register to hear from ScottyLabs Alums!",
                 url: "https://go.scottylabs.org/alumpanel",
               },
