@@ -59,14 +59,6 @@ function Hero() {
           <div className={css["events"]}>
             {[
               {
-                text: "Hear from Accenture Recruiters + Alums!",
-                url: "https://go.scottylabs.org/accenture",
-              },
-              {
-                text: "Register to hear from ScottyLabs Alums!",
-                url: "https://go.scottylabs.org/alumpanel",
-              },
-              {
                 text: "Check out CMUGPT",
                 url: "https://cmugpt.com/",
               },
