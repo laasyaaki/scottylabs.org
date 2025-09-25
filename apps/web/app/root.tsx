@@ -108,6 +108,11 @@ export function meta({}: Route.MetaArgs) {
     { name: "description", content: "The landing page for Scottylabs" },
   ];
 }
+export function headers(_: Route.HeadersArgs) {
+  return {
+    "Vercel-CDN-Cache-Control": "max-age=31556952", // 1 year
+  };
+}
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
