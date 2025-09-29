@@ -5,57 +5,22 @@
   .left-section {
     --underline-color: hsl(200, 15%, 49%);
     /* background-color: hsl(197, 28%, 90%); */
-    background:
-      linear-gradient(rgba(255, 255, 255, 0.7)),
-      url("../assets/sponsors-page/check-bg.jpg");
     background-size: cover;
-    padding: 20px 40px;
-    border: 2px solid hsl(197, 28%, 55%);
-    border-radius: 4px;
-    .check-input-container {
-      display: flex;
-      gap: 40px;
-    }
-    .check-input-row {
-      &:first-child {
-        flex-grow: 1;
-      }
-      pre {
-        font-size: 1rem;
-        color: var(--black-500);
-        margin-right: 20px;
-        margin-bottom: 0;
-      }
-      span {
-        font-family: "Royalty";
-        font-size: 3rem;
-        margin-bottom: -4px;
-      }
-      color: var(--black-900);
-      border-bottom: 2px solid var(--underline-color);
-      border-right: 2px solid var(--underline-color);
-      margin-top: 40px;
-      height: 10px;
-      display: flex;
-      align-items: flex-end;
-    }
+
     .sponsors-container {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      object-fit: contain;
+      display: flex;
       flex-wrap: wrap;
-      row-gap: 10px;
-      column-gap: 15px;
+      justify-content: space-between;
+      gap: 10px;
       .sponsor {
         --tile-bg-color: hsl(216, 26%, 96%);
-        width: 100%;
-        /* background-color: var(--tile-bg-color); */
-        border-bottom: 2px solid var(--underline-color);
+        background-color: var(--tile-bg-color);
+        flex-grow: 1;
         box-sizing: border-box;
+        border-radius: 5px;
         transition: 0.1s all;
-        outline: 0px solid hsl(200, 15%, 41%);
-        outline-offset: -8px;
+        outline: 2px solid transparent;
+        outline-offset: -4px;
         img {
           height: 100%;
           width: 100%;
@@ -65,18 +30,31 @@
         }
         &:hover:not(.sponsor--placeholder) {
           background-color: hsl(200, 65%, 91%);
-          outline-width: 2px;
           outline-offset: -2px;
+          outline-color: hsl(200, 15%, 41%);
         }
         &.sponsor--premier {
-          grid-column: span 2;
-
-          height: 100px;
-          padding: 20px 20px 10px;
+          height: 130px;
+          padding: 30px 20px;
+          background: linear-gradient(
+            83deg,
+            #f6f8f9 -9.92%,
+            #f1b51d 0.16%,
+            #f5f1e3 65.86%
+          );
+          &:hover {
+            outline-color: hsl(43, 88%, 73%);
+            background: linear-gradient(
+              83deg,
+              #f6f8f9 -9.92%,
+              #f1b51d 0.16%,
+              #f5f1e3 95.86%
+            );
+          }
         }
         &.sponsor--partner {
           height: 70px;
-          padding: 20px 15px 10px;
+          padding: 15px 15px;
         }
         &.sponsor--smaller {
           height: 50px;
@@ -84,12 +62,7 @@
         }
         &.sponsor--placeholder {
           background-color: transparent;
-          border-bottom: 2px dashed var(--underline-color);
-          text-align: center;
-          color: var(--black-500);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          width: 100%;
         }
       }
     }

@@ -30,9 +30,7 @@ const SponsorTile = ({
 };
 const SponsorPlaceholder = () => {
   return (
-    <div className={clsx(css["sponsor"], css["sponsor--placeholder"])}>
-      Your logo here
-    </div>
+    <div className={clsx(css["sponsor"], css["sponsor--placeholder"])}></div>
   );
 };
 export default function PacketViewer() {
@@ -45,32 +43,19 @@ export default function PacketViewer() {
     <section className={"centered-section"}>
       <div className={css["main-container"]}>
         <div className={css["left-section"]}>
-          <div className={css["check-input-container"]}>
-            <h1 className={css["check-input-row"]}>
-              <pre>PAY TO</pre>
-              <span>ScottyLabs</span>
-            </h1>
-            <h1 className={css["check-input-row"]}>
-              <pre>DATE</pre>
-              <span>2025-2026&nbsp;&nbsp;</span>
-            </h1>
-          </div>
           <div className={css["sponsors-container"]}>
             {premierSponsors.map(({ imageUrl, type, websiteUrl }) => (
               <SponsorTile {...{ imageUrl, type, websiteUrl }} />
             ))}
+            <SponsorPlaceholder />
             {partnerSponsors.map(({ imageUrl, type, websiteUrl }) => (
               <SponsorTile {...{ imageUrl, type, websiteUrl }} />
             ))}
-            {/* temporary padding */}
             <SponsorPlaceholder />
 
             {lowestSponsors.map(({ imageUrl, type, websiteUrl }) => (
               <SponsorTile {...{ imageUrl, type, websiteUrl }} />
             ))}
-          </div>
-          <div className={css["check-numbers"]}>
-            789123456A 123789456123C 0025
           </div>
         </div>
         <div className={css["right-section"]}>
