@@ -13,7 +13,7 @@ export default function Sponsors() {
           sponsorship packet
         </a>{" "}
         or contact us at{" "}
-        <a href="mailto:sponsors@scottylabs.org">sponsors@scottylabs.org</a>.
+        <a href="mailto:sponsorship@scottylabs.org">sponsorship@scottylabs.org</a>.
       </p>
       <SponsorsSection />
     </section>
