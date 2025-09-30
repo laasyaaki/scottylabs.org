@@ -36,20 +36,30 @@
         &.sponsor--premier {
           height: 130px;
           padding: 30px 20px;
-          background: linear-gradient(
-            83deg,
-            #f6f8f9 -9.92%,
-            #f1b51d 0.16%,
-            #f5f1e3 65.86%
-          );
+          background-color: #fef6e4;
+          outline: 3px solid #f1bc34;
+          position: relative;
+          overflow: hidden;
+
           &:hover {
             outline-color: hsl(43, 88%, 73%);
-            background: linear-gradient(
-              83deg,
-              #f6f8f9 -9.92%,
-              #f1b51d 0.16%,
-              #f5f1e3 95.86%
+            background: hsl(43, 88%, 73%);
+            outline-offset: -4px;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-image: linear-gradient(
+              200deg,
+              rgba(255, 255, 255, 0.6) 11.89%,
+              rgba(255, 255, 255, 0.24) 18.19%,
+              rgba(255, 255, 255, 0) 18.59%
             );
+            /* background-image: url("../assets/sponsors-page/shine.png"); */
+            width: 300px;
+            height: 50px;
           }
         }
         &.sponsor--partner {
