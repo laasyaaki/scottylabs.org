@@ -15,7 +15,7 @@ export default function Sponsors() {
         or contact us at{" "}
         <a href="mailto:sponsors@scottylabs.org">sponsors@scottylabs.org</a>.
       </p>
-      <SponsorsSection />;
+      <SponsorsSection />
     </section>
   );
 }
