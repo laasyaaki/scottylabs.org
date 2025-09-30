@@ -1,9 +1,10 @@
 .main-container {
   .header {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    margin-top: 43px;
-    margin-bottom: 21px;
+    margin-top: 83px;
+    margin-bottom: 41px;
+    text-align: center;
 
     color: var(--black-900);
   }
@@ -83,12 +84,5 @@
         outline-color: hsl(200, 15%, 41%);
       }
     }
-  }
-  .check-numbers {
-    font-family: "micr";
-    font-size: 1.4rem;
-    text-align: left;
-    color: var(--black-900);
-    margin-top: 40px;
   }
 }
