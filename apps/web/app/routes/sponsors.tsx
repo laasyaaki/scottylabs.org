@@ -12,7 +12,8 @@ export default function Sponsors() {
         <a href={sponsorPacketURL} target="_blank">
           sponsorship packet
         </a>{" "}
-        or contact us at sponsors@scottylabs.org.
+        or contact us at{" "}
+        <a href="mailto:sponsors@scottylabs.org">sponsors@scottylabs.org</a>.
       </p>
       <SponsorsSection />;
     </section>
