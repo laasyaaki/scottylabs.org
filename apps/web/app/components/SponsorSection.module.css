@@ -1,0 +1,94 @@
+.main-container {
+  .header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 43px;
+    margin-bottom: 21px;
+
+    color: var(--black-900);
+  }
+  .sponsors-container {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+
+    &.sponsors-container--premier {
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      .sponsor {
+        height: 130px;
+        padding: 30px 20px;
+        background-color: hsl(42, 93%, 98%);
+        outline: 3px solid hsl(43, 87%, 72%);
+        outline-offset: -3px;
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+          outline-color: hsl(43, 88%, 73%);
+          background: hsl(43, 88%, 83%);
+          outline-offset: -4px;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-image: linear-gradient(
+            200deg,
+            rgba(255, 255, 255, 0.6) 11.89%,
+            rgba(255, 255, 255, 0.24) 18.19%,
+            rgba(255, 255, 255, 0) 18.59%
+          );
+          /* background-image: url("../assets/sponsors-page/shine.png"); */
+          width: 300px;
+          height: 50px;
+        }
+      }
+    }
+    &.sponsors-container--partner {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      & .sponsor {
+        background-color: hsl(200, 15%, 98%);
+        height: 90px;
+        padding: 25px 15px;
+        outline-offset: -2px;
+        outline: 2px solid hsl(200, 15%, 91%);
+      }
+    }
+    &.sponsors-container--smaller {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      & .sponsor {
+        height: 70px;
+        padding: 20px 30px;
+        outline-offset: -2px;
+        outline: 2px solid hsl(200, 15%, 91%);
+      }
+    }
+    .sponsor {
+      background-color: var(--tile-bg-color);
+      box-sizing: border-box;
+      border-radius: 5px;
+      transition: 0.1s all;
+      outline: 2px solid transparent;
+      img {
+        height: 100%;
+        width: 100%;
+        -webkit-user-drag: none;
+        object-fit: contain;
+        object-position: center;
+      }
+      &:hover {
+        background-color: hsl(200, 65%, 91%);
+        outline-offset: -2px;
+        outline-color: hsl(200, 15%, 41%);
+      }
+    }
+  }
+  .check-numbers {
+    font-family: "micr";
+    font-size: 1.4rem;
+    text-align: left;
+    color: var(--black-900);
+    margin-top: 40px;
+  }
+}

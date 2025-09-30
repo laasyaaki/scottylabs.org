@@ -13,6 +13,7 @@ import optiver from "../../assets/sponsors-page/sponsors/optiver.svg?inline";
 import scale from "../../assets/sponsors-page/sponsors/scale.svg?inline";
 import snl from "../../assets/sponsors-page/sponsors/snl.svg?inline";
 import visa from "../../assets/sponsors-page/sponsors/visa.svg?inline";
+import decagon from "../../assets/sponsors-page/sponsors/decagon.svg?inline";
 
 export type SponsorTypes = "lowest" | "partner" | "premier";
 
@@ -91,5 +92,10 @@ export const sponsors = [
     imageUrl: visa,
     type: "premier",
     websiteUrl: "https://visa.com/",
+  },
+  {
+    imageUrl: decagon,
+    type: "partner",
+    websiteUrl: "https://decagon.ai/",
   },
 ] satisfies { imageUrl: string; type: SponsorTypes; websiteUrl: string }[];
