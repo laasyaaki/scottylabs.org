@@ -3,12 +3,13 @@ import { getMergedPRs, getCommitsToMain, getAllReposInOrg } from "../github";
 import db from "./db";
 import { repoTable, userTable, pullRequestTable, commitTable } from "./schema";
 let scrapeIsRunningFlag = false;
-// console.log(await octokit.rest.repos.getContributorsStats({ repo: "dining-api", owner: "scottylabs" }));
-async function populateRepositoryListAndGetChangedRepos(org: string) {
+
+type RepoCheckType = "pull_request" | "commits";
+async function populateRepositoryListAndGetChangedRepos(org: string, defaultCheckType: RepoCheckType) {
   const existingRepoData = await db.select().from(repoTable);
   const currentRepoData = (await getAllReposInOrg(org)).map((repo) => ({
     id: repo.id,
-    check_type: "pull_request" as const,
+    check_type: defaultCheckType,
     name: repo.name,
     url: repo.html_url,
     pushed_at: repo.pushed_at ? new Date(repo.pushed_at) : null,
@@ -128,7 +129,7 @@ async function populateCommits(repo: { id: number; org: string; name: string }) 
     const userMap: { [id: string]: Exclude<NonNullable<(typeof commits)[number]["author"]>, Record<string, never>> } =
       commits
         .filter((commit) => commit.author !== null && Object.values(commit.author).length > 0) // we can only make the above type assertion because of this filter
-        .reduce((users, pr) => ({ [pr.author!.id]: pr.author, ...users }), {});
+        .reduce((users, commit) => ({ [commit.author!.id]: commit.author, ...users }), {});
     const updatedUsers = await updateUserTable(Object.values(userMap));
     await db
       .transaction(async (tx) => {
@@ -154,7 +155,7 @@ async function populateCommits(repo: { id: number; org: string; name: string }) 
     console.log(`${repo.name}: No commits found, leaving data as-is`);
   }
 }
-export async function runContributionScrape(org: string) {
+export async function runContributionScrape(org: string, checkType: RepoCheckType) {
   if (scrapeIsRunningFlag) {
     return;
   }
@@ -163,7 +164,7 @@ export async function runContributionScrape(org: string) {
   console.log(`beginning scrape on org ${org}`);
   try {
     // yay top-level error handling! :3
-    const { reposToUpdate, onSuccessDoRepoUpdate } = await populateRepositoryListAndGetChangedRepos(org);
+    const { reposToUpdate, onSuccessDoRepoUpdate } = await populateRepositoryListAndGetChangedRepos(org, checkType);
     const promises = reposToUpdate.map(async (repo) => {
       await populatePRs(repo);
       await populateCommits(repo);

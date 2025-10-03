@@ -6,7 +6,10 @@ import { runContributionScrape } from "./db/refreshDb";
 import { getRecentActivity, getContributors, getLatestUpdate } from "./db/dbQueries";
 import env from "./env";
 
-setInterval(() => runContributionScrape("scottylabs"), 10000);
+setInterval(async () => {
+  await runContributionScrape("scottylabs", "pull_request");
+  await runContributionScrape("scottylabs-labrador", "commits");
+}, 10000);
 const envToLogger = {
   development: {
     transport: {
