@@ -67,6 +67,11 @@ export async function loader(args: Route.LoaderArgs) {
 }
 export const links: Route.LinksFunction = () => [
   {
+    rel: "icon",
+    href: "/favicon.png",
+    type: "image/png",
+  },
+  {
     rel: "preload",
     href: satoshiFont,
     as: "font",
