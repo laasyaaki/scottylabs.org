@@ -29,7 +29,9 @@ export default function SponsorsSection() {
         )}
       >
         {premierSponsors.map(({ imageUrl, websiteUrl }) => (
-          <SponsorTile {...{ imageUrl, websiteUrl }} />
+          <div className={css["sponsors-container--premier__inner-container"]}>
+            <SponsorTile {...{ imageUrl, websiteUrl }} />
+          </div>
         ))}
       </div>
       <div

@@ -14,7 +14,8 @@ import scale from "../../assets/sponsors-page/sponsors/scale.svg?inline";
 import snl from "../../assets/sponsors-page/sponsors/snl.svg?inline";
 import visa from "../../assets/sponsors-page/sponsors/visa.svg?inline";
 import decagon from "../../assets/sponsors-page/sponsors/decagon.svg?inline";
-
+import ripple from "../../assets/sponsors-page/sponsors/ripple.svg?inline";
+import conway from "../../assets/sponsors-page/sponsors/conway.svg?inline";
 export type SponsorTypes = "lowest" | "partner" | "premier";
 
 export const sponsors = [
@@ -97,5 +98,15 @@ export const sponsors = [
     imageUrl: decagon,
     type: "partner",
     websiteUrl: "https://decagon.ai/",
+  },
+  {
+    imageUrl: ripple,
+    type: "premier",
+    websiteUrl: "https://ripple.com/",
+  },
+  {
+    imageUrl: conway,
+    type: "premier",
+    websiteUrl: "https://conway.ai/",
   },
 ] satisfies { imageUrl: string; type: SponsorTypes; websiteUrl: string }[];

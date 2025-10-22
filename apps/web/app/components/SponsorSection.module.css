@@ -15,34 +15,42 @@
     margin-bottom: 10px;
 
     &.sponsors-container--premier {
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      .sponsor {
-        height: 130px;
-        padding: 30px 20px;
-        background-color: hsl(42, 93%, 98%);
-        outline: 3px solid hsl(43, 87%, 83%);
-        outline-offset: -3px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      position: relative;
+      .sponsors-container--premier__inner-container {
         position: relative;
-        overflow: hidden;
-
-        &:hover {
-          outline-color: hsl(43, 88%, 73%);
-          background: hsl(43, 88%, 83%);
-        }
+        height: 130px;
+        background: linear-gradient(
+          221deg,
+          hsla(39, 99%, 86%, 1) 0%,
+          rgb(243, 201, 123) 60%
+        );
+        border-radius: 5px;
         &::after {
           content: "";
           position: absolute;
           top: 0;
           right: 0;
-          background-image: linear-gradient(
-            200deg,
-            rgba(255, 255, 255, 0.6) 11.89%,
-            rgba(255, 255, 255, 0.24) 18.19%,
-            rgba(255, 255, 255, 0) 18.59%
-          );
-          /* background-image: url("../assets/sponsors-page/shine.png"); */
-          width: 300px;
-          height: 50px;
+          background-image: url("../assets/sponsors-page/title.svg");
+          background-position: top right;
+          background-repeat: no-repeat;
+          height: 90px;
+          width: 200px;
+          background-size: contain;
+          pointer-events: none;
+        }
+      }
+      .sponsor {
+        padding: 30px 40px;
+        position: absolute;
+        inset: 3px;
+        background-color: hsl(42, 93%, 98%);
+        outline-offset: -3px;
+        overflow: hidden;
+
+        &:hover {
+          outline-color: transparent;
+          background: hsl(43, 88%, 93%);
         }
       }
     }
