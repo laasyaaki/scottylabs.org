@@ -26,7 +26,7 @@
           rgb(243, 201, 123) 60%
         );
         border-radius: 5px;
-        &::after {
+        /* &::after {
           content: "";
           position: absolute;
           top: 0;
@@ -38,7 +38,7 @@
           width: 200px;
           background-size: contain;
           pointer-events: none;
-        }
+        } */
       }
       .sponsor {
         padding: 30px 40px;
