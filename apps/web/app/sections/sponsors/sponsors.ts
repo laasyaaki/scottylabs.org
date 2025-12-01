@@ -44,11 +44,11 @@ export const sponsors = [
     type: "premier",
     websiteUrl: "https://www.coderabbit.ai/",
   },
-  {
-    imageUrl: commvault,
-    type: "partner",
-    websiteUrl: "https://www.commvault.com/",
-  },
+  // {
+  //   imageUrl: commvault,
+  //   type: "partner",
+  //   websiteUrl: "https://www.commvault.com/",
+  // },
   {
     imageUrl: deshaw,
     type: "partner",
