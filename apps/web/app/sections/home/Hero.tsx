@@ -59,8 +59,8 @@ function Hero() {
           <div className={css["events"]}>
             {[
               {
-                text: "Register for Nova, a GenAI Hackathon!!",
-                url: "https://nova.scottylabs.org/",
+                text: "Register for TartanHacks!",
+                url: "https://www.tartanhacks.com/",
               },
               {
                 text: "Check out CMUGPT",
