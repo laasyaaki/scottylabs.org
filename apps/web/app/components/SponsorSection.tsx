@@ -29,7 +29,10 @@ export default function SponsorsSection() {
         )}
       >
         {premierSponsors.map(({ imageUrl, websiteUrl }) => (
-          <div className={css["sponsors-container--premier__inner-container"]}>
+          <div
+            className={css["sponsors-container--premier__inner-container"]}
+            key={websiteUrl}
+          >
             <SponsorTile {...{ imageUrl, websiteUrl }} />
           </div>
         ))}
@@ -41,7 +44,7 @@ export default function SponsorsSection() {
         )}
       >
         {partnerSponsors.map(({ imageUrl, websiteUrl }) => (
-          <SponsorTile {...{ imageUrl, websiteUrl }} />
+          <SponsorTile {...{ imageUrl, websiteUrl }} key={websiteUrl} />
         ))}
       </div>
       <div
@@ -51,7 +54,7 @@ export default function SponsorsSection() {
         )}
       >
         {lowestSponsors.map(({ imageUrl, websiteUrl }) => (
-          <SponsorTile {...{ imageUrl, websiteUrl }} />
+          <SponsorTile {...{ imageUrl, websiteUrl }} key={websiteUrl} />
         ))}
       </div>
     </div>
