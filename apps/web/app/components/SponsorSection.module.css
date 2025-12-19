@@ -9,17 +9,32 @@
 
     color: var(--black-900);
   }
+  .title-sponsor-container {
+    text-align: center;
+    color: var(--black-900);
+    h2 {
+      font-size: 1.5rem;
+    }
+    img {
+      margin-top: 20px;
+      transition: 0.2s all;
+      &:hover {
+        transform: scale(1.04);
+      }
+    }
+    margin-bottom: 50px;
+  }
   .sponsors-container {
     display: grid;
     gap: 10px;
     margin-bottom: 10px;
 
     &.sponsors-container--premier {
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       position: relative;
       .sponsors-container--premier__inner-container {
         position: relative;
-        height: 130px;
+        padding: 3px;
         background: linear-gradient(
           221deg,
           hsla(39, 99%, 86%, 1) 0%,
@@ -41,10 +56,10 @@
         } */
       }
       .sponsor {
-        padding: 30px 40px;
-        position: absolute;
-        inset: 3px;
-        background-color: hsl(42, 93%, 98%);
+        padding: 30px 30px;
+        height: 50px;
+        display: block;
+        background-color: hsl(42, 93%, 99%);
         outline-offset: -3px;
         overflow: hidden;
 
@@ -52,22 +67,41 @@
           outline-color: transparent;
           background: hsl(43, 88%, 93%);
         }
+        &:hover {
+          &::before {
+            animation: shine 1s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
+          }
+        }
+        &::before {
+          content: "";
+          display: block;
+          width: 0px;
+          height: 86%;
+          position: absolute;
+          top: 7%;
+          left: 0%;
+
+          opacity: 0;
+          background: white;
+          box-shadow: 0 0 18px 8px white;
+          transform: skewX(20deg);
+        }
       }
     }
     &.sponsors-container--partner {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       & .sponsor {
         background-color: hsl(200, 15%, 98%);
-        height: 90px;
+        height: 30px;
         padding: 25px 15px;
         outline-offset: -2px;
         outline: 2px solid hsl(200, 15%, 94%);
       }
     }
     &.sponsors-container--smaller {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       & .sponsor {
-        height: 70px;
+        height: 30px;
         padding: 20px 30px;
         outline-offset: -2px;
         outline: 2px solid hsl(200, 15%, 91%);
@@ -75,7 +109,6 @@
     }
     .sponsor {
       background-color: var(--tile-bg-color);
-      box-sizing: border-box;
       border-radius: 5px;
       transition: 0.1s all;
       outline: 2px solid transparent;
@@ -92,5 +125,20 @@
         outline-color: hsl(200, 15%, 41%);
       }
     }
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: 0%;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    left: 100%;
   }
 }

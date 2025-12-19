@@ -4,7 +4,7 @@ import balysany from "../../assets/sponsors-page/sponsors/balysany.svg?inline";
 import citadel from "../../assets/sponsors-page/sponsors/citadel.svg?inline";
 import coderabbit from "../../assets/sponsors-page/sponsors/coderabbit.svg?inline";
 import commvault from "../../assets/sponsors-page/sponsors/commvault.svg?inline";
-
+import imc from "../../assets/sponsors-page/sponsors/imc.svg?inline";
 import dedalusLabs from "../../assets/sponsors-page/sponsors/dedalus.webp";
 import deshaw from "../../assets/sponsors-page/sponsors/deshaw.svg?inline";
 import fly from "../../assets/sponsors-page/sponsors/fly.svg?inline";
@@ -115,5 +115,10 @@ export const sponsors = [
     imageUrl: dedalusLabs,
     type: "premier",
     websiteUrl: "https://www.dedaluslabs.ai/",
+  },
+  {
+    imageUrl: imc,
+    type: "partner",
+    websiteUrl: "https://www.imc.com/",
   },
 ] satisfies { imageUrl: string; type: SponsorTypes; websiteUrl: string }[];
