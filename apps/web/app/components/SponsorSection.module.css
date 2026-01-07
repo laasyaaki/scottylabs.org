@@ -41,19 +41,6 @@
           rgb(243, 201, 123) 60%
         );
         border-radius: 5px;
-        /* &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          background-image: url("../assets/sponsors-page/title.svg?inline");
-          background-position: top right;
-          background-repeat: no-repeat;
-          height: 90px;
-          width: 200px;
-          background-size: contain;
-          pointer-events: none;
-        } */
       }
       .sponsor {
         padding: 30px 30px;
@@ -69,7 +56,7 @@
         }
         &:hover {
           &::before {
-            animation: shine 1s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: shine 0.4s forwards linear;
           }
         }
         &::before {
@@ -130,12 +117,12 @@
 
 @keyframes shine {
   0% {
-    left: 0%;
+    left: 10%;
   }
   40% {
     opacity: 1;
   }
-  60% {
+  100% {
     opacity: 0.5;
   }
   100% {

@@ -18,6 +18,7 @@ import visa from "../../assets/sponsors-page/sponsors/visa.svg?inline";
 import decagon from "../../assets/sponsors-page/sponsors/decagon.svg?inline";
 import ripple from "../../assets/sponsors-page/sponsors/ripple.svg?inline";
 import conway from "../../assets/sponsors-page/sponsors/conway.svg?inline";
+import capitalOne from "../../assets/sponsors-page/sponsors/capitalone.svg?inline";
 export type SponsorTypes = "lowest" | "partner" | "premier";
 
 export const sponsors = [
@@ -120,5 +121,10 @@ export const sponsors = [
     imageUrl: imc,
     type: "partner",
     websiteUrl: "https://www.imc.com/",
+  },
+  {
+    imageUrl: capitalOne,
+    type: "premier",
+    websiteUrl: "https://www.capitalone.com/",
   },
 ] satisfies { imageUrl: string; type: SponsorTypes; websiteUrl: string }[];
