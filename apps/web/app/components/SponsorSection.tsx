@@ -1,7 +1,7 @@
 import css from "./SponsorSection.module.css";
 import clsx from "clsx";
 import { sponsors } from "../sections/sponsors/sponsors";
-import appLovin from "../assets/sponsors-page/sponsors/applovin.svg?inline";
+import appLovin from "../assets/sponsors-page/sponsors/applovin-axon.png";
 const SponsorTile = ({
   imageUrl,
   websiteUrl,
@@ -26,7 +26,7 @@ export default function SponsorsSection() {
       <div className={css["title-sponsor-container"]}>
         <h2 className={css[""]}>TITLE SPONSOR</h2>
         <a href="https://www.applovin.com/en" target="_blank">
-          <img src={appLovin} />
+          <img src={appLovin} alt="AppLovin" style={{ width: "100%" }} />
         </a>
       </div>
 
