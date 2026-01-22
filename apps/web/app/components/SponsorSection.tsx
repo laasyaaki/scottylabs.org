@@ -26,7 +26,7 @@ export default function SponsorsSection() {
       <div className={css["title-sponsor-container"]}>
         <h2 className={css[""]}>TITLE SPONSOR</h2>
         <a href="https://www.applovin.com/en" target="_blank">
-          <img src={appLovin} alt="AppLovin" style={{ width: "100%" }} />
+          <img src={appLovin} alt="AppLovin" />
         </a>
       </div>
 
