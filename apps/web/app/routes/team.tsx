@@ -413,7 +413,7 @@ const YEARS: YearType[] = [
     label: '2025-26',
     directors: [
       { name: 'Theo Urban', role: 'Director of ScottyLabs', image: TheoUrbanImg, url: 'https://www.linkedin.com/in/tsurban/' },
-      { name: 'Samritha Duggarala', role: 'Director of Events', image: SamhithaDuggiralaImg, url: 'https://www.linkedin.com/in/samhitha-duggirala/' },
+      { name: 'Samhitha Duggirala', role: 'Director of Events', image: SamhithaDuggiralaImg, url: 'https://www.linkedin.com/in/samhitha-duggirala/' },
       { name: 'Arjun Patel', role: 'Director of Outreach', image: ArjunPatelImg, url: 'https://www.linkedin.com/in/arjun-niraj-patel/' },
       { name: 'Yuxiang Huang', role: 'Director of Tech', image: YuxiangHuangImg, url: 'https://www.linkedin.com/in/yuxiang-huang-7b646028b/' },
       { name: 'Thomas Kanz', role: 'Director of Labrador', image: ThomasKanzImg, url: 'https://www.linkedin.com/in/thomas-kanz/' },
