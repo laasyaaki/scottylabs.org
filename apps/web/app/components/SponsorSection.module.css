@@ -18,6 +18,10 @@
     img {
       margin-top: 20px;
       transition: 0.2s all;
+      height: auto;
+      padding-inline: 30px;
+      max-width: 800px;
+      box-sizing: border-box;
       &:hover {
         transform: scale(1.04);
       }
