@@ -1060,7 +1060,6 @@ export default function Team() {
       
 
       {/* Textbox Rectangle */}
-      {/* Textbox Rectangle */}
       <div
         style={{
           borderRadius: '20px',
