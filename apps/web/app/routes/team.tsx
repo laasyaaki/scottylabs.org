@@ -15,6 +15,8 @@ import VedanthRamanathanImg from '../assets/team-page/VedanthRamanathan.jpg';
 import YuchenZhouImg from '../assets/team-page/YuchenZhou.jpg';
 import JackHurewitzImg from '../assets/team-page/JackHurewitz.avif';
 import AnishPallatiImg from '../assets/team-page/AnishPallati.jpg';
+import MaxWenImg from '../assets/team-page/MaxWen.jpg';
+import RyanLiImg from '../assets/team-page/RyanLi.jpg';
 import XavierLienImg from '../assets/team-page/XavierLien.jpg';
 import LaasyaAkiImg from '../assets/team-page/LaasyaAki.jpg';
 import EricXuImg from '../assets/team-page/EricXu.png';
@@ -74,6 +76,75 @@ import ShreeyaKhuranaImg from '../assets/team-page/ShreeyaKhurana.jpg';
 import DavidHwangImg from '../assets/team-page/DavidHwang.jpg';
 import ShannonLinImg from '../assets/team-page/ShannonLin.jpg';
 import SanjanaMeduriImg from '../assets/team-page/SanjanaMeduri.jpg';
+import BrandonWeiImg from '../assets/team-page/BrandonWei.jpg';
+import GramLiuImg from '../assets/team-page/GramLiu.jpg';
+import NicolasEttlinImg from '../assets/team-page/NicolasEttlin.jpg';
+import JoyceHongImg from '../assets/team-page/JoyceHong.jpg';
+import RyanLauImg from '../assets/team-page/RyanLau.png';
+import RichardGuoImg from '../assets/team-page/RichardGuo.jpg';
+import ElizabethLouieImg from '../assets/team-page/ElizabethLouie.jpg';
+import JaclynYangImg from '../assets/team-page/JaclynYang.jpg';
+import EliseChapmanImg from '../assets/team-page/EliseChapman.jpg';
+import SusanNiImg from '../assets/team-page/SusanNi.jpg';
+import SwatiAnshuImg from '../assets/team-page/SwatiAnshu.jpg';
+import AnushkaSaxenaImg from '../assets/team-page/AnushkaSaxena.jpg';
+import VarshiniSelvaduraiImg from '../assets/team-page/VarshiniSelvadurai.jpg';
+import OliviaCorrodiImg from '../assets/team-page/OliviaCorrodi.jpg';
+import RaghavGuptaImg from '../assets/team-page/RaghavGupta.jpg';
+import JasonYaoImg from '../assets/team-page/JasonYao.jpg';
+import AmitaGoyalImg from '../assets/team-page/AmitaGoyal.jpg';
+import KunalShardaImg from '../assets/team-page/KunalSharda.jpg';
+import SayanChaudhryImg from '../assets/team-page/SayanChaudhry.jpg'; 
+import KeifferAcobaImg from '../assets/team-page/KeifferAcoba.jpg';
+import YoshiTorralvaImg from '../assets/team-page/YoshiTorralva.jpg';
+import AkshathJainImg from '../assets/team-page/AkshathJain.jpg';
+import SrutiSrinidhiImg from '../assets/team-page/SrutiSrinidhi.jpg';
+import RichardYanImg from '../assets/team-page/RichardYan.jpg';
+import StephanieWangImg from '../assets/team-page/StephanieWang.jpg';
+import DeepayanPatraImg from '../assets/team-page/DeepayanPatra.jpg';
+import EricChengImg from '../assets/team-page/EricCheng.jpg';
+import ArleenLiuImg from '../assets/team-page/ArleenLiu.jpg';
+import MayankJainImg from '../assets/team-page/MayankJain.jpg';
+import MichaelBeckerImg from '../assets/team-page/MichaelBecker.png';
+import JoshDurhamImg from '../assets/team-page/JoshDurham.jpg';
+import SrinivasLadeImg from '../assets/team-page/SrinivasLade.jpg';
+import RobinHanImg from '../assets/team-page/RobinHan.jpg';
+import AudreyJinImg from '../assets/team-page/AudreyJin.jpg';
+import YoLeiChenImg from '../assets/team-page/Yo-LeiChen.jpg';
+import StephanieYouImg from '../assets/team-page/StephanieYou.jpg';
+import AndyGaoImg from '../assets/team-page/AndyGao.jpg';
+import ConnorMowryImg from '../assets/team-page/ConnorMowry.jpg';
+import OscarDadfarImg from '../assets/team-page/OscarDadfar.jpg';
+import EmilyNewmanImg from '../assets/team-page/EmilyNewman.jpg';
+import SerenaWangImg from '../assets/team-page/SerenaWang.jpg';
+import JoshZhansonImg from '../assets/team-page/JoshZhanson.jpg';
+import ShalomYibletImg from '../assets/team-page/ShalomYiblet.jpg';
+import EmilyLoImg from '../assets/team-page/EmilyLo.jpg';
+import JackieGastonImg from '../assets/team-page/JackieGaston.jpg';
+import ScottKrulcikImg from '../assets/team-page/ScottKrulcik.png';
+import JasonChangImg from '../assets/team-page/JasonChang.jpg';
+import MarkVellaImg from '../assets/team-page/MarkVella.jpg';
+import JakeZimmermanImg from '../assets/team-page/JakeZimmerman.jpg';
+import LoisChangImg from '../assets/team-page/LoisChang.png';
+import MonishaGopalImg from '../assets/team-page/MonishaGopal.jpg';
+import OscarBeziImg from '../assets/team-page/OscarBezi.jpg';
+import JustinGallagherImg from '../assets/team-page/JustinGallagher.jpg';
+import TaylorPoulosImg from '../assets/team-page/TaylorPoulos.jpg';
+import TomShenImg from '../assets/team-page/TomShen.jpg';
+import AndrewBensonImg from '../assets/team-page/AndrewBenson.jpg';
+import JeffCooperImg from '../assets/team-page/JeffCooper.jpg';
+import JuliaTeitelbaumImg from '../assets/team-page/JuliaTeitelbaum.jpg';
+import QuintinCarlonImg from '../assets/team-page/QuintinCarlon.jpg';
+import DrewInglisImg from '../assets/team-page/DrewInglis.jpg';
+import AmyQuispeImg from '../assets/team-page/AmyQuispe.jpg';
+import RyanHassanImg from '../assets/team-page/RyanHassan.jpg';
+import VinayVemuriImg from '../assets/team-page/VinayVemuri.jpg';
+import KellieMedlinImg from '../assets/team-page/KellieMedlin.jpg';
+
+
+
+
+
 
 
 // Type definitions
@@ -363,15 +434,15 @@ const YEARS: YearType[] = [
       ],
       [
         { name: 'Jack Hurewitz', role: 'Head of Data & Analytics', image: JackHurewitzImg, url: 'https://github.com/JackHurew' },
-        { name: 'Anish Pallati', role: 'Head of DevOps, Terrier Tech Lead', image: AnishPallatiImg, url: 'https://www.linkedin.com/in/anish-pallati/' },
+        { name: 'Anish Pallati', role: 'Head of DevOps, Terrier Tech Lead, O-Quest Tech Lead', image: AnishPallatiImg, url: 'https://www.linkedin.com/in/anish-pallati/' },
+        { name: 'Max Wen', role: 'Internal Tooling Tech Lead', image: MaxWenImg, url: 'https://www.linkedin.com/in/max-wen/' },
+        { name: 'Ryan Li', role: 'DevOps Tech Lead', image: RyanLiImg, url: 'https://www.linkedin.com/in/ryan-li-ab139919b/' },
         { name: 'Xavier Lien', role: 'CMU Courses Tech Lead', image: XavierLienImg, url: 'https://www.linkedin.com/in/xavilien/' },
         { name: 'Laasya Aki', role: 'CMU Eats Tech Co-Lead', image: LaasyaAkiImg, url: 'https://www.linkedin.com/in/laasyaaki/' },
         { name: 'Eric Xu', role: 'CMU Eats Tech Co-Lead, FLEx (Frontend Landing Experience) Tech Lead', image: EricXuImg, url: 'https://www.linkedin.com/in/eric-xu-032890214/' },
         { name: 'Ellyse Lai', role: 'CMU Floorplans Tech Lead', image: EllyseLaiImg, url: 'https://www.linkedin.com/in/ellyse-lai/' },
         { name: 'Luke Hann', role: 'CMU Maps Tech Lead', image: LukeHannImg, url: 'https://www.linkedin.com/in/luke-hann-2ba585322/' },
-        { name: 'Anna Gu', role: 'Lost & Found Tech Lead', image: AnnaGuImg, url: 'https://www.linkedin.com/in/anna-gu-b7591a299/' },
-        { name: 'Autumn Qiu', role: 'TartanHacks Dashboard Tech Lead', image: AutumnQiuImg, url: 'https://www.linkedin.com/in/autumn-qiu/' },
-      ],
+        { name: 'Anna Gu', role: 'Lost & Found Tech Lead', image: AnnaGuImg, url: 'https://www.linkedin.com/in/anna-gu-b7591a299/' },      ],
       [
         { name: 'Indu Arimilli', role: 'Head of Recruitment & Retention', image: InduArimilliImg, url: 'https://www.linkedin.com/in/induarimilli/' },
         { name: 'Dhiren Narne', role: 'Head of Recruitment & Retention', image: DhirenNarneImg, url: 'https://www.linkedin.com/in/dhirennarne/' },
@@ -499,8 +570,337 @@ const YEARS: YearType[] = [
       { name: 'Shannon Lin', role: 'Director of Design', image: ShannonLinImg, url: 'https://www.linkedin.com/in/shannonalin/' },
       { name: 'Sanjana Meduri', role: 'Director of Finance', image: SanjanaMeduriImg, url: 'https://www.linkedin.com/in/sanjana-meduri/' },
     ],
-    teams: [[], [], [], [], [], [], []],
+    teams: [[], 
+      [
+        { name: 'Chloe Deng', role: 'Head Of Logistics', image: ChloeDengImg, url: 'https://www.linkedin.com/in/chloehdeng/' },
+        { name: 'Brandon Wei', role: 'Head Of Event Exploration/Design', image: BrandonWeiImg, url: 'https://www.linkedin.com/in/brandon-wei21/' },
+        { name: 'Gram Liu', role: 'Head Of Community', image: GramLiuImg, url: 'https://www.linkedin.com/in/gramliu/' },
+      ], 
+      [
+        { name: 'Preethi Krishnamoorthy', role: 'Head of Recruitment & Retention', image: PreethiKrishnamoorthyImg, url: 'https://www.linkedin.com/in/preethikrish/' },
+        { name: 'Emily Guo', role: 'Head of Content', image: EmilyGuoImg, url: 'https://www.linkedin.com/in/emily-guo17/' },
+      ], 
+      [
+        { name: 'Nicolas Ettlin', role: 'CMU Maps Tech Lead, CMU Eats Tech Lead', image: NicolasEttlinImg, url: 'https://www.linkedin.com/in/ettlin/' },
+        { name: 'Bradley Teo', role: 'CMU Courses Tech Lead', image: BradleyTeoImg, url: 'https://www.linkedin.com/in/bradley-teo/' },
+        { name: 'Rajeev Godse', role: 'Scotty.lol Tech Lead', image: RajeevGodseImg, url: 'https://www.linkedin.com/in/rajeevgodse/' },
+        { name: 'Anuda Weerasinghe', role: 'Scotty.lol Tech Lead', image: AnudaWeerasingheImg, url: 'https://www.linkedin.com/in/anudaw/' },
+        { name: 'Gram Liu', role: 'scottylabs.org Tech Lead, TartanHacks Software Suite Tech Lead', image: GramLiuImg, url: 'https://www.linkedin.com/in/gramliu/' },
+        { name: 'Joyce Hong', role: 'TartanHacks Dashboard Tech Lead', image: JoyceHongImg, url: 'https://www.linkedin.com/in/joyce-hong-b53985204/' },
+        { name: 'Ryan Lau', role: 'TartanHacks Dashboard Tech Lead', image: RyanLauImg, url: 'https://www.linkedin.com/in/rayan-lau-79a212a8/' },
+        { name: 'Alexander Obolenskiy', role: 'TartanHacks Registration Tech Lead', image: AlexanderObolenskiyImg, url: 'https://www.linkedin.com/in/alexander-obolenskiy/' },
+        { name: 'Elizabeth Louie', role: 'Lost & Found Tech Lead', image: ElizabethLouieImg, url: 'https://www.linkedin.com/in/elizabethlouie/' },
+        { name: 'Gabriel Hall', role: 'Lost & Found Tech Lead, Roomies Tech Lead', image: GabrielHallImg, url: 'https://www.linkedin.com/in/gabriel-hall' },
+        { name: 'Michelle Li', role: 'Lost & Found Tech Lead', image: MichelleLiImg, url: 'https://www.linkedin.com/in/michelleli77/' },
+        { name: 'Jaclyn Yang', role: 'Lost & Found Tech Lead', image: JaclynYangImg, url: 'https://www.linkedin.com/in/jaclyn-yang/' },
+      ], 
+      [],
+      [
+        { name: 'Elise Chapman', role: 'Head of UI/UX', image: EliseChapmanImg, url: 'https://www.linkedin.com/in/elise-raich-chapman-8267b11ab/' },
+        { name: 'Susan Ni', role: 'Head of UI/UX', image: SusanNiImg, url: 'https://www.linkedin.com/in/susan-ni/' },
+      ], 
+      [
+        { name: 'Swati Anshu', role: 'Head of Sponsorship', image: SwatiAnshuImg, url: 'https://www.linkedin.com/in/swatianshu/' },
+        { name: 'Marian Qian', role: 'Head of Purchasing & Planning', image: MarianQianImg, url: 'https://www.linkedin.com/in/marian-q-721580169/' },
+      ]],
   },
+  {
+    label: '2021-22',
+    directors: [
+      { name: 'Anushka Saxena', role: 'Director of ScottyLabs', image: AnushkaSaxenaImg, url: 'https://www.linkedin.com/in/anushkasaxena1/' },
+      { name: 'Varshini Selvadurai', role: 'Director of Events', image: VarshiniSelvaduraiImg, url: 'https://www.linkedin.com/in/varshini-selvadurai-322572165/' },
+      { name: 'Olivia Corrodi', role: 'Deputy', image: OliviaCorrodiImg, url: 'https://www.linkedin.com/in/olivia-corrodi/' },
+      { name: 'Anuda Weerasinghe', role: 'Director of Tech', image: AnudaWeerasingheImg, url: 'https://www.linkedin.com/in/anudaw/' },
+      null, // Labrador missing
+      { name: 'Shannon Lin', role: 'Director of Design', image: ShannonLinImg, url: 'https://www.linkedin.com/in/shannonalin/' },
+      { name: 'Amita Goyal', role: 'Director of Finance', image: AmitaGoyalImg, url: 'https://www.linkedin.com/in/amita-goyal-a23697172/' },
+    ],
+    teams: [[], 
+      [
+        { name: 'Tika Naik', role: 'Head Of Logistics', image: TikaNaikImg, url: 'https://www.linkedin.com/in/tika-naik/' },
+        { name: 'Raghav Gupta', role: 'Head Of Event Exploration/Design', image: RaghavGuptaImg, url: 'https://www.linkedin.com/in/raghavgupta84/' },
+        { name: 'Richard Guo', role: 'Social Chair', image: RichardGuoImg, url: 'https://www.linkedin.com/in/rwguo/' },
+        { name: 'Gram Liu', role: 'Social Chair', image: GramLiuImg, url: 'https://www.linkedin.com/in/gramliu/' },
+      ], 
+      [
+        { name: 'Shreeya Khurana', role: 'Chief of Staff', image: ShreeyaKhuranaImg, url: 'https://www.linkedin.com/in/shreeya-khurana/' },
+        { name: 'Sanjana Meduri', role: 'Head of Sponsorship', image: SanjanaMeduriImg, url: 'https://www.linkedin.com/in/sanjana-meduri/' },
+      ], 
+      [
+        { name: 'Gram Liu', role: 'TartanHacks Tech Lead, CMU Eats Tech Lead', image: GramLiuImg, url: 'https://www.linkedin.com/in/gramliu/' },
+        { name: 'Anuda Weerasinghe', role: 'CMU Courses Tech Lead', image: AnudaWeerasingheImg, url: 'https://www.linkedin.com/in/anudaw/' },
+        { name: 'Jason Yao', role: 'pausch-ui Tech Lead', image: JasonYaoImg, url: 'https://www.linkedin.com/in/jyao6429/' },
+        { name: 'Preethi Krishnamoorthy', role: 'CMU Maps Tech Lead', image: PreethiKrishnamoorthyImg, url: 'https://www.linkedin.com/in/preethikrish/' },
+      ], 
+      [], 
+      [], 
+      [
+        { name: 'Sanjana Meduri', role: 'Head of Sponsorship', image: SanjanaMeduriImg, url: 'https://www.linkedin.com/in/sanjana-meduri/' },
+        { name: 'Kunal Sharda', role: 'Head of Purchasing', image: KunalShardaImg, url: 'https://www.linkedin.com/in/kunal-sharda/' },
+      ]],
+  },
+  {
+    label: '2020-21',
+    directors: [
+      { name: 'Sayan Chaudhry', role: 'Director of ScottyLabs', image: SayanChaudhryImg, url: 'https://www.linkedin.com/in/sayanchaudhry/' },
+      { name: 'Anushka Saxena', role: 'Director of Events', image: AnushkaSaxenaImg, url: 'https://www.linkedin.com/in/anushkasaxena1/' },
+      { name: 'Keiffer Acoba', role: 'Director of Operations', image: KeifferAcobaImg, url: 'https://www.linkedin.com/in/keiffer-acoba/' },
+      { name: 'Gram Liu', role: 'Director of Tech', image: GramLiuImg, url: 'https://www.linkedin.com/in/gramliu/' },
+      null, // Labrador missing
+      { name: 'Yoshi Torralva', role: 'Director of Design', image: YoshiTorralvaImg, url: 'https://www.linkedin.com/in/ytorralva/' },
+      { name: 'Akshath Jain', role: 'Director of Finance', image: AkshathJainImg, url: 'https://www.linkedin.com/in/akshath-j-99b93b139/' },
+    ],
+    teams: [ 
+      [],
+      [
+        { name: 'Olivia Corrodi', role: 'Head of Logistics', image: OliviaCorrodiImg, url: 'https://www.linkedin.com/in/olivia-corrodi/' },
+        { name: 'Varshini Selvadurai', role: 'Head of Curation', image: VarshiniSelvaduraiImg, url: 'https://www.linkedin.com/in/varshini-selvadurai-322572165/' },
+        { name: 'Sruti Srinidhi', role: 'Head of Community', image: SrutiSrinidhiImg, url: 'https://www.linkedin.com/in/sruti-srinidhi/' },
+        { name: 'Richard Yan', role: 'Head Of Food', image: RichardYanImg, url: 'https://www.linkedin.com/in/richard-yan-81b982170/' },
+      ], 
+      [
+        { name: 'Deepayan Patra', role: 'Chief of Staff', image: DeepayanPatraImg, url: 'https://www.linkedin.com/in/thepinetree/' },
+        { name: 'Sanjana Meduri', role: 'Head of Publicity', image: SanjanaMeduriImg, url: 'https://www.linkedin.com/in/sanjana-meduri/' },
+      ],
+      [
+        { name: 'Gram Liu', role: 'pausch-ui Tech Lead', image: GramLiuImg, url: 'https://www.linkedin.com/in/gramliu/' },
+        { name: 'Richard Guo', role: 'pausch-ui Tech Lead', image: RichardGuoImg, url: 'https://www.linkedin.com/in/rwguo/' },
+        { name: 'Eric Cheng', role: 'CMU Eats Tech Lead', image: EricChengImg, url: 'https://www.linkedin.com/in/eh8/' },
+      ], 
+      [], 
+      [
+        { name: 'Stephanie Wang', role: 'Head of Production', image: StephanieWangImg, url: 'https://www.linkedin.com/in/stephanie-wang-cmu/' },
+      ], 
+      [
+        { name: 'Arleen Liu', role: 'Head of Sponsorship', image: ArleenLiuImg, url: 'https://www.linkedin.com/in/arleenliu/' },      
+      ]],
+  },
+  {
+    label: '2019-20',
+    directors: [
+      { name: 'Sayan Chaudhry', role: 'Director of ScottyLabs', image: SayanChaudhryImg, url: 'https://www.linkedin.com/in/sayanchaudhry/' },
+      { name: 'Mayank Jain', role: 'Director of Events', image: MayankJainImg, url: 'https://www.linkedin.com/in/mjain30/' },
+      { name: 'Akshath Jain', role: 'Director of Operations', image: AkshathJainImg, url: 'https://www.linkedin.com/in/akshath-j-99b93b139/' },
+      { name: 'Richard Guo', role: 'Director of Tech', image: RichardGuoImg, url: 'https://www.linkedin.com/in/rwguo/' },
+      null, // Labrador missing
+      { name: 'Michael Becker', role: 'Director of Design', image: MichaelBeckerImg, url: 'https://michaelwilliambecker.com/#/' },
+      { name: 'Josh Durham', role: 'Director of Finance', image: JoshDurhamImg, url: 'https://www.linkedin.com/in/joshua-durham-486442151/' },
+    ],
+    teams: [ 
+      [],
+      [
+        { name: 'Olivia Corrodi', role: 'Head of Logistics', image: OliviaCorrodiImg, url: 'https://www.linkedin.com/in/olivia-corrodi/' },
+        { name: 'Deepayan Patra', role: 'Head of Food', image: DeepayanPatraImg, url: 'https://www.linkedin.com/in/thepinetree/' },
+      ], 
+      [
+        { name: 'Keiffer Acoba', role: 'Head of Content', image: KeifferAcobaImg, url: 'https://www.linkedin.com/in/keiffer-acoba/' },
+        { name: 'Richard Yan', role: 'Head Of Outreach', image: RichardYanImg, url: 'https://www.linkedin.com/in/richard-yan-81b982170/' },
+      ],
+      [
+        { name: 'Srinivas Lade', role: 'Head of Full Stack', image: SrinivasLadeImg, url: 'https://www.linkedin.com/in/srinivas-lade/' },
+        { name: 'Robin Han', role: 'Head of Backend', image: RobinHanImg, url: 'https://www.linkedin.com/in/r-han/' },
+        { name: 'Eric Cheng', role: 'CMU Eats Tech Lead', image: EricChengImg, url: 'https://www.linkedin.com/in/eh8/' },
+      ], 
+      [], 
+      [
+        { name: 'Audrey Jin', role: 'Head of Branding', image: AudreyJinImg, url: 'https://www.linkedin.com/in/audreyjin/' },
+      ], 
+      [
+        { name: 'Yo-Lei Chen', role: 'Head of Sponsorship', image: YoLeiChenImg, url: 'https://www.linkedin.com/in/yoleichen/' },      
+      ]],
+  },
+  {
+    label: '2018-19',
+    directors: [
+      { name: 'Stephanie You', role: 'Director of ScottyLabs', image: StephanieYouImg, url: 'https://www.linkedin.com/in/stephanieyou/' },
+      { name: 'Andy Gao', role: 'Director of Events', image: AndyGaoImg, url: 'https://www.linkedin.com/in/agao1224/' },
+      null, // Operations missing
+      { name: 'Connor Mowry', role: 'Director of Tech', image: ConnorMowryImg, url: 'https://www.linkedin.com/in/crcmowry/' },
+      null, // Labrador missing
+      { name: 'Oscar Dadfar', role: 'Director of Design', image: OscarDadfarImg, url: 'https://www.linkedin.com/in/oscar-dadfar-3699b15b/' },
+      { name: 'Sayan Chaudhry', role: 'Director of Finance', image: SayanChaudhryImg, url: 'https://www.linkedin.com/in/sayanchaudhry/' },
+    ],
+    teams: [ 
+      [], 
+      [],
+      [], 
+      [
+        { name: 'Emily Newman', role: 'CMU Eats Tech Lead', image: EmilyNewmanImg, url: 'https://www.linkedin.com/in/epnewman/' },
+        { name: 'Eric Cheng', role: 'CMU Eats Tech Lead', image: EricChengImg, url: 'https://www.linkedin.com/in/eh8/' },
+      ], 
+      [], 
+      [], 
+      [
+        { name: 'Yo-Lei Chen', role: 'Head of Sponsorship', image: YoLeiChenImg, url: 'https://www.linkedin.com/in/yoleichen/' },      
+      ]],
+  },
+  {
+    label: '2017-18',
+    directors: [
+      { name: 'Serena Wang', role: 'Director of ScottyLabs', image: SerenaWangImg, url: 'https://www.linkedin.com/in/serena-w/' },
+      { name: 'Josh Zhanson', role: 'Director of Events', image: JoshZhansonImg, url: 'https://www.linkedin.com/in/joshua-zhanson-147b61128/' },
+      null, // Operations missing
+      { name: 'Shalom Yiblet', role: 'Director of Tech', image: ShalomYibletImg, url: 'https://www.linkedin.com/in/yiblet/' },
+      null, // Labrador missing
+      { name: 'Emily Lo', role: 'Director of Design', image: EmilyLoImg, url: 'https://www.linkedin.com/in/loemily/' },
+      { name: 'Stephanie You', role: 'Director of Finance', image: StephanieYouImg, url: 'https://www.linkedin.com/in/stephanieyou/' },
+    ],
+    teams: [ 
+      [], 
+      [],
+      [], 
+      [
+        { name: 'Emily Newman', role: 'CMU Eats Tech Lead', image: EmilyNewmanImg, url: 'https://www.linkedin.com/in/epnewman/' },
+      ], 
+      [], 
+      [], 
+      []],
+  },
+  {
+    label: '2016-17',
+    directors: [
+      { name: 'Jackie Gaston', role: 'Director of ScottyLabs', image: JackieGastonImg, url: 'https://www.linkedin.com/in/jacquelinegastonpetersen/' },
+      null,
+      { name: 'Shalom Yiblet', role: 'Director of Operations', image: ShalomYibletImg, url: 'https://www.linkedin.com/in/yiblet/' },
+      { name: 'Scott Krulcik', role: 'Director of Tech', image: ScottKrulcikImg, url: 'https://www.scottkrulcik.com/' },
+      null, // Labrador missing
+      { name: 'Jason Chang', role: 'Director of Design', image: JasonChangImg, url: 'https://www.linkedin.com/in/jason-c-a35a52126/' },
+      { name: 'Serena Wang', role: 'Director of Finance', image: SerenaWangImg, url: 'https://www.linkedin.com/in/serena-w/' },
+    ],
+    teams: [ 
+      [], 
+      [],
+      [], 
+      [
+        { name: 'Emily Newman', role: 'CMU Eats Tech Lead', image: EmilyNewmanImg, url: 'https://www.linkedin.com/in/epnewman/' },
+      ], 
+      [], 
+      [], 
+      []],
+  },
+  {
+    label: '2015-16',
+    directors: [
+      { name: 'Mark Vella', role: 'Director of ScottyLabs', image: MarkVellaImg, url: 'https://www.linkedin.com/in/markcvella/' },
+      null,
+      { name: 'Oscar Bezi', role: 'Director of Operations', image: OscarBeziImg, url: 'https://bezi.io/' },
+      { name: 'Jake Zimmerman', role: 'Director of Tech', image: JakeZimmermanImg, url: 'https://jez.io/' },
+      null, // Labrador missing
+      { name: 'Lois Chang', role: 'Director of Design', image: LoisChangImg, url: 'https://www.loisyenachang.com/' },
+      { name: 'Monisha Gopal', role: 'Director of Finance', image: MonishaGopalImg, url: 'https://www.linkedin.com/in/monisha-gopal/' },
+    ],
+    teams: [ 
+      [], 
+      [],
+      [], 
+      [
+        { name: 'Justin Gallagher', role: 'CMU Eats Tech Lead', image: JustinGallagherImg, url: 'https://www.linkedin.com/in/justingallag/' },
+        { name: 'Oscar Bezi', role: 'CMU Eats Tech Lead', image: OscarBeziImg, url: 'https://bezi.io/' },
+        { name: 'Justin Gallagher', role: 'course-api Tech Lead', image: JustinGallagherImg, url: 'https://www.linkedin.com/in/justingallag/' },
+        { name: 'Oscar Bezi', role: 'directory-api Tech Lead', image: OscarBeziImg, url: 'https://bezi.io/' },
+        { name: 'Shalom Yiblet', role: 'directory-api Tech Lead', image: ShalomYibletImg, url: 'https://www.linkedin.com/in/yiblet/' },
+      ], 
+      [], 
+      [], 
+      []],
+  },
+  {
+    label: '2014-15',
+    directors: [
+      { name: 'Taylor Poulos', role: 'Director of ScottyLabs', image: TaylorPoulosImg, url: 'https://www.linkedin.com/in/taylor-poulos-34854b338/' },
+      null,
+      { name: 'Jake Zimmerman', role: 'Director of Operations', image: JakeZimmermanImg, url: 'https://jez.io/' },
+      { name: 'Tom Shen', role: 'Director of Tech', image: TomShenImg, url: 'https://www.linkedin.com/in/tomzshen/' },
+      null, // Labrador missing
+      { name: 'Lois Chang', role: 'Director of Design', image: LoisChangImg, url: 'https://www.loisyenachang.com/' },
+      { name: 'Monisha Gopal', role: 'Director of Finance', image: MonishaGopalImg, url: 'https://www.linkedin.com/in/monisha-gopal/' },
+    ],
+    teams: [ 
+      [], 
+      [],
+      [], 
+      [
+        { name: 'Justin Gallagher', role: 'CMU Eats Tech Lead', image: JustinGallagherImg, url: 'https://www.linkedin.com/in/justingallag/' },
+        { name: 'Oscar Bezi', role: 'CMU Eats Tech Lead', image: OscarBeziImg, url: 'https://bezi.io/' },
+        { name: 'Justin Gallagher', role: 'course-api Tech Lead', image: JustinGallagherImg, url: 'https://www.linkedin.com/in/justingallag/' },
+        { name: 'Andrew Benson', role: 'course-api Tech Lead', image: AndrewBensonImg, url: 'https://www.linkedin.com/in/andrewdbenson/' },
+        ], 
+      [], 
+      [], 
+      []],
+  },
+  {
+    label: '2013-14',
+    directors: [
+      { name: 'Taylor Poulos', role: 'Director of ScottyLabs', image: TaylorPoulosImg, url: 'https://www.linkedin.com/in/taylor-poulos-34854b338/' },
+      null,
+      { name: 'Jeff Cooper', role: 'Director of Operations', image: JeffCooperImg, url: 'https://www.linkedin.com/in/thejeffcooper/' },
+      null,
+      null, // Labrador missing
+      null,
+      null,
+    ],
+    teams: [ 
+      [], 
+      [],
+      [], 
+      [
+        { name: 'Justin Gallagher', role: 'CMU Eats Tech Lead', image: JustinGallagherImg, url: 'https://www.linkedin.com/in/justingallag/' },
+        { name: 'Oscar Bezi', role: 'CMU Eats Tech Lead', image: OscarBeziImg, url: 'https://bezi.io/' },
+        ], 
+      [], 
+      [], 
+      []],
+  },
+  {
+    label: '2012-13',
+    directors: [
+      { name: 'Julia Teitelbaum', role: 'Director of ScottyLabs', image: JuliaTeitelbaumImg, url: 'https://www.linkedin.com/in/juliateitelbaum/' },
+      { name: 'Quintin Carlon', role: 'Director of TartanHacks', image: QuintinCarlonImg, url: 'https://www.linkedin.com/in/qcarlson/' },
+      { name: 'Jeff Cooper', role: 'Director of Operations', image: JeffCooperImg, url: 'https://www.linkedin.com/in/thejeffcooper/' },
+      { name: 'Drew Inglis', role: 'Director of Tech', image: DrewInglisImg, url: 'https://www.linkedin.com/in/drewinglis/' },
+      null, // Labrador missing
+      null,
+      null,
+    ],
+    teams: [ 
+      [],
+      [
+        { name: 'Amy Quispe', role: 'Social Chair', image: AmyQuispeImg, url: 'https://www.linkedin.com/in/amyquispe/' },
+        ], 
+      [], 
+      [], 
+      [], 
+      [], 
+      []],
+  },
+  {
+    label: '2011-12',
+    directors: [
+      { name: 'Amy Quispe', role: 'Co-Founder, OG Director', image: AmyQuispeImg, url: 'https://www.linkedin.com/in/amyquispe/' },
+      null,
+      { name: 'Jeff Cooper', role: 'Director of Operations', image: JeffCooperImg, url: 'https://www.linkedin.com/in/thejeffcooper/' },
+      null,
+      null, // Labrador missing
+      null,
+      null,
+    ],
+    teams: [ 
+      [],
+      [
+        { name: 'Quintin Carlon', role: 'OG TartanHacks Team', image: QuintinCarlonImg, url: 'https://www.linkedin.com/in/qcarlson/' },
+        { name: 'Ryhan Hassan', role: 'OG TartanHacks Team', image: RyanHassanImg, url: 'https://www.linkedin.com/in/ryhan-hassan-622b3a24/' },
+        { name: 'Julia Teitelbaum', role: 'OG TartanHacks Team', image: JuliaTeitelbaumImg, url: 'https://www.linkedin.com/in/juliateitelbaum/' },
+        ], 
+      [],
+      [
+        { name: 'Vinay Vemuri', role: 'Co-Founder, OG CTO', image: VinayVemuriImg, url: 'https://www.linkedin.com/in/vinay-vyas-vemuri-1845b140/' },
+        { name: 'Kellie Medlin', role: 'CTO', image: KellieMedlinImg, url: 'https://www.linkedin.com/in/kellie-medlin-aa39b543/' },
+      ], 
+      [], 
+      [], 
+      []],
+  }
 ];
 
 export default function Team() {
@@ -659,6 +1059,50 @@ export default function Team() {
           ))}
         </div>
       </div>
+      
+
+      {/* Textbox Rectangle */}
+      {/* Textbox Rectangle */}
+      <div
+        style={{
+          borderRadius: '20px',
+          border: '1px solid #B0B0B0',
+          background: '#F2F3F7',
+          padding: '48px',
+          width: '100%',
+          minHeight: '200px',
+          marginTop: '48px',
+        }}
+      >
+        <div
+          style={{
+            fontFamily: 'Satoshi, sans-serif',
+            fontSize: '16px',
+            color: '#07123b',
+            lineHeight: '1.8',
+          }}
+        >
+          <div style={{ fontWeight: 700, fontSize: '20px', marginBottom: '16px', color: '#07123b' }}>
+            LORE
+          </div>
+          <div style={{ marginBottom: '12px' }}>
+            <span style={{ fontWeight: 600 }}>2024</span> <a href="http://www-03-thetartan.andrew.cmu.edu/2024/11/25/never-get-lost-again-with-cmumaps/" target="_blank" rel="noopener noreferrer" style={{ color: '#819AFF', textDecoration: 'none' }}>http://www-03-thetartan.andrew.cmu.edu/2024/11/25/never-get-lost-again-with-cmumaps/</a>
+          </div>
+          <div style={{ marginBottom: '12px' }}>
+            <span style={{ fontWeight: 600 }}>2022</span> <a href="https://cargocollective.com/tiffanyhchen/ScottyLabs-Promotional-Materials" target="_blank" rel="noopener noreferrer" style={{ color: '#819AFF', textDecoration: 'none' }}>https://cargocollective.com/tiffanyhchen/ScottyLabs-Promotional-Materials</a>
+          </div>
+          <div style={{ marginBottom: '12px' }}>
+            <span style={{ fontWeight: 600 }}>2018</span> <a href="https://www.chengeric.com/cmueats/" target="_blank" rel="noopener noreferrer" style={{ color: '#819AFF', textDecoration: 'none' }}>https://www.chengeric.com/cmueats/</a>
+          </div>
+          <div style={{ marginBottom: '12px' }}>
+            <span style={{ fontWeight: 600 }}>2013-14</span> <a href="https://www.cs.cmu.edu/link/scottylabs-making-it-easier-makers" target="_blank" rel="noopener noreferrer" style={{ color: '#819AFF', textDecoration: 'none' }}>https://www.cs.cmu.edu/link/scottylabs-making-it-easier-makers</a>
+          </div>
+          <div style={{ marginBottom: '12px' }}>
+            <span style={{ fontWeight: 600 }}>2012</span> <a href="https://www.facebook.com/ScottyLabs/posts/340694309339069/" target="_blank" rel="noopener noreferrer" style={{ color: '#819AFF', textDecoration: 'none' }}>https://www.facebook.com/ScottyLabs/posts/340694309339069/</a>
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }
