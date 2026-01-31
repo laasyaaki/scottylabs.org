@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Import images directly from assets directory
 // This way Vite/Next.js will handle the paths correctly
 import TheoUrbanImg from '../assets/team-page/TheoUrban.jpg';
