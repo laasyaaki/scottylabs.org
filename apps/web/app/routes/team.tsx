@@ -2018,7 +2018,7 @@ export default function Team() {
           paddingLeft: "130px",
           paddingRight: 40,
           position: "relative",
-          overflowX: "scroll",
+          overflowX: "auto",
           overflowY: "hidden",
         }}
       >
