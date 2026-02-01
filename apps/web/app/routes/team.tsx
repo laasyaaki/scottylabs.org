@@ -30,7 +30,7 @@ import LenaPoshniImg from "../assets/team-page/LenaPoshni.jpg";
 import JonathanOhImg from "../assets/team-page/JonathanOh.png";
 import AmyChoiImg from "../assets/team-page/AmyChoi.jpg";
 import KylaAndersonImg from "../assets/team-page/KylaAnderson.jpg";
-import ArunimaDasImg from "../assets/team-page/ArunimaDas.jpg";
+import EmilyLauImg from "../assets/team-page/EmilyLau.jpg";
 import JeanChenImg from "../assets/team-page/JeanChen.jpg";
 import JustinWuImg from "../assets/team-page/JustinWu.jpg";
 import MichaelZhouImg from "../assets/team-page/MichaelZhou.jpg";
@@ -613,10 +613,10 @@ const YEARS: YearType[] = [
           url: "https://www.linkedin.com/in/kyla-anderson-designer/",
         },
         {
-          name: "Arunima Das",
+          name: "Emily Lau",
           role: "Head of Branding",
-          image: ArunimaDasImg,
-          url: "https://www.linkedin.com/in/arunima-das/",
+          image: EmilyLauImg,
+          url: "https://www.linkedin.com/in/emily-lau-design/",
         },
         {
           name: "Jean Chen",
