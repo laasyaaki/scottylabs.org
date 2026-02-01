@@ -18,11 +18,11 @@ const navLinks = [
   //   url: "/events",
   //   text: "Events",
   // },
-  // {
-  //   icon: teamIcon,
-  //   url: "/team",
-  //   text: "Team",
-  // },
+  {
+    icon: teamIcon,
+    url: "/team",
+    text: "Team",
+  },
   {
     icon: sponsorsIcon,
     url: "/sponsors",
