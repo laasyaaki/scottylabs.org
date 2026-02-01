@@ -143,10 +143,9 @@ import KellieMedlinImg from "../assets/team-page/KellieMedlin.jpg";
 type Person = {
   name: string;
   role: string;
-  image?: string | any;
+  image: string;
   url?: string; // LinkedIn OR personal website (optional)
 };
-
 type YearType = {
   label: string;
   directors: Array<Person | null>; // allow empty director slots
@@ -159,7 +158,7 @@ const ClickableWrapper: React.FC<{
   children: React.ReactNode;
   ariaLabel?: string;
 }> = ({ href, children, ariaLabel }) => {
-  if (!href) return <>{children}</>;
+  if (!href) return <div style={{ height: "100%" }}>{children}</div>;
 
   return (
     <a
@@ -171,6 +170,7 @@ const ClickableWrapper: React.FC<{
         textDecoration: "none",
         color: "inherit",
         display: "block",
+        height: "100%",
       }}
     >
       {children}
@@ -182,24 +182,17 @@ const ClickableWrapper: React.FC<{
 const DirectorCard: React.FC<{ person: Person; size?: number }> = ({
   person,
 }) => {
-  const initials = person.name
-    .split(" ")
-    .map((n) => n[0])
-    .slice(0, 2)
-    .join("");
-
   const card = (
     <div
       style={{
-        display: "flex",
-        padding: "16px",
-        flexDirection: "column",
+        padding: "16px 16px 20px",
         alignItems: "center",
         gap: "12px",
         borderRadius: "20px",
         background: "#FFF",
+        height: "100%",
+        boxSizing: "border-box",
         boxShadow: "0 6px 16px 0 rgba(0, 0, 0, 0.15)",
-        minHeight: "200px",
         cursor: person.url ? "pointer" : "default",
         transition: "transform 120ms ease, box-shadow 120ms ease",
       }}
@@ -229,39 +222,16 @@ const DirectorCard: React.FC<{ person: Person; size?: number }> = ({
           minHeight: "0",
         }}
       >
-        {person.image ? (
-          <img
-            src={
-              typeof person.image === "string"
-                ? person.image
-                : person.image.src || person.image
-            }
-            alt={person.name}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background: "#F3F4F6",
-              color: "#111827",
-              fontWeight: 700,
-              fontSize: "24px",
-            }}
-          >
-            {initials}
-          </div>
-        )}
+        <img
+          src={person.image}
+          style={{
+            width: "100%",
+            aspectRatio: "1 / 1",
+            objectFit: "cover",
+          }}
+          loading="lazy"
+        />
       </div>
-
       {/* Name and role below photo */}
       <div style={{ textAlign: "center", width: "100%" }}>
         <div
@@ -269,6 +239,7 @@ const DirectorCard: React.FC<{ person: Person; size?: number }> = ({
             fontWeight: 700,
             fontSize: "16px",
             color: "#07123b",
+            marginTop: 7,
             marginBottom: "4px",
             lineHeight: "1.2",
           }}
@@ -309,16 +280,14 @@ const TeamMemberCard: React.FC<{ person: Person }> = ({ person }) => {
   const card = (
     <div
       style={{
-        display: "flex",
-        padding: "0px 10px 10px 10px",
-        flexDirection: "column",
+        padding: "0px 5px 10px",
         alignItems: "center",
         gap: "8px",
         borderRadius: "12px",
         background: "#FFF",
         boxShadow: "0 2px 8px 0 rgba(0, 0, 0, 0.1)",
-        width: "70px",
-        minHeight: "110px",
+        height: "100%",
+        boxSizing: "border-box",
         overflow: "hidden",
         cursor: person.url ? "pointer" : "default",
         transition: "transform 120ms ease, box-shadow 120ms ease",
@@ -339,32 +308,23 @@ const TeamMemberCard: React.FC<{ person: Person }> = ({ person }) => {
       {/* Photo with rounded corners only on top */}
       <div
         style={{
-          width: "calc(100% + 20px)",
-          marginLeft: "-10px",
-          marginRight: "-10px",
           flex: "1",
           borderRadius: "12px 12px 0 0",
           overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
           background: "#F3F4F6",
-          minHeight: "0",
+          marginInline: "-5px",
         }}
       >
         {person.image ? (
           <img
-            src={
-              typeof person.image === "string"
-                ? person.image
-                : person.image.src || person.image
-            }
-            alt={person.name}
+            src={person.image}
             style={{
               width: "100%",
-              height: "100%",
+              aspectRatio: "1 / 1",
               objectFit: "cover",
+              display: "block",
             }}
+            loading="lazy"
           />
         ) : (
           <div
@@ -386,14 +346,16 @@ const TeamMemberCard: React.FC<{ person: Person }> = ({ person }) => {
       </div>
 
       {/* Name and role below photo */}
-      <div style={{ textAlign: "center", width: "100%" }}>
+      <div style={{ textAlign: "center" }}>
         <div
           style={{
             fontWeight: 700,
             fontSize: "9px",
             color: "#07123b",
+            marginTop: 5,
             marginBottom: "2px",
             lineHeight: "1.2",
+            wordBreak: "break-word",
           }}
         >
           {person.name}
@@ -474,13 +436,13 @@ const YEARS: YearType[] = [
       [
         {
           name: "Evan Foster",
-          role: "Head Of Logistics",
+          role: "Head of Logistics",
           image: EvanFosterImg,
           url: "https://www.linkedin.com/in/ebfoster/",
         },
         {
           name: "Dylan Yang",
-          role: "Head Of Logistics",
+          role: "Head of Logistics",
           image: DylanYangImg,
           url: "https://www.linkedin.com/in/dylany666/",
         },
@@ -686,13 +648,13 @@ const YEARS: YearType[] = [
       [
         {
           name: "Ted Gershon",
-          role: "Head Of Logistics",
+          role: "Head of Logistics",
           image: TedGershonImg,
           url: "https://www.linkedin.com/in/tedgershon/",
         },
         {
           name: "Samhitha Duggirala",
-          role: "Head Of Logistics",
+          role: "Head of Logistics",
           image: SamhithaDuggiralaImg,
           url: "https://www.linkedin.com/in/samhithaduggirala/",
         },
@@ -863,13 +825,13 @@ const YEARS: YearType[] = [
         // NOTE: you had TedGershonImg here before; keeping your original image reference would be better if you have CooperBrunoImg
         {
           name: "Cooper Bruno",
-          role: "Head Of Logistics",
+          role: "Head of Logistics",
           image: CooperBrunoImg,
           url: "https://www.linkedin.com/in/cooperbruno/",
         },
         {
           name: "Nithya Kemp",
-          role: "Head Of Logistics",
+          role: "Head of Logistics",
           image: NithyaKempImg,
           url: "https://www.linkedin.com/in/nithya-kemp-a2941b220/",
         },
@@ -1082,19 +1044,19 @@ const YEARS: YearType[] = [
       [
         {
           name: "Chloe Deng",
-          role: "Head Of Logistics",
+          role: "Head of Logistics",
           image: ChloeDengImg,
           url: "https://www.linkedin.com/in/chloehdeng/",
         },
         {
           name: "Brandon Wei",
-          role: "Head Of Event Exploration/Design",
+          role: "Head of Event Exploration/Design",
           image: BrandonWeiImg,
           url: "https://www.linkedin.com/in/brandon-wei21/",
         },
         {
           name: "Gram Liu",
-          role: "Head Of Community",
+          role: "Head of Community",
           image: GramLiuImg,
           url: "https://www.linkedin.com/in/gramliu/",
         },
@@ -1264,13 +1226,13 @@ const YEARS: YearType[] = [
       [
         {
           name: "Tika Naik",
-          role: "Head Of Logistics",
+          role: "Head of Logistics",
           image: TikaNaikImg,
           url: "https://www.linkedin.com/in/tika-naik/",
         },
         {
           name: "Raghav Gupta",
-          role: "Head Of Event Exploration/Design",
+          role: "Head of Event Exploration/Design",
           image: RaghavGuptaImg,
           url: "https://www.linkedin.com/in/raghavgupta84/",
         },
@@ -1409,7 +1371,7 @@ const YEARS: YearType[] = [
         },
         {
           name: "Richard Yan",
-          role: "Head Of Food",
+          role: "Head of Food",
           image: RichardYanImg,
           url: "https://www.linkedin.com/in/richard-yan-81b982170/",
         },
@@ -1533,7 +1495,7 @@ const YEARS: YearType[] = [
         },
         {
           name: "Richard Yan",
-          role: "Head Of Outreach",
+          role: "Head of Outreach",
           image: RichardYanImg,
           url: "https://www.linkedin.com/in/richard-yan-81b982170/",
         },
@@ -2061,14 +2023,12 @@ export default function Team() {
           overflowY: "hidden",
         }}
       >
-        {/* <div style={{ background: "red", height: 30, width: 5000 }}></div> */}
-
         {/* Content with relative positioning */}
         <div
           style={{
             position: "relative",
             zIndex: 1,
-            minWidth: 1400,
+            minWidth: 1000,
           }}
         >
           {/* Vertical lines spanning the entire height */}
@@ -2107,7 +2067,7 @@ export default function Team() {
             <div
               key={`${year.label}-${yearIdx}`} // IMPORTANT: avoid duplicate keys since labels repeat
               style={{
-                marginBottom: yearIdx === YEARS.length - 1 ? "0" : "80px",
+                marginBottom: yearIdx === YEARS.length - 1 ? "0" : "60px",
                 position: "relative",
               }}
             >
@@ -2191,48 +2151,23 @@ export default function Team() {
                 }}
               >
                 {year.teams.map((team: Person[], colIdx: number) => {
-                  const teamRows: Person[][] = [];
-                  if (team) {
-                    for (let i = 0; i < team.length; i += 2) {
-                      teamRows.push(team.slice(i, i + 2));
-                    }
-                  }
-
                   return (
                     <div
                       key={colIdx}
                       style={{
-                        display: "flex",
-                        flexDirection: "column",
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, minmax(0,1fr))",
+                        gap: 8,
                         alignItems: "center",
+                        height: "fit-content",
                       }}
                     >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: "12px",
-                          alignItems: "center",
-                        }}
-                      >
-                        {teamRows.map((row: Person[], rowIdx: number) => (
-                          <div
-                            key={rowIdx}
-                            style={{
-                              display: "flex",
-                              gap: "6px",
-                              justifyContent: "center",
-                            }}
-                          >
-                            {row.map((member: Person) => (
-                              <TeamMemberCard
-                                key={`${member.name}-${member.role}`}
-                                person={member}
-                              />
-                            ))}
-                          </div>
-                        ))}
-                      </div>
+                      {team.map((member, i) => (
+                        <TeamMemberCard
+                          key={`${member.name}-${member.role}`}
+                          person={member}
+                        />
+                      ))}
                     </div>
                   );
                 })}
