@@ -2037,7 +2037,7 @@ export default function Team() {
               position: "absolute",
               inset: 0,
               display: "grid",
-              gridTemplateColumns: "repeat(7, 1fr)",
+              gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
               gap: "12px",
               pointerEvents: "none",
               zIndex: 0,
