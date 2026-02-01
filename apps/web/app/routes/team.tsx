@@ -977,19 +977,19 @@ const YEARS: YearType[] = [
         },
         {
           name: "Autumn Qiu",
-          role: "CMU Grovery List Lead",
+          role: "CMU Grocery List Lead",
           image: AutumnQiuImg,
           url: "https://www.linkedin.com/in/autumn-qiu/",
         },
         {
           name: "Megan Gu",
-          role: "CMU Grovery List Lead",
+          role: "CMU Grocery List Lead",
           image: MeganGuImg,
           url: "https://www.linkedin.com/in/megan-gu-62797a2a0/",
         },
         {
           name: "Katherine Zhao",
-          role: "CMU Grovery List Lead",
+          role: "CMU Grocery List Lead",
           image: KatherineZhaoImg,
           url: "https://www.linkedin.com/in/katherine-zhao16/",
         },
@@ -1154,7 +1154,7 @@ const YEARS: YearType[] = [
           name: "Ryan Lau",
           role: "TartanHacks Dashboard Tech Lead",
           image: RyanLauImg,
-          url: "https://www.linkedin.com/in/rayan-lau-79a212a8/",
+          url: "https://www.linkedin.com/in/ryan-lau-wh/",
         },
         {
           name: "Alexander Obolenskiy",
@@ -1296,7 +1296,7 @@ const YEARS: YearType[] = [
         },
         {
           name: "Sanjana Meduri",
-          role: "Head of Sponsorship",
+          role: "Head of Publicity",
           image: SanjanaMeduriImg,
           url: "https://www.linkedin.com/in/sanjana-meduri/",
         },
@@ -1633,14 +1633,7 @@ const YEARS: YearType[] = [
       ],
       [],
       [],
-      [
-        {
-          name: "Yo-Lei Chen",
-          role: "Head of Sponsorship",
-          image: YoLeiChenImg,
-          url: "https://www.linkedin.com/in/yoleichen/",
-        },
-      ],
+      [],
     ],
   },
   {
@@ -1792,25 +1785,13 @@ const YEARS: YearType[] = [
       [
         {
           name: "Justin Gallagher",
-          role: "CMU Eats Tech Lead",
+          role: "CMU Eats Tech, course-api Tech Lead",
           image: JustinGallagherImg,
           url: "https://www.linkedin.com/in/justingallag/",
         },
         {
           name: "Oscar Bezi",
-          role: "CMU Eats Tech Lead",
-          image: OscarBeziImg,
-          url: "https://bezi.io/",
-        },
-        {
-          name: "Justin Gallagher",
-          role: "course-api Tech Lead",
-          image: JustinGallagherImg,
-          url: "https://www.linkedin.com/in/justingallag/",
-        },
-        {
-          name: "Oscar Bezi",
-          role: "directory-api Tech Lead",
+          role: "CMU Eats Tech Lead, directory-api Tech Lead",
           image: OscarBeziImg,
           url: "https://bezi.io/",
         },
@@ -1851,7 +1832,7 @@ const YEARS: YearType[] = [
       null, // Labrador missing
       {
         name: "Lois Chang",
-        role: "Director of Design",
+        role: "Director of Communications",
         image: LoisChangImg,
         url: "https://www.loisyenachang.com/",
       },
@@ -1869,7 +1850,7 @@ const YEARS: YearType[] = [
       [
         {
           name: "Justin Gallagher",
-          role: "CMU Eats Tech Lead",
+          role: "CMU Eats Tech Lead, course-api Tech Lead",
           image: JustinGallagherImg,
           url: "https://www.linkedin.com/in/justingallag/",
         },
@@ -1878,12 +1859,6 @@ const YEARS: YearType[] = [
           role: "CMU Eats Tech Lead",
           image: OscarBeziImg,
           url: "https://bezi.io/",
-        },
-        {
-          name: "Justin Gallagher",
-          role: "course-api Tech Lead",
-          image: JustinGallagherImg,
-          url: "https://www.linkedin.com/in/justingallag/",
         },
         {
           name: "Andrew Benson",
