@@ -6,7 +6,6 @@ import ArjunPatelImg from "../assets/team-page/ArjunPatel.jpg";
 import YuxiangHuangImg from "../assets/team-page/YuxiangHuang.jpg";
 import ThomasKanzImg from "../assets/team-page/ThomasKanz.jpg";
 import WendyYuImg from "../assets/team-page/WendyYu.jpg";
-import AllenGuImg from "../assets/team-page/AllenGu.png";
 import EvanFosterImg from "../assets/team-page/EvanFoster.jpg";
 import DylanYangImg from "../assets/team-page/DylanYang.jpg";
 import VedanthRamanathanImg from "../assets/team-page/VedanthRamanathan.jpg";
@@ -78,7 +77,7 @@ import BrandonWeiImg from "../assets/team-page/BrandonWei.jpg";
 import GramLiuImg from "../assets/team-page/GramLiu.jpg";
 import NicolasEttlinImg from "../assets/team-page/NicolasEttlin.jpg";
 import JoyceHongImg from "../assets/team-page/JoyceHong.jpg";
-import RyanLauImg from "../assets/team-page/RyanLau.png";
+import ScottyDogImg from "../assets/team-page/ScottyDog.png";
 import RichardGuoImg from "../assets/team-page/RichardGuo.jpg";
 import ElizabethLouieImg from "../assets/team-page/ElizabethLouie.jpg";
 import JaclynYangImg from "../assets/team-page/JaclynYang.jpg";
@@ -427,7 +426,7 @@ const YEARS: YearType[] = [
       {
         name: "Allen Gu",
         role: "Director of Finance",
-        image: AllenGuImg,
+        image: ScottyDogImg,
         url: "https://www.linkedin.com/in/allen-gu/",
       },
     ],
@@ -456,7 +455,7 @@ const YEARS: YearType[] = [
         },
         {
           name: "Yuchen Zhou",
-          role: "Head of Internal Outreach",
+          role: "Head of External Outreach",
           image: YuchenZhouImg,
           url: "https://www.linkedin.com/in/yuchen-zhou-58289a247/",
         },
@@ -761,7 +760,7 @@ const YEARS: YearType[] = [
         {
           name: "Allen Gu",
           role: "Head of Purchasing & Planning",
-          image: AllenGuImg,
+          image: ScottyDogImg,
           url: "https://www.linkedin.com/in/allen-gu/",
         },
         {
@@ -1115,7 +1114,7 @@ const YEARS: YearType[] = [
         {
           name: "Ryan Lau",
           role: "TartanHacks Dashboard Tech Lead",
-          image: RyanLauImg,
+          image: ScottyDogImg,
           url: "https://www.linkedin.com/in/ryan-lau-wh/",
         },
         {
