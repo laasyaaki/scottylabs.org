@@ -229,7 +229,6 @@ const DirectorCard: React.FC<{ person: Person; size?: number }> = ({
               ? person.image
               : person.image.src || person.image
           }
-          alt={person.name}
           style={{
             width: "100%",
             aspectRatio: "1 / 1",
@@ -328,7 +327,6 @@ const TeamMemberCard: React.FC<{ person: Person }> = ({ person }) => {
                 ? person.image
                 : person.image.src || person.image
             }
-            alt={person.name}
             style={{
               width: "100%",
               aspectRatio: "1 / 1",
