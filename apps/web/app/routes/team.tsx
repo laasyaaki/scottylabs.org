@@ -143,10 +143,9 @@ import KellieMedlinImg from "../assets/team-page/KellieMedlin.jpg";
 type Person = {
   name: string;
   role: string;
-  image?: string | any;
+  image: string;
   url?: string; // LinkedIn OR personal website (optional)
 };
-
 type YearType = {
   label: string;
   directors: Array<Person | null>; // allow empty director slots
@@ -224,19 +223,15 @@ const DirectorCard: React.FC<{ person: Person; size?: number }> = ({
         }}
       >
         <img
-          src={
-            typeof person.image === "string"
-              ? person.image
-              : person.image.src || person.image
-          }
+          src={person.image}
           style={{
             width: "100%",
             aspectRatio: "1 / 1",
             objectFit: "cover",
           }}
+          loading="lazy"
         />
       </div>
-
       {/* Name and role below photo */}
       <div style={{ textAlign: "center", width: "100%" }}>
         <div
@@ -322,17 +317,14 @@ const TeamMemberCard: React.FC<{ person: Person }> = ({ person }) => {
       >
         {person.image ? (
           <img
-            src={
-              typeof person.image === "string"
-                ? person.image
-                : person.image.src || person.image
-            }
+            src={person.image}
             style={{
               width: "100%",
               aspectRatio: "1 / 1",
               objectFit: "cover",
               display: "block",
             }}
+            loading="lazy"
           />
         ) : (
           <div
