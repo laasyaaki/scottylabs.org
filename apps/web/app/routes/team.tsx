@@ -30,7 +30,7 @@ import LenaPoshniImg from "../assets/team-page/LenaPoshni.jpg";
 import JonathanOhImg from "../assets/team-page/JonathanOh.png";
 import AmyChoiImg from "../assets/team-page/AmyChoi.jpg";
 import KylaAndersonImg from "../assets/team-page/KylaAnderson.jpg";
-import EmilyLauImg from "../assets/team-page/EmilyLau.jpg";
+import EmilyLauImg from "../assets/team-page/EmilyLau.png";
 import JeanChenImg from "../assets/team-page/JeanChen.jpg";
 import JustinWuImg from "../assets/team-page/JustinWu.jpg";
 import MichaelZhouImg from "../assets/team-page/MichaelZhou.jpg";
