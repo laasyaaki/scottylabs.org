@@ -135,7 +135,7 @@ import JuliaTeitelbaumImg from "../assets/team-page/JuliaTeitelbaum.jpg";
 import QuintinCarlonImg from "../assets/team-page/QuintinCarlon.jpg";
 import DrewInglisImg from "../assets/team-page/DrewInglis.jpg";
 import AmyQuispeImg from "../assets/team-page/AmyQuispe.jpg";
-import RyanHassanImg from "../assets/team-page/RyanHassan.jpg";
+import RyhanHassanImg from "../assets/team-page/RyhanHassan.jpg";
 import VinayVemuriImg from "../assets/team-page/VinayVemuri.jpg";
 import KellieMedlinImg from "../assets/team-page/KellieMedlin.jpg";
 
@@ -588,13 +588,13 @@ const YEARS: YearType[] = [
         },
         {
           name: "Lena Poshni",
-          role: "FE Team Lead",
+          role: "Frontend Team Lead",
           image: LenaPoshniImg,
           url: "https://www.linkedin.com/in/lenaposhni18/",
         },
         {
           name: "Jonathan Oh",
-          role: "BE Team Lead",
+          role: "Backend Team Lead",
           image: JonathanOhImg,
           url: "https://www.linkedin.com/in/joonho-oh/",
         },
@@ -1997,7 +1997,7 @@ const YEARS: YearType[] = [
         {
           name: "Ryhan Hassan",
           role: "OG TartanHacks Team",
-          image: RyanHassanImg,
+          image: RyhanHassanImg,
           url: "https://www.linkedin.com/in/ryhan-hassan-622b3a24/",
         },
         {
